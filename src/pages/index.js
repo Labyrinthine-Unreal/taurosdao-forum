@@ -4,14 +4,15 @@ import Link from 'next/link';
 import styles from '@root/styles/Home.module.css'
 import { useState } from 'react';
 // import Clerk from "@clerk/clerk-js";
-import { SignIn } from '@clerk/nextjs/app-beta';
+// import { SignIn } from '@clerk/nextjs/app-beta';
 import { SignUp } from "@clerk/nextjs";
 import { useAuth } from '@clerk/nextjs';
-
+import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, UserButton } from '@clerk/nextjs'
 
 
 export default function Home() {
   const [topics, setTopics] = useState([]);
+  const {isSignedIn, user } = useUser()
 
   const handleRegistration = (e) => {
     e.preventDefault();
@@ -39,12 +40,22 @@ export default function Home() {
   //    redirectUrl="/"/>
   //   );
   return (
+  
     <div className={styles.container}>
       <Head>
         <title>Simple Forum</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>Hello, {userId}</div>
+      <SignedIn>
+        {/* Mount the UserButton component */}
+        <UserButton />
+      </SignedIn>
+      <SignedOut>
+        {/* Signed out users get sign in button */}
+        <SignInButton />
+      </SignedOut>
+      {/* <div>Hello, {userId}</div>
+      <div>{user.firstName}</div> */}
       <h1>Simple Forum</h1>
       <ul>
       <li>
@@ -82,25 +93,6 @@ export default function Home() {
         <br />
         <input type="submit" value="Register" />
       </form>
-
-      <h2>Create Topic</h2>
-      <form onSubmit={handleNewTopic}>
-        <label htmlFor="title">Title:</label>
-        <input type="text" id="title" name="title" required />
-        <br />
-        <label htmlFor="content">Content:</label>
-        <textarea id="content" name="content" required />
-        <br />
-        <input type="submit" value="Create Topic" />
-      </form>
-
-      <h2>Topics</h2>
-      {topics.map((topic, index) => (
-        <div key={index}>
-          <h3>{topic.title}</h3>
-          <p>{topic.content}</p>
-        </div>
-      ))}
     </div>
   );
 }
