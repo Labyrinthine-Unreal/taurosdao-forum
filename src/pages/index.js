@@ -5,20 +5,12 @@ import styles from '@root/styles/Home.module.css'
 import { useState } from 'react';
 
 export default function Home() {
-  const [topics, setTopics] = useState([]);
-
   const handleRegistration = (e) => {
     e.preventDefault();
     alert("Registration complete. (Data not saved)");
   };
 
-  const handleNewTopic = (e) => {
-    e.preventDefault();
-    const title = e.target.title.value;
-    const content = e.target.content.value;
 
-    setTopics([...topics, { title, content }]);
-  };
 
   return (
     <div className={styles.container}>
@@ -64,25 +56,6 @@ export default function Home() {
         <br />
         <input type="submit" value="Register" />
       </form>
-
-      <h2>Create Topic</h2>
-      <form onSubmit={handleNewTopic}>
-        <label htmlFor="title">Title:</label>
-        <input type="text" id="title" name="title" required />
-        <br />
-        <label htmlFor="content">Content:</label>
-        <textarea id="content" name="content" required />
-        <br />
-        <input type="submit" value="Create Topic" />
-      </form>
-
-      <h2>Topics</h2>
-      {topics.map((topic, index) => (
-        <div key={index}>
-          <h3>{topic.title}</h3>
-          <p>{topic.content}</p>
-        </div>
-      ))}
     </div>
   );
 }
