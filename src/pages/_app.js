@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 //   "/foo"           for pages/foo/index.js
 //   "/foo/bar"       for pages/foo/bar.js
 //   "/foo/[...bar]"  for pages/foo/[...bar].js
-const publicPages = [];
+const publicPages = ["/sign-in/[[...index]]", "/sign-up/[[...index]]"];
 
 function MyApp({ Component, pageProps }) {
   // Get the pathname

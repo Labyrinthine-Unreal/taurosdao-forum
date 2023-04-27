@@ -3,6 +3,12 @@ import Image from 'next/image'
 import Link from 'next/link';
 import styles from '@root/styles/Home.module.css'
 import { useState } from 'react';
+// import Clerk from "@clerk/clerk-js";
+import { SignIn } from '@clerk/nextjs/app-beta';
+import { SignUp } from "@clerk/nextjs";
+import { useAuth } from '@clerk/nextjs';
+
+
 
 export default function Home() {
   const [topics, setTopics] = useState([]);
@@ -20,13 +26,25 @@ export default function Home() {
     setTopics([...topics, { title, content }]);
   };
 
+  const { isLoaded, userId, sessionId, getToken } = useAuth();
+  
+  // In case the user signs out while on the page.
+  if (!isLoaded || !userId) {
+    return null;
+  }
+
+
+  // const SignUpPage = () => (
+  //   <SignUp path="/" routing="path" signInUrl="/sign-in" 
+  //    redirectUrl="/"/>
+  //   );
   return (
     <div className={styles.container}>
       <Head>
         <title>Simple Forum</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      <div>Hello, {userId}</div>
       <h1>Simple Forum</h1>
       <ul>
       <li>
