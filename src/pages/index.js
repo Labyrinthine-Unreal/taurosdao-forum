@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link';
 import styles from '@root/styles/Home.module.css'
 import { useState } from 'react';
 
@@ -28,10 +29,26 @@ export default function Home() {
 
       <h1>Simple Forum</h1>
       <ul>
-        <li>General</li>
-        <li>Code</li>
-        <li>Design</li>
-        <li>Marketing</li>
+      <li>
+          <Link href="/categories/general">
+            <span className={styles.categoryLink}>General</span>
+          </Link>
+        </li>
+        <li>
+          <Link href="/categories/code">
+            <span className={styles.categoryLink}>Code</span>
+          </Link>
+        </li>
+        <li>
+          <Link href="/categories/design">
+            <span className={styles.categoryLink}>Design</span>
+          </Link>
+        </li>
+        <li>
+          <Link href="/categories/marketing">
+            <span className={styles.categoryLink}>Marketing</span>
+          </Link>
+        </li>
       </ul>
 
       <h2>Registration</h2>

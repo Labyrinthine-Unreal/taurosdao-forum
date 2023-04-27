@@ -4,3 +4,12 @@
   padding: 50px;
   box-sizing: border-box;
 }
+
+.categoryLink {
+  color: #0070f3;
+  text-decoration: none;
+}
+
+.categoryLink:hover {
+  text-decoration: underline;
+}
