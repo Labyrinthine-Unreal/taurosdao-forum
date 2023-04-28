@@ -144,7 +144,7 @@ export default function Home(req,res) {
         </li>
       </ul>
 
-      <h2>Registration</h2>
+      {/* <h2>Registration</h2>
       <form onSubmit={handleRegistration}>
         <label htmlFor="nickname">Nickname:</label>
         <input type="text" id="nickname" name="nickname" required />
@@ -156,7 +156,7 @@ export default function Home(req,res) {
         <input type="password" id="password" name="password" required />
         <br />
         <input type="submit" value="Register" />
-      </form>
+      </form> */}
     </div>
   );
 }
