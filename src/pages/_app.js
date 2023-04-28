@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }) {
   // Otherwise, use Clerk to require authentication
   return (
     
-    <ClerkProvider {...pageProps}>
+    <ClerkProvider pk_test_cGxlYXNhbnQtbW9jY2FzaW4tODYuY2xlcmsuYWNjb3VudHMuZGV2JA {...pageProps}>
       {isPublicPage ? (
         <Component {...pageProps} />
       ) : (
