@@ -1,18 +1,33 @@
 // src/components/CreateTopic.js
 import React, { useState } from 'react';
-
+import faunadb from 'faunadb';
+const q = faunadb.query;
 const CreateTopic = ({ onCreate }) => {
   const [topic, setTopic] = useState('');
   const [content, setContent] = useState('');
+  const client = new faunadb.Client({ secret:"fnAFClf-6BAATcIrDU1kFAR-2IpS1I3oRwlLYVAd", keepAlive: false });
+  console.log(client)
+  // const id = client.query(q.CurrentIdentity());
+
+  // var createP = client.query(
+  //   q.Create(
+  //     q.Collection('topics'),
+  //     { data: { user: userId, name:user.firstName  } }
+  //   )
+  // )
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (topic.trim() && content.trim()) {
-      onCreate({ title: topic, content });
-      setTopic('');
-      setContent('');
-    }
+      var createP = client.query(
+    q.Create(
+      q.Collection('topics'),
+      { data: { topic: topic, content:content } }
+    ))
+    createP.then(function(response) {
+      console.log(response.ref); // Logs the ref to the console.
+    })
   };
+
 
   return (
     <div>
