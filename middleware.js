@@ -15,7 +15,9 @@ export default withClerkMiddleware((request) => {
     return NextResponse.next()
   }
   // if the user is not signed in redirect them to the sign in page.
-  const { userId } = getAuth(request)
+  const { userId, getToken } = getAuth(request)
+  const faunaToken = getToken({ template: 'fauna' })
+//   console.log(faunaToken)
 
   if (!userId) {
     // redirect the users to /pages/sign-in/[[...index]].ts
