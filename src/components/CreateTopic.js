@@ -28,6 +28,22 @@ const CreateTopic = ({ onCreate }) => {
     })
   };
 
+  // var helper = client.paginate(
+  //   q.Match(
+  //     q.Index('topics_by_id')
+  //   )
+  // )
+
+  // const fetch = helper.each(function(page) {
+  //   // Logs the page's contents,
+  //   // for example: [ Ref(Collection("test"), "1234"), ... ]
+  //   console.log(page);
+  // });
+
+
+  // const result = client.query(
+  //   q.Get(q.Match(q.Index('topics_by_id'),content))
+  // );
 
   return (
     <div>
@@ -52,6 +68,7 @@ const CreateTopic = ({ onCreate }) => {
         <br />
         <button type="submit">Submit</button>
       </form>
+      {/* {result.data} */}
     </div>
   );
 };
