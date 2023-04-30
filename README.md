@@ -1,6 +1,4 @@
-<<<<<<< HEAD
 # taurosdao-forum
-=======
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
@@ -39,4 +37,26 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
->>>>>>> cd98bea (Initial commit from Create Next App)
+
+
+>app/
+FAUNA_DB_SECRET="fnAFClf-6BAATcIrDU1kFAR-2IpS1I3oRwlLYVAd"
+
+
+-> Secured usesr registry via Clerk
+
+>src/components/createTopic
+> User Creates Topic&Content data
+	- data is stored to faunaDB via fauna Secret Key
+
+>src/components/topicList
+	- TODO: Fetch topics_by_id data to frontend
+>pages/api/currentUser
+-> clerk/NextJS usesr AUTH API, *experimental/.. unnecessary* 
+
+>pages/_app.js 
+-> Provide Clerk API key
+-> FaunaDB will stored secured user login to topics collection
+
+> pages/index.js #line55
+-> "test" collection is where we currently store user data for testing purposes

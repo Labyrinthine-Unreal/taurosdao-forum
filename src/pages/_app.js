@@ -16,8 +16,6 @@ function MyApp({ Component, pageProps }) {
   // Check if the current route matches a public page
   const isPublicPage = publicPages.includes(pathname);
 
-  // If the current route is listed as public, render it directly
-  // Otherwise, use Clerk to require authentication
   return (
     
     <ClerkProvider pk_test_cGxlYXNhbnQtbW9jY2FzaW4tODYuY2xlcmsuYWNjb3VudHMuZGV2JA {...pageProps}>

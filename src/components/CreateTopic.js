@@ -7,14 +7,6 @@ const CreateTopic = ({ onCreate }) => {
   const [content, setContent] = useState('');
   const client = new faunadb.Client({ secret:"fnAFClf-6BAATcIrDU1kFAR-2IpS1I3oRwlLYVAd", keepAlive: false });
   console.log(client)
-  // const id = client.query(q.CurrentIdentity());
-
-  // var createP = client.query(
-  //   q.Create(
-  //     q.Collection('topics'),
-  //     { data: { user: userId, name:user.firstName  } }
-  //   )
-  // )
 
   const handleSubmit = (e) => {
     e.preventDefault();

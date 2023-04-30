@@ -3,8 +3,6 @@ import Image from 'next/image'
 import Link from 'next/link';
 import styles from '@root/styles/Home.module.css'
 import { useState } from 'react';
-// import Clerk from "@clerk/clerk-js";
-// import { SignIn } from '@clerk/nextjs/app-beta';
 import { SignUp } from "@clerk/nextjs";
 import { useAuth } from '@clerk/nextjs';
 import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, UserButton } from '@clerk/nextjs'
@@ -25,18 +23,7 @@ export default function Home(req,res) {
   const {isSignedIn, user } = useUser()
   const [setUserId] = React.useState();
 
-  const handleRegistration = (e) => {
-    e.preventDefault();
-    alert("Registration complete. (Data not saved)");
-  };
 
-  const handleNewTopic = (e) => {
-    e.preventDefault();
-    const title = e.target.title.value;
-    const content = e.target.content.value;
-
-    setTopics([...topics, { title, content }]);
-  };
 
   const { isLoaded, userId, sessionId, getToken } = useAuth();
   // console.log(getToken)
@@ -61,47 +48,7 @@ export default function Home(req,res) {
   createP.then(function(response) {
     console.log(response.ref); // Logs the ref to the console.
   })
-  // const id = client.query(
-  //   q.CurrentIdentity()
-  // )
-  // .then(console.log(id))
-  // .catch((err) => console.error(
-  //   'Error: [%s] %s: %s',
-  //   err.name,
-  //   err.message,
-  //   err.errors()[0].description,
-  // ))
 
-  // setUserId(id);
-
-  // createP.then(function(response) {
-  //   console.log(response.ref); // Logs the ref to the console.
-  // })
-  // const id = client.query(
-  //   q.CurrentIdentity()
-  // )
-  // .then((ret) => console.log(ret))
-  // .catch((err) => console.error(
-  //   'Error: [%s] %s: %s',
-  //   err.name,
-  //   err.message,
-  //   err.errors()[0].description,
-  // ))
-
-  // console.log(id)
-  
-  
-  // const id = client.query(q.CurrentIdentity());
-  // console.log(id)
-  
-      // handle error
-  
-    // const params = { Id: userId, Name: user.firstName  }; 
-
-  // const SignUpPage = () => (
-  //   <SignUp path="/" routing="path" signInUrl="/sign-in" 
-  //    redirectUrl="/"/>
-  //   );
   return (
   
     <div className={styles.container}>
