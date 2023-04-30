@@ -5,7 +5,7 @@
 FAUNA_DB_SECRET="fnAFClf-6BAATcIrDU1kFAR-2IpS1I3oRwlLYVAd"
 
 
--> Secured usesr registry via Clerk
+-> Secured usesr registry via Clerk, data will be logged to faunadb
 
 >src/components/createTopic
 > User Creates Topic&Content data
