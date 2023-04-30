@@ -39,13 +39,13 @@ export default function Home(req,res) {
   console.log(client)
   // const id = client.query(q.CurrentIdentity());
 
-  var createP = client.query(
+  var createUser = client.query(
     q.Create(
       q.Collection('test'),
       { data: { user: userId, name:user.firstName  } }
     )
   )
-  createP.then(function(response) {
+  createUser.then(function(response) {
     console.log(response.ref); // Logs the ref to the console.
   })
 
