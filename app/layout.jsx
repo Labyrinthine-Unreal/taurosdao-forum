@@ -4,7 +4,7 @@ export default function RootLayout({ children }) {
     <ClerkProvider>
       <html lang="en">
         <head>
-          <title>Next.js 13 with Clerk</title>
+          <title>TaurosDAO Forums Login</title>
         </head>
         <body>{children}</body>
       </html>
