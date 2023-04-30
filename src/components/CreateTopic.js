@@ -10,12 +10,12 @@ const CreateTopic = ({ onCreate }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-      var createP = client.query(
+      var createTopic = client.query(
     q.Create(
       q.Collection('topics'),
       { data: { topic: topic, content:content } }
     ))
-    createP.then(function(response) {
+    createTopic.then(function(response) {
       console.log(response.ref); // Logs the ref to the console.
     })
   };
