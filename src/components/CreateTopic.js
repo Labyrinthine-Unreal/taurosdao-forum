@@ -5,7 +5,7 @@ const q = faunadb.query;
 const CreateTopic = ({ onCreate }) => {
   const [topic, setTopic] = useState('');
   const [content, setContent] = useState('');
-  const client = new faunadb.Client({ secret:process.env.FAUNADB_SECRET, keepAlive: false });
+  const client = new faunadb.Client({ secret:"fnAFClf-6BAATcIrDU1kFAR-2IpS1I3oRwlLYVAd", keepAlive: false });
   console.log(client)
   // const id = client.query(q.CurrentIdentity());
 
