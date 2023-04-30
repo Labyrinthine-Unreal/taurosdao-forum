@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
     const dbs = await client.query(
       q.Map(
         q.Paginate(q.Documents(q.Collection("topics"))),
-        q.Lambda("doc", q.Get(q.Var("doc")))
+        q.Lambda("ref", q.Get(q.Var("ref")))
       )
     );
 
