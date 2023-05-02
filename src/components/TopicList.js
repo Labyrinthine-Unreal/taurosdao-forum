@@ -1,28 +1,34 @@
-// src/components/TopicList.js
-import Link from 'next/link';
+import React from "react";
+import gql from "graphql-tag";
+import { ApolloProvider } from "@apollo/client";
+import { useQuery } from "@apollo/react-hooks";
 
-const TopicList = ({ topics }) => {
+const ITEMS_QUERY = gql`
+query MyTopicQuery {
+  topics_by_id {
+    data {
+     topic 
+     content
+    }
+  }
+ }
+`;
+console.log(ITEMS_QUERY)
+export default function TopicList() {
+ const { data, loading, error } = useQuery(ITEMS_QUERY);
+ console.log(data)
+
+ if (loading) return 'Loading...';
+ if (error) return `Error! ${error.message}`;
+
+
   return (
-    <div>
-      <h2>Topics</h2>
-      <ul>
-        {topics.map((topic) => (
-          <li key={topic.ref.id}>
-            <Link href={`/categories/topic/${encodeURIComponent(topic.ref.id)}`}>
-              <span className="topic-link">{topic.data.title}</span>
-            </Link>
-          </li>
-        ))}
-      </ul>
-      <style jsx>{`
-        .topic-link {
-          cursor: pointer;
-          text-decoration: underline;
-          color: blue;
-        }
-      `}</style>
-    </div>
+        <>
+        <div style={{ padding: "10px" }}>
+      {data.topics_by_id.data.map((item) => {
+        return <li>{item.topic}:{item.content}</li>;
+      })}
+      </div>
+      </> 
   );
-};
-
-export default TopicList;
+  }
