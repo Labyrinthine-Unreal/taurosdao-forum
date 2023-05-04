@@ -11,6 +11,33 @@ import faunadb from 'faunadb';
 const q = faunadb.query;
 
 export default function Home(req, res) {
+  const categoryCardsRef = React.useRef([]);
+
+  React.useEffect(() => {
+    categoryCardsRef.current = categoryCardsRef.current.slice(0, 4); // Only consider the 4 category cards
+  }, []);
+
+  const handleCardMouseEnter = (index) => {
+    categoryCardsRef.current[index].classList.add(styles.cardHovered);
+    categoryCardsRef.current[index].classList.add(styles[`cardRotate${['A', 'B', 'C', 'D'][index]}`]);
+    categoryCardsRef.current.forEach((card, i) => {
+      if (i !== index) {
+        card.classList.add(styles[`nonHovered${['A', 'B', 'C', 'D'][i]}`]);
+      }
+    });
+  };
+
+  const handleCardMouseLeave = (index) => {
+    categoryCardsRef.current[index].classList.remove(styles.cardHovered);
+    categoryCardsRef.current[index].classList.remove(styles[`cardRotate${['A', 'B', 'C', 'D'][index]}`]);
+    categoryCardsRef.current.forEach((card, i) => {
+      if (i !== index) {
+        card.classList.remove(styles[`nonHovered${['A', 'B', 'C', 'D'][i]}`]);
+      }
+    });
+  };
+  
+
   const { user } = useUser()
 
   const { isLoaded, userId, sessionId, getToken } = useAuth();
@@ -44,9 +71,16 @@ export default function Home(req, res) {
         <title>Simple Forum</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <header className={styles.header}>
+        <div className={styles.logo}>LOGO</div>
+        <h1>Simple Forum</h1>
+        <div className={styles.avatar}>
+          <UserButton />
+        </div>
+      </header>
+
       <SignedIn>
         {/* Mount the UserButton component */}
-        <UserButton />
       </SignedIn>
       <SignedOut>
         {/* Signed out users get sign in button */}
@@ -54,29 +88,44 @@ export default function Home(req, res) {
       </SignedOut>
       {/* <div>Hello, {userId}</div>
       <div>{user.firstName}</div> */}
-      <h1>Simple Forum</h1>
-      <ul>
-        <li>
-          <Link href="/categories/general">
-            <span className={styles.categoryLink}>General</span>
-          </Link>
-        </li>
-        <li>
-          <Link href="/categories/code">
-            <span className={styles.categoryLink}>Code</span>
-          </Link>
-        </li>
-        <li>
-          <Link href="/categories/design">
-            <span className={styles.categoryLink}>Design</span>
-          </Link>
-        </li>
-        <li>
-          <Link href="/categories/marketing">
-            <span className={styles.categoryLink}>Marketing</span>
-          </Link>
-        </li>
-      </ul>
+      <div className={styles.gridContainer}>
+        <Link href="/categories/general">
+          <div className={`${styles.categoryCard} ${styles.categoryTitle}`}
+          onMouseEnter={() => handleCardMouseEnter(0)}
+          onMouseLeave={() => handleCardMouseLeave(0)}
+          ref={(el) => (categoryCardsRef.current[0] = el)}
+          >
+            <h2>General</h2>
+          </div>
+        </Link>
+        <Link href="/categories/code">
+          <div className={`${styles.categoryCard} ${styles.categoryTitle}`}
+          onMouseEnter={() => handleCardMouseEnter(1)}
+          onMouseLeave={() => handleCardMouseLeave(1)}
+          ref={(el) => (categoryCardsRef.current[1] = el)}
+          >
+            <h2>Code</h2>
+          </div>
+        </Link>
+        <Link href="/categories/design">
+          <div className={`${styles.categoryCard} ${styles.categoryTitle}`}
+          onMouseEnter={() => handleCardMouseEnter(2)}
+          onMouseLeave={() => handleCardMouseLeave(2)}
+          ref={(el) => (categoryCardsRef.current[2] = el)}
+          >
+            <h2>Design</h2>
+          </div>
+        </Link>
+        <Link href="/categories/marketing">
+          <div className={`${styles.categoryCard} ${styles.categoryTitle}`}
+          onMouseEnter={() => handleCardMouseEnter(3)}
+          onMouseLeave={() => handleCardMouseLeave(3)}
+          ref={(el) => (categoryCardsRef.current[3] = el)}
+          >
+            <h2>Marketing</h2>
+          </div>
+        </Link>
+        </div>
     </div>
   );
 }
