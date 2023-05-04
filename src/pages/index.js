@@ -1,3 +1,5 @@
+// src/pages/index.js
+import React from 'react';
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link';
@@ -5,7 +7,7 @@ import styles from '@root/styles/Home.module.css'
 import { useAuth } from '@clerk/nextjs';
 import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, UserButton } from '@clerk/nextjs'
 import faunadb from 'faunadb';
-import React from 'react';
+
 const q = faunadb.query;
 
 export default function Home(req, res) {
@@ -35,8 +37,8 @@ export default function Home(req, res) {
   createP.then(function (response) {
     console.log(response.ref);
   })
-  return (
 
+  return (
     <div className={styles.container}>
       <Head>
         <title>Simple Forum</title>

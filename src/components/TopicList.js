@@ -1,3 +1,4 @@
+// src/components/TopicList.js
 import React from "react";
 import gql from "graphql-tag";
 import { ApolloProvider } from "@apollo/client";
@@ -7,8 +8,8 @@ const ITEMS_QUERY = gql`
 query MyTopicQuery {
   topics_by_id {
     data {
-     topic 
-     content
+      topic 
+      content
     }
   }
  }
@@ -26,7 +27,7 @@ export default function TopicList() {
         <>
         <div style={{ padding: "10px" }}>
       {data.topics_by_id.data.map((item) => {
-        return <li>{item.topic}:{item.content}</li>;
+        return <li key={item.id}>{item.topic}:{item.content}</li>;
       })}
       </div>
       </> 

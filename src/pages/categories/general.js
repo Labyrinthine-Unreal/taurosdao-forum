@@ -1,3 +1,4 @@
+// src/pages/categories/general.js
 import CreateTopic from '@root/components/CreateTopic';
 import TopicList from '@root/components/TopicList';
 import faunadb from 'faunadb';
