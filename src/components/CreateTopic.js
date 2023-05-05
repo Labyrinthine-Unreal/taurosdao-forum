@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import faunadb from 'faunadb';
 import { EditorState, convertToRaw } from 'draft-js';
+import FlippingButton from './FlippingButton';
 import styles from './CreateTopic.module.css';
 import dynamic from 'next/dynamic';
 
@@ -64,7 +65,12 @@ const CreateTopic = ({ onCreate }) => {
           onChange={(e) => setContent(e.target.value)}
         /> */}
         <br />
-        <button type="submit">Submit</button>
+        <FlippingButton
+          text="Submit"
+          front="Done?"
+          back="Submit"
+          onClick={handleSubmit}
+        />
       </form>
     </div>
   );
