@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import faunadb from 'faunadb';
 import { EditorState, convertToRaw } from 'draft-js';
+import { stateToHTML } from 'draft-js-export-html';
 import FlippingButton from './FlippingButton';
 import styles from './CreateTopic.module.css';
 import dynamic from 'next/dynamic';
@@ -12,7 +13,7 @@ const Editor = dynamic(
 );
 
 const q = faunadb.query;
-const CreateTopic = ({ onCreate }) => {
+const CreateTopic = ({ onPostCreated }) => {
   const [topic, setTopic] = useState('');
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
@@ -23,9 +24,11 @@ const CreateTopic = ({ onCreate }) => {
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    const content = JSON.stringify(
-      convertToRaw(editorState.getCurrentContent())
-    );
+    const contentState = editorState.getCurrentContent();
+    const content = stateToHTML(contentState);
+    // const content = JSON.stringify(
+    //   convertToRaw(editorState.getCurrentContent())
+    // );
       var createP = client.query(
     q.Create(
       q.Collection('topics'),
@@ -33,6 +36,7 @@ const CreateTopic = ({ onCreate }) => {
     ))
     createP.then(function(response) {
       console.log(response.ref); // Logs the ref to the console.
+      onPostCreated(response.data); // Call the callback with the new post data
     })
   };
 

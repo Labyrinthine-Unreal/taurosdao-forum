@@ -1,43 +1,46 @@
 // src/pages/index.js
 import React from 'react';
 import Head from 'next/head'
-import Image from 'next/image'
 import Link from 'next/link';
 import styles from '@root/styles/Home.module.css'
 import { useAuth } from '@clerk/nextjs';
 import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, UserButton } from '@clerk/nextjs'
 import faunadb from 'faunadb';
+import CategoryCard from '@root/components/CategoryCard';
 
 const q = faunadb.query;
 
 export default function Home(req, res) {
-  const categoryCardsRef = React.useRef([]);
+  const categories = [
+    { title: 'General', link: '/categories/general', index: 0 },
+    { title: 'Code', link: '/categories/code', index: 1 },
+    { title: 'Design', link: '/categories/design', index: 2 },
+    { title: 'Marketing', link: '/categories/marketing', index: 3 },
+  ];
 
-  React.useEffect(() => {
-    categoryCardsRef.current = categoryCardsRef.current.slice(0, 4); // Only consider the 4 category cards
-  }, []);
+  const categoryCardsRef = categories.map(() => React.createRef());
 
   const handleCardMouseEnter = (index) => {
-    categoryCardsRef.current[index].classList.add(styles.cardHovered);
-    categoryCardsRef.current[index].classList.add(styles[`cardRotate${['A', 'B', 'C', 'D'][index]}`]);
-    categoryCardsRef.current.forEach((card, i) => {
+    categoryCardsRef[index].current.classList.add(styles.cardHovered);
+    categoryCardsRef[index].current.classList.add(styles[`cardRotate${['A', 'B', 'C', 'D'][index]}`]);
+    categoryCardsRef.forEach((card, i) => {
       if (i !== index) {
-        card.classList.add(styles[`nonHovered${['A', 'B', 'C', 'D'][i]}`]);
-      }
-    });
-  };
-
-  const handleCardMouseLeave = (index) => {
-    categoryCardsRef.current[index].classList.remove(styles.cardHovered);
-    categoryCardsRef.current[index].classList.remove(styles[`cardRotate${['A', 'B', 'C', 'D'][index]}`]);
-    categoryCardsRef.current.forEach((card, i) => {
-      if (i !== index) {
-        card.classList.remove(styles[`nonHovered${['A', 'B', 'C', 'D'][i]}`]);
+        card.current.classList.add(styles[`nonHovered${['A', 'B', 'C', 'D'][i]}`]);
       }
     });
   };
   
-
+  const handleCardMouseLeave = (index) => {
+    categoryCardsRef[index].current.classList.remove(styles.cardHovered);
+    categoryCardsRef[index].current.classList.remove(styles[`cardRotate${['A', 'B', 'C', 'D'][index]}`]);
+    categoryCardsRef.forEach((card, i) => {
+      if (i !== index) {
+        card.current.classList.remove(styles[`nonHovered${['A', 'B', 'C', 'D'][i]}`]);
+      }
+    });
+  };
+  
+  
   const { user } = useUser()
 
   const { isLoaded, userId, sessionId, getToken } = useAuth();
@@ -89,42 +92,17 @@ export default function Home(req, res) {
       {/* <div>Hello, {userId}</div>
       <div>{user.firstName}</div> */}
       <div className={styles.gridContainer}>
-        <Link href="/categories/general">
-          <div className={`${styles.categoryCard} ${styles.categoryTitle}`}
-          onMouseEnter={() => handleCardMouseEnter(0)}
-          onMouseLeave={() => handleCardMouseLeave(0)}
-          ref={(el) => (categoryCardsRef.current[0] = el)}
-          >
-            <h2>General</h2>
-          </div>
-        </Link>
-        <Link href="/categories/code">
-          <div className={`${styles.categoryCard} ${styles.categoryTitle}`}
-          onMouseEnter={() => handleCardMouseEnter(1)}
-          onMouseLeave={() => handleCardMouseLeave(1)}
-          ref={(el) => (categoryCardsRef.current[1] = el)}
-          >
-            <h2>Code</h2>
-          </div>
-        </Link>
-        <Link href="/categories/design">
-          <div className={`${styles.categoryCard} ${styles.categoryTitle}`}
-          onMouseEnter={() => handleCardMouseEnter(2)}
-          onMouseLeave={() => handleCardMouseLeave(2)}
-          ref={(el) => (categoryCardsRef.current[2] = el)}
-          >
-            <h2>Design</h2>
-          </div>
-        </Link>
-        <Link href="/categories/marketing">
-          <div className={`${styles.categoryCard} ${styles.categoryTitle}`}
-          onMouseEnter={() => handleCardMouseEnter(3)}
-          onMouseLeave={() => handleCardMouseLeave(3)}
-          ref={(el) => (categoryCardsRef.current[3] = el)}
-          >
-            <h2>Marketing</h2>
-          </div>
-        </Link>
+        {categories.map((category) => (
+            <CategoryCard
+              key={category.index}
+              ref={categoryCardsRef[category.index]}
+              title={category.title}
+              link={category.link}
+              index={category.index}
+              handleCardMouseEnter={handleCardMouseEnter}
+              handleCardMouseLeave={handleCardMouseLeave}
+            />
+          ))}
         </div>
     </div>
   );

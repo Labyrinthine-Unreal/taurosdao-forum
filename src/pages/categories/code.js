@@ -1,10 +1,11 @@
 // src/pages/categories/code.js
-import CreateTopic from '@root/components/CreateTopic';
 import TopicList from '@root/components/TopicList';
 import faunadb from 'faunadb';
 import React from 'react';
 import { useAuth } from '@clerk/nextjs';
 import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, UserButton } from '@clerk/nextjs'
+import withCategoryStyles from '@root/components/withCategoryStyles';
+import { useRouter } from 'next/router';
 
 const Code = () => {
   const secret = Clerk.session.getToken({ template: 'fauna' })
@@ -13,20 +14,25 @@ const Code = () => {
   console.log(client)
   const { isLoaded, userId, sessionId, getToken } = useAuth();
   const { user } = useUser()
+  const router = useRouter();
 
   if (!isLoaded || !userId) {
     return null;
   }
+
+  const handleNewTopic = () => {
+    router.push('/categories/create-new-topic');
+  };
   
   return (
     
     <div>
       Hello, {user.fullName}
       <h1>Code Topics</h1>
-      <CreateTopic />
+      <button onClick={handleNewTopic}>Start a New Topic</button>
       <TopicList/>
     </div>
   );
 };
 
-export default Code;
+export default withCategoryStyles(Code);
