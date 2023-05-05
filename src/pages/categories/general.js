@@ -5,6 +5,8 @@ import faunadb from 'faunadb';
 import React from 'react';
 import { useAuth } from '@clerk/nextjs';
 import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, UserButton } from '@clerk/nextjs'
+import withCategoryStyles from '@root/components/withCategoryStyles';
+
 const General = () => {
   const secret = Clerk.session.getToken({ template: 'fauna' })
   console.log(secret)
@@ -23,9 +25,9 @@ const General = () => {
       Hello, {user.fullName}
       <h1>General Topics</h1>
       <CreateTopic />
-        <TopicList/>
+      <TopicList/>
     </div>
   );
 };
 
-export default General;
+export default withCategoryStyles(General);

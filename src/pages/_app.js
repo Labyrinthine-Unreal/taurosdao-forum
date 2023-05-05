@@ -1,6 +1,7 @@
 import { ClerkProvider, SignedIn, SignedOut, RedirectToSignIn } from '@clerk/nextjs';
 import { useRouter } from 'next/router';
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import '@root/styles/globals.css'
 // import {client} from "../client"
 //  List pages you want to be publicly accessible, or leave empty if

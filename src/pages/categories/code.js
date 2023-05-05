@@ -1,12 +1,30 @@
-import React from 'react';
+// src/pages/categories/code.js
 import CreateTopic from '@root/components/CreateTopic';
+import TopicList from '@root/components/TopicList';
+import faunadb from 'faunadb';
+import React from 'react';
+import { useAuth } from '@clerk/nextjs';
+import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, UserButton } from '@clerk/nextjs'
 
 const Code = () => {
+  const secret = Clerk.session.getToken({ template: 'fauna' })
+  console.log(secret)
+  const client = new faunadb.Client({ secret:"fnAFClf-6BAATcIrDU1kFAR-2IpS1I3oRwlLYVAd", keepAlive: false });
+  console.log(client)
+  const { isLoaded, userId, sessionId, getToken } = useAuth();
+  const { user } = useUser()
+
+  if (!isLoaded || !userId) {
+    return null;
+  }
+  
   return (
+    
     <div>
+      Hello, {user.fullName}
       <h1>Code Topics</h1>
-      <p>Topics related to the General category will be displayed here.</p>
       <CreateTopic />
+      <TopicList/>
     </div>
   );
 };

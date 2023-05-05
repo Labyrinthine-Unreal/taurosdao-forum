@@ -166,3 +166,19 @@ input[type='submit']:hover {
     color-scheme: dark;
   }
 }
+
+.wrapperClassName {
+  margin-bottom: 1rem;
+}
+
+.toolbarClassName {
+  border: 1px solid #ccc;
+}
+
+.editorClassName {
+  height: 200px;
+  border: 1px solid #ccc;
+  padding: 5px;
+  overflow-y: auto;
+  background-color: white;
+}

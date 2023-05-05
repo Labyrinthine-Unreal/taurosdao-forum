@@ -1,0 +1,7 @@
+/* src/components/CreateTopic/CreateTopic.module.css */
+
+.topicInput {
+    width: 50% !important;
+    border-color: blueviolet;
+    border-radius: 5px;
+  }
