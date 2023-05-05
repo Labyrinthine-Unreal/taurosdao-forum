@@ -40,7 +40,6 @@ const CreateTopic = ({ onCreate }) => {
     <div>
       <h2>Create a New Topic</h2>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="topic">Topic:</label>
         <input
           type="text"
           id="topic"
