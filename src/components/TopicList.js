@@ -23,15 +23,25 @@ export default function TopicList() {
 
  if (loading) return 'Loading...';
  if (error) return `Error! ${error.message}`;
-
+ const listTopics = data.topics_by_id.data.map(item =>
+  <li key={item}>
+    <p>
+      <b>{item.topic}:</b>
+      {/* {' ' + person.profession + ' '} */}
+     {item.content}
+    </p>
+  </li>
+);
 
   return (
         <>
         <div style={{ padding: "10px" }}>
-      {data.topics_by_id.data.map((item) => {
-        return <li>{data.item.topic}:{data.item.content}</li>;
-      })}
+      {/* {data.topics_by_id.data.map((item) => {
+        return <li>{item.topic}</li>;
+      })} */}
+      {listTopics}
       </div>
+     
       </> 
   );
   }

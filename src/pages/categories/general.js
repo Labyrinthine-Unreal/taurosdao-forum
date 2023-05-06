@@ -4,6 +4,9 @@ import faunadb from 'faunadb';
 import React from 'react';
 import { useAuth } from '@clerk/nextjs';
 import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, UserButton } from '@clerk/nextjs'
+import { useState, useEffect } from 'react';
+const fetcher = (url) => fetch(url).then((res) => res.json());
+
 const General = () => {
   
   const secret = Clerk.session.getToken({ template: 'fauna' })
@@ -16,7 +19,20 @@ const General = () => {
   if (!isLoaded || !userId) {
     return null;
   }
-  
+
+  // let [shows, setShows] = useState([]);
+  // let [newShow, setNewShow] = useState('');
+  // useEffect(async () => {
+  //   let showData = await fetcher('/api/getShows');
+  //   setShows(showData.data);
+  // }, []);
+  // function handleNewShow(e) {
+  //   setNewShow(e.target.value);
+  // }
+
+
+
+
   return (
     
     <div>
@@ -30,7 +46,7 @@ const General = () => {
       </SignedOut>
       <h1>General Topics</h1>
       <CreateTopic />
-        <TopicList/>
+      <TopicList />
     </div>
   );
 };
