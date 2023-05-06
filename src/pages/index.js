@@ -36,8 +36,8 @@ export default function Home(req, res) {
     console.log(response.ref);
   })
   return (
-
-    <div className={styles.container}>
+    // className={styles.container}
+    <div> 
       <Head>
         <title>Simple Forum</title>
         <link rel="icon" href="/favicon.ico" />
