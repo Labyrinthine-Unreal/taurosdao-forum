@@ -58,15 +58,9 @@ const CreateTopic = ({ onPostCreated }) => {
           editorState={editorState}
           toolbarClassName="toolbarClassName"
           wrapperClassName="wrapperClassName"
-          editorClassName="editorClassName"
+          editorClassName={"editorClassName"}
           onEditorStateChange={setEditorState}
         />
-        {/* <textarea
-          id="content"
-          name="content"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-        /> */}
         <br />
         <FlippingButton
           text="Submit"

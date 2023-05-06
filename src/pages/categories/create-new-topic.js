@@ -22,7 +22,6 @@ const CreateNewTopic = () => {
   return (
     <div>
       Hello, {user.fullName}
-      <h1>Create a New Topic</h1>
       {newPost ? (
         <div>
           <h3>New Post:</h3>

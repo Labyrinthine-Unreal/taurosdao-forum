@@ -1,4 +1,4 @@
-// src/pages/categories/code.js
+// src/pages/categories/forum.js
 import TopicList from '@root/components/TopicList';
 import faunadb from 'faunadb';
 import React from 'react';
@@ -7,7 +7,7 @@ import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, User
 import withCategoryStyles from '@root/components/withCategoryStyles';
 import { useRouter } from 'next/router';
 
-const Code = () => {
+const Forum = () => {
   const secret = Clerk.session.getToken({ template: 'fauna' })
   console.log(secret)
   const client = new faunadb.Client({ secret:"fnAFClf-6BAATcIrDU1kFAR-2IpS1I3oRwlLYVAd", keepAlive: false });
@@ -28,11 +28,11 @@ const Code = () => {
     
     <div>
       Hello, {user.fullName}
-      <h1>Code Topics</h1>
+      <h1>Forum Topics</h1>
       <button onClick={handleNewTopic}>Start a New Topic</button>
       <TopicList/>
     </div>
   );
 };
 
-export default withCategoryStyles(Code);
+export default withCategoryStyles(Forum);

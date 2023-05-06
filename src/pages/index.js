@@ -13,9 +13,11 @@ const q = faunadb.query;
 export default function Home(req, res) {
   const categories = [
     { title: 'General', link: '/categories/general', index: 0 },
-    { title: 'Code', link: '/categories/code', index: 1 },
-    { title: 'Design', link: '/categories/design', index: 2 },
-    { title: 'Marketing', link: '/categories/marketing', index: 3 },
+    { title: 'Blockchain', link: '/categories/blockchain', index: 1 },
+    { title: 'Game', link: '/categories/game', index: 2 },
+    { title: 'Marketplace', link: '/categories/marketplace', index: 3 },
+    { title: 'AI', link: '/categories/ai', index: 4 },
+    { title: 'Forum', link: '/categories/forum', index: 5 }
   ];
 
   const categoryCardsRef = categories.map(() => React.createRef());
