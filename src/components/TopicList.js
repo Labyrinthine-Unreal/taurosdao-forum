@@ -18,10 +18,7 @@ query MyTopicQuery {
 console.log(ITEMS_QUERY)
 export default function TopicList() {
  const [setData] = useState([])
- const { data, loading, error } = useQuery(ITEMS_QUERY,
-  {
-    refetchQueries: [{ query: ITEMS_QUERY }]
-  });
+ const { data, loading, error } = useQuery(ITEMS_QUERY);
  console.log(data)
 
  if (loading) return 'Loading...';
