@@ -29,7 +29,7 @@ export default function TopicList() {
         <>
         <div style={{ padding: "10px" }}>
       {data.topics_by_id.data.map((item) => {
-        return <li>{item.topic}:{item.content}</li>;
+        return <li>{data.item.topic}:{data.item.content}</li>;
       })}
       </div>
       </> 
