@@ -55,7 +55,7 @@ export default function TopicList() {
               return (
                 <div key={item.id} className={styles.topicItem}>
                 <div className={styles.topicTitle}>{item.topic}:{user.username}</div> 
-                <div className={styles.topicContent}>{parse(item.content)}</div>
+                <div className={styles.topicContent}>{parse(item.content)}:{item._id}</div>
                 </div>
               );
           })}
