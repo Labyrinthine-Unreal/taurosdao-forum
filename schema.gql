@@ -1,7 +1,11 @@
 type topics{
  topic: String
  content: String
+ user: String
 }
 type Query {
- topics_by_id: [topics!]
+ topics_by_slug: [topics!]
 }
+
+
+

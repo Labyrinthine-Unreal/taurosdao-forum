@@ -23,7 +23,7 @@ function MyApp({ Component, pageProps }) {
     cache: new InMemoryCache(),
     uri: "https://graphql.us.fauna.com/graphql",
     headers: {
-      authorization: `Bearer ${"fnAFC-8oHiAAUNEoQOqMs09rtY9ykV-6Z-iWUM9U"}`, //FaunaAdmin != manager_role
+      authorization: `Bearer ${"fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f"}`, //FaunaAdmin != manager_role
     },
   });
 

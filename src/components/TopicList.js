@@ -7,14 +7,35 @@ import styles from './TopicList.module.css';
 
 const ITEMS_QUERY = gql`
 query MyTopicQuery {
-  topics_by_id {
+  topics_by_slug {
     data {
+      _id
       topic 
       content
     }
   }
  }
 `;
+
+// mutation topicCreation {
+//   createTopics(data: { user: "test",topic:"test",content:"content" }) {
+//     _id
+//    user
+//    topic
+//    content
+//   }
+//  }
+ 
+//  query TopicQuery {
+//    topics_by_slug{
+//      data {
+//        _id
+//        user
+//        topic 
+//        content
+//      }
+//    }
+
 console.log(ITEMS_QUERY)
 
 export default function TopicList() {
@@ -28,7 +49,7 @@ export default function TopicList() {
   return (
       <>
         <div style={{ padding: '10px' }}>
-          {data.topics_by_id.data.map((item) => {
+          {data.topics_by_slug.data.map((item) => {
               return (
                 <div key={item.id} className={styles.topicItem}>
                 <div className={styles.topicTitle}>{item.topic}</div> 

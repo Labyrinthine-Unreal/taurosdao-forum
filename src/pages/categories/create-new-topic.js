@@ -9,7 +9,7 @@ import parse from 'html-react-parser';
 const CreateNewTopic = () => {
   const secret = Clerk.session.getToken({ template: 'fauna' });
   console.log(secret);
-  const client = new faunadb.Client({ secret: "fnAFClf-6BAATcIrDU1kFAR-2IpS1I3oRwlLYVAd", keepAlive: false });
+  const client = new faunadb.Client({ secret: "fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f", keepAlive: false });
   console.log(client);
   const { isLoaded, userId, sessionId, getToken } = useAuth();
   const { user } = useUser();

@@ -55,14 +55,14 @@ export default function Home(req, res) {
 
   const secret = Clerk.session.getToken({ template: 'fauna' })
   console.log(secret)
-  const client = new faunadb.Client({ secret: "fnAFClf-6BAATcIrDU1kFAR-2IpS1I3oRwlLYVAd", keepAlive: false });
+  const client = new faunadb.Client({ secret: "fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f", keepAlive: false });
   // const client = new faunadb.Client({ secret: process.env.REACT_APP_FAUNA_SECRET_manager, keepAlive: false });
 
   console.log(client)
 
   var createP = client.query(
     q.Create(
-      q.Collection('test'),
+      q.Collection('user'),
       { data: { user: userId, name: user.firstName } }
     )
   )

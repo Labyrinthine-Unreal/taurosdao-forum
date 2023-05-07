@@ -6,6 +6,7 @@ import { stateToHTML } from 'draft-js-export-html';
 import FlippingButton from './FlippingButton';
 import styles from './CreateTopic.module.css';
 import dynamic from 'next/dynamic';
+import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, UserButton } from '@clerk/nextjs'
 
 const Editor = dynamic(
   () => import('react-draft-wysiwyg').then((module) => module.Editor),
@@ -19,9 +20,13 @@ const CreateTopic = ({ onPostCreated }) => {
     EditorState.createEmpty()
   );
   // const [content, setContent] = useState('');
-  const client = new faunadb.Client({ secret:"fnAFClf-6BAATcIrDU1kFAR-2IpS1I3oRwlLYVAd", keepAlive: false });
+  const client = new faunadb.Client({ secret:"fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f", keepAlive: false });
   console.log(client)
   
+
+  const { user } = useUser()
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const contentState = editorState.getCurrentContent();
@@ -32,7 +37,7 @@ const CreateTopic = ({ onPostCreated }) => {
       var createP = client.query(
     q.Create(
       q.Collection('topics'),
-      { data: { topic: topic, content:content } }
+      { data: { topic: topic, content:content,user:user.username } }
     ))
     createP.then(function(response) {
       console.log(response.ref); // Logs the ref to the console.
@@ -40,6 +45,9 @@ const CreateTopic = ({ onPostCreated }) => {
     })
   };
 
+
+
+  
   return (
     <div>
       <h2>Create a New Topic</h2>
