@@ -3,15 +3,28 @@ type topics{
  content: String
  user: String
  slug: String
-  values: [
-    { field: ["data", "slug"] },
-    { field: ["ref"] }
-  ]
 }
 type Query {
  topics_by_slug: [topics!]
- 
 }
 
 
+ mutation topicCreation {
+  createTopics(data: { user: "test",topic:"test",content:"content" }) {
+    _id
+   user
+   topic
+   content
+  }
+ }
 
+query TopicQuery {
+  topics_by_slug{
+    data {
+      _id
+      user
+      topic 
+      content
+    }
+  }
+ }
