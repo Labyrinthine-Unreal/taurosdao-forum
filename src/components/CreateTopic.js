@@ -8,6 +8,8 @@ import styles from './CreateTopic.module.css';
 import dynamic from 'next/dynamic';
 import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, UserButton } from '@clerk/nextjs'
 import slugify from 'slugify';
+import shortid from 'shortid';
+import { useRouter } from 'next/router';
 
 const Editor = dynamic(
   () => import('react-draft-wysiwyg').then((module) => module.Editor),
@@ -27,13 +29,14 @@ const CreateTopic = ({ onPostCreated }) => {
 
   const { user } = useUser()
 
+  const router = useRouter();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const contentState = editorState.getCurrentContent();
     const content = stateToHTML(contentState);
 
-    const generatedSlug = slugify(topic, { lower: true, strict: true });
+    const generatedSlug = slugify(topic, { lower: true, strict: true }) + '-' + shortid.generate();
 
     var createP = client.query(
       q.Create(
@@ -43,10 +46,9 @@ const CreateTopic = ({ onPostCreated }) => {
     createP.then(function(response) {
       console.log(response.ref); // Logs the ref to the console.
       onPostCreated(response.data); // Call the callback with the new post data
+      router.push(`/topics/${response.data.slug}`); // Redirect the user to the new topic's page
     })
   };
-
-
 
   
   return (
