@@ -9,8 +9,8 @@ const CategoryCard = forwardRef(({ title, link, index, handleCardMouseEnter, han
     <Link href={link}>
       <div
         className={`${styles.categoryCard} ${styles.categoryTitle}`}
-        onMouseEnter={() => handleCardMouseEnter(index)}
-        onMouseLeave={() => handleCardMouseLeave(index)}
+        // onMouseEnter={() => handleCardMouseEnter(index)}
+        // onMouseLeave={() => handleCardMouseLeave(index)}
         ref={ref}
       >
         <h2>{title}</h2>

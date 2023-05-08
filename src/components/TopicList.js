@@ -13,30 +13,11 @@ query MyTopicQuery {
       _id
       topic 
       content
+      slug
     }
   }
  }
 `;
-
-// mutation topicCreation {
-//   createTopics(data: { user: "test",topic:"test",content:"content" }) {
-//     _id
-//    user
-//    topic
-//    content
-//   }
-//  }
- 
-//  query TopicQuery {
-//    topics_by_slug{
-//      data {
-//        _id
-//        user
-//        topic 
-//        content
-//      }
-//    }
-
 console.log(ITEMS_QUERY)
 
 export default function TopicList() {
@@ -54,8 +35,8 @@ export default function TopicList() {
           {data.topics_by_slug.data.map((item) => {
               return (
                 <div key={item.id} className={styles.topicItem}>
-                <div className={styles.topicTitle}>{item.topic}:{user.username}</div> 
-                <div className={styles.topicContent}>{parse(item.content)}:{item._id}</div>
+                  <div className={styles.topicTitle}>{item.topic}:{user.username}</div> 
+                  <div className={styles.topicContent}>{parse(item.content)}:{item._id}</div>
                 </div>
               );
           })}

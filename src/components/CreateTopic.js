@@ -7,6 +7,7 @@ import FlippingButton from './FlippingButton';
 import styles from './CreateTopic.module.css';
 import dynamic from 'next/dynamic';
 import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, UserButton } from '@clerk/nextjs'
+import slugify from 'slugify';
 
 const Editor = dynamic(
   () => import('react-draft-wysiwyg').then((module) => module.Editor),
@@ -19,7 +20,7 @@ const CreateTopic = ({ onPostCreated }) => {
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
   );
-  // const [content, setContent] = useState('');
+  
   const client = new faunadb.Client({ secret:"fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f", keepAlive: false });
   console.log(client)
   
@@ -31,14 +32,14 @@ const CreateTopic = ({ onPostCreated }) => {
     e.preventDefault();
     const contentState = editorState.getCurrentContent();
     const content = stateToHTML(contentState);
-    // const content = JSON.stringify(
-    //   convertToRaw(editorState.getCurrentContent())
-    // );
-      var createP = client.query(
-    q.Create(
-      q.Collection('topics'),
-      { data: { topic: topic, content:content,user:user.username } }
-    ))
+
+    const generatedSlug = slugify(topic, { lower: true, strict: true });
+
+    var createP = client.query(
+      q.Create(
+        q.Collection('topics'),
+        { data: { topic: topic, content:content,user:user.username, slug: generatedSlug } }
+      ))
     createP.then(function(response) {
       console.log(response.ref); // Logs the ref to the console.
       onPostCreated(response.data); // Call the callback with the new post data

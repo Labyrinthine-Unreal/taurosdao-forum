@@ -22,25 +22,25 @@ export default function Home(req, res) {
 
   const categoryCardsRef = categories.map(() => React.createRef());
 
-  const handleCardMouseEnter = (index) => {
-    categoryCardsRef[index].current.classList.add(styles.cardHovered);
-    categoryCardsRef[index].current.classList.add(styles[`cardRotate${['A', 'B', 'C', 'D'][index]}`]);
-    categoryCardsRef.forEach((card, i) => {
-      if (i !== index) {
-        card.current.classList.add(styles[`nonHovered${['A', 'B', 'C', 'D'][i]}`]);
-      }
-    });
-  };
+  // const handleCardMouseEnter = (index) => {
+  //   categoryCardsRef[index].current.classList.add(styles.cardHovered);
+  //   categoryCardsRef[index].current.classList.add(styles[`cardRotate${['A', 'B', 'C', 'D'][index]}`]);
+  //   categoryCardsRef.forEach((card, i) => {
+  //     if (i !== index) {
+  //       card.current.classList.add(styles[`nonHovered${['A', 'B', 'C', 'D'][i]}`]);
+  //     }
+  //   });
+  // };
   
-  const handleCardMouseLeave = (index) => {
-    categoryCardsRef[index].current.classList.remove(styles.cardHovered);
-    categoryCardsRef[index].current.classList.remove(styles[`cardRotate${['A', 'B', 'C', 'D'][index]}`]);
-    categoryCardsRef.forEach((card, i) => {
-      if (i !== index) {
-        card.current.classList.remove(styles[`nonHovered${['A', 'B', 'C', 'D'][i]}`]);
-      }
-    });
-  };
+  // const handleCardMouseLeave = (index) => {
+  //   categoryCardsRef[index].current.classList.remove(styles.cardHovered);
+  //   categoryCardsRef[index].current.classList.remove(styles[`cardRotate${['A', 'B', 'C', 'D'][index]}`]);
+  //   categoryCardsRef.forEach((card, i) => {
+  //     if (i !== index) {
+  //       card.current.classList.remove(styles[`nonHovered${['A', 'B', 'C', 'D'][i]}`]);
+  //     }
+  //   });
+  // };
   
   
   const { user } = useUser()
@@ -101,8 +101,8 @@ export default function Home(req, res) {
               title={category.title}
               link={category.link}
               index={category.index}
-              handleCardMouseEnter={handleCardMouseEnter}
-              handleCardMouseLeave={handleCardMouseLeave}
+              // handleCardMouseEnter={handleCardMouseEnter}
+              // handleCardMouseLeave={handleCardMouseLeave}
             />
           ))}
         </div>
