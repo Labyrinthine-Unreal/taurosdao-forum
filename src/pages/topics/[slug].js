@@ -5,19 +5,35 @@ import { useQuery, gql } from '@apollo/client';
 import parse from 'html-react-parser';
 
 // GraphQL query to fetch topic data based on the slug
+// const GET_TOPIC_BY_SLUG = gql`
+// query TopicBySlug{
+//   topics_by_slug{
+//     data {
+//       _id
+//       user
+//       topic 
+//       content
+//       slug
+//     }
+//   }
+//  }
+// `;
+
 const GET_TOPIC_BY_SLUG = gql`
-query TopicBySlug{
-  topics_by_slug{
-    data {
-      _id
-      user
-      topic 
-      content
-      slug
+query MyTopicQuery($slug: String!){
+  topics_by_slug(slug: $slug) {
+    
+    
+    _id
+    slug
+    topic
+    content
+    
     }
-  }
- }
+    }
+    
 `;
+// console.log(GET_TOPIC_BY_SLUG)
 
 const TopicPage = () => {
   const router = useRouter();
@@ -29,14 +45,15 @@ const TopicPage = () => {
     skip: !slug, 
     // Skip the query if the slug is not available
   }) 
-  console.log(data)
+  // console.log(data)
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
   
   // Render the topic data
   const topicData = data?.topics_by_slug.slug;
+  console.log(data)
+  console.log(data?.topics_by_slug.slug)
 
-  
   // if (!data?.topics_by_slug) {
   //   return <h1>404: Not Found</h1>
   // }
@@ -44,11 +61,14 @@ const TopicPage = () => {
   return (
     <div>
       
-          {slug}
-      {/* <h1>Topic: {topicData?.topic}</h1> */}
-      {/* <div>{parse(topicData?.content)}</div> */}
+          {/* {slug} */}
+      <h1>Slug: {data?.topics_by_slug.slug}</h1>
+      <h1>Topic: {data?.topics_by_slug.topic}</h1>
+      <h1>content: {data?.topics_by_slug.content}</h1>
+
+      {/* <div>{parse(String(data.topics_by_slug.slug))}</div> */}
       {/* <h1>{data.topics_by_slug.content}</h1> */}
-      {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
+      {/* <pre>{JSON.stringify(slug, null, 2)}</pre> */}
   
     </div>
   );

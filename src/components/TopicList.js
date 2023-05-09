@@ -8,7 +8,7 @@ import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, User
 
 const ITEMS_QUERY = gql`
 query MyTopicQuery {
-  topics_by_slug(_size:100) {
+  topics_by_id{
     data {
       _id
       topic 
@@ -33,7 +33,7 @@ export default function TopicList() {
   return (
       <>
         <div style={{ padding: '10px' }}>
-          {data.topics_by_slug.data.map((item) => {
+          {data.topics_by_id.data.map((item) => {
               return (
                 <div key={item.id} className={styles.topicItem}>
                   

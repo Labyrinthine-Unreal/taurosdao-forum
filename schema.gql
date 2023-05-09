@@ -5,6 +5,7 @@ type topics{
  slug: String
 }
 type Query {
- topics_by_slug: [topics!]
+ topics_by_id: [topics!]
 }
+
 
