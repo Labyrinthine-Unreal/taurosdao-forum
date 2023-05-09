@@ -10,7 +10,7 @@ import { useRouter } from 'next/router';
 const AI = () => {
   const secret = Clerk.session.getToken({ template: 'fauna' })
   console.log(secret)
-  const client = new faunadb.Client({ secret:"fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f", keepAlive: false });
+  const client = new faunadb.Client({ secret:"fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f", keepAlive: true });
   console.log(client)
   const { isLoaded, userId, sessionId, getToken } = useAuth();
   const { user } = useUser()

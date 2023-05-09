@@ -23,7 +23,7 @@ const CreateTopic = ({ onPostCreated }) => {
     EditorState.createEmpty()
   );
   
-  const client = new faunadb.Client({ secret:"fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f", keepAlive: false });
+  const client = new faunadb.Client({ secret:"fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f", keepAlive: true });
   console.log(client)
   
 
@@ -52,6 +52,7 @@ const CreateTopic = ({ onPostCreated }) => {
 
   
   return (
+    <>
     <div>
       <h2>Create a New Topic</h2>
       <form onSubmit={handleSubmit}>
@@ -81,6 +82,7 @@ const CreateTopic = ({ onPostCreated }) => {
         />
       </form>
     </div>
+    </>
   );
 };
 

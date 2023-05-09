@@ -9,7 +9,7 @@ import parse from 'html-react-parser';
 const CreateNewTopic = () => {
   const secret = Clerk.session.getToken({ template: 'fauna' });
   console.log(secret);
-  const client = new faunadb.Client({ secret: "fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f", keepAlive: false });
+  const client = new faunadb.Client({ secret: "fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f", keepAlive: true });
   console.log(client);
   const { isLoaded, userId, sessionId, getToken } = useAuth();
   const { user } = useUser();
@@ -20,6 +20,7 @@ const CreateNewTopic = () => {
   };
 
   return (
+    <>
     <div>
       Hello, {user.fullName}
       {newPost ? (
@@ -32,6 +33,7 @@ const CreateNewTopic = () => {
         <CreateTopic onPostCreated={handlePostCreated} />
       )}
     </div>
+    </>
   );
 };
 
