@@ -1,5 +1,6 @@
 // src/components/TopicList.js
 import React from "react";
+import Link from 'next/link';
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
 import parse from 'html-react-parser';
@@ -35,11 +36,12 @@ export default function TopicList() {
         <div style={{ padding: '10px' }}>
           {data.topics_by_id.data.map((item) => {
               return (
-                <div key={item.id} className={styles.topicItem}>
-                  
-                  <div className={styles.topicTitle}>{item.topic}:{item.user}</div> 
-                  <div className={styles.topicContent}>{parse(item.content)}:{item._id}</div>
-                </div>
+                <Link href={`/topics/${item.slug}`} key={item.id}>
+                  <div key={item.id} className={styles.topicItem}>
+                    <div className={styles.topicTitle}>{item.topic}:{item.user}</div> 
+                    <div className={styles.topicContent}>{parse(item.content)}:{item._id}</div>
+                  </div>
+                </Link>
               );
           })}
         </div>

@@ -2,6 +2,7 @@
 import TopicList from '@root/components/TopicList';
 import faunadb from 'faunadb';
 import React from 'react';
+import Header from '@root/components/Header';
 import { useAuth } from '@clerk/nextjs';
 import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, UserButton } from '@clerk/nextjs'
 import withCategoryStyles from '@root/components/withCategoryStyles';
@@ -27,6 +28,7 @@ const General = () => {
   return (
     
     <div>
+      <Header/>
       Hello, {user.fullName}
       <h1>General Topics</h1>
       <button onClick={handleNewTopic}>Start a New Topic</button>

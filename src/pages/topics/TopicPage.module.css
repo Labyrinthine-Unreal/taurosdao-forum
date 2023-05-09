@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+.topicTable {
+    width: 80%;
+    border-collapse: collapse;
+  }
+  
+  .leftColumn {
+    width: 200px;
+    padding: 10px;
+    vertical-align: top;
+    border-right: 1px solid #ddd;
+  }
+  
+  .rightColumn {
+    padding: 10px;
+  }
+  
+  .date {
+    color: gray;
+  }
+  
