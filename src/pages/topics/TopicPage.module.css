@@ -14,6 +14,7 @@
     justify-content: space-between;
     align-items: center;
     font-size: 1.5em;
+    font-weight: 300;
     color: grey;
     background-color: #ececec;
     border: 0.1px solid #ccc;
@@ -39,7 +40,7 @@
   }
 
   .leftColumn span {
-    font-weight: 600;
+    font-weight: 500;
   }
   
   .rightColumn {
@@ -52,7 +53,8 @@
 
   .title {
     font-size: 1.2em;
-    font-weight: bold;
+    font-weight: 500;
+    color: #46494f;
   }
   
   .date {
@@ -68,17 +70,19 @@
   }
 
   .replyButton {
-    background-color: #2569b5;
+    background: linear-gradient(90deg, #1f5999 0%, #1f5999 35px, #2569b5 35px, #2569b5 100%);
     color: white;
+    font-size: small;
     border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
+    border-radius: 3px;
+    padding: 10px 12px;
+    margin: 20px 0;
     cursor: pointer;
     text-align: center;
     display: block;
   }
 
   .replyButton:hover {
-    background-color: #1f5999;
+      background: linear-gradient(90deg, #0e2744 0%, #0e2744 35px, #19487d 35px, #19487d 100%);
   }
   

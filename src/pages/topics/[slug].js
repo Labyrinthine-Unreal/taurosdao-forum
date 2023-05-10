@@ -5,6 +5,8 @@ import { useQuery, gql } from '@apollo/client';
 import { useUser } from '@clerk/nextjs';
 import parse from 'html-react-parser';
 import Header from '@root/components/Header';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faReply } from '@fortawesome/free-solid-svg-icons';
 import styles from './TopicPage.module.css';
 
 const GET_TOPIC_BY_SLUG = gql`
@@ -56,7 +58,7 @@ const TopicPage = () => {
       <div className={styles.topicHeading}>{data?.topics_by_slug.topic}</div>
       <div className={styles.container}>
         <div className={styles.tableContainer}>
-          <button className={styles.replyButton}>Post Reply</button>
+          <button className={styles.replyButton}><FontAwesomeIcon icon={faReply} style={{ marginRight: "20px" }} />Post Reply</button>
           <table className={styles.topicTable}>
             <tbody>
               <tr>
@@ -70,13 +72,13 @@ const TopicPage = () => {
                   <div className={styles.title}>{data?.topics_by_slug.topic}</div>
                     <p className={styles.date}>19 February 2023, 22:09</p>
                   </div>
-                  <div>{parse(data?.topics_by_slug.content)}</div>
+                  <div className={styles.content}>{parse(data?.topics_by_slug.content)}</div>
                   {isAuthor && <button>Edit Topic</button>}
                 </td>
               </tr>
             </tbody>
           </table>
-          <button className={styles.replyButton}>Post Reply</button>
+          <button className={styles.replyButton}><FontAwesomeIcon icon={faReply} style={{ marginRight: "20px" }} />Post Reply</button>
         </div>
       </div>
     </div>

@@ -11,7 +11,7 @@ import styles from '@root/styles/Categories.module.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 
-const General = () => {
+const Art = () => {
   const secret = Clerk.session.getToken({ template: 'fauna' })
   console.log(secret)
   const client = new faunadb.Client({ secret:"fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f", keepAlive: true });
@@ -32,12 +32,11 @@ const General = () => {
     
     <div>
       <Header/>
-      Hello, {user.fullName}
-      <h1>General Topics</h1>
+      <h1>Art Topics</h1>
       <button onClick={handleNewTopic} className={styles.newTopicButton}><FontAwesomeIcon icon={faPencil} style={{ marginRight: "20px" }} />New Topic</button>
       <TopicList/>
     </div>
   );
 };
 
-export default withCategoryStyles(General);
+export default withCategoryStyles(Art);

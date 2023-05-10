@@ -1,8 +1,9 @@
 .newTopicButton {
-    background: linear-gradient(90deg, #1f5999 0%, #1f5999 40px, #2569b5 40px, #2569b5 100%);
+    background: linear-gradient(90deg, #1f5999 0%, #1f5999 35px, #2569b5 35px, #2569b5 100%);
     color: white;
+    font-size: small;
     border: none;
-    border-radius: 5px;
+    border-radius: 3px;
     padding: 10px 12px;
     margin: 20px 0;
     cursor: pointer;
@@ -11,5 +12,5 @@
 }
 
 .newTopicButton:hover {
-    background: linear-gradient(90deg, #0e2744 0%, #0e2744 40px, #19487d 40px, #19487d 100%);
+    background: linear-gradient(90deg, #0e2744 0%, #0e2744 35px, #19487d 35px, #19487d 100%);
 }

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;0,600;1,100;1,400;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,500;0,600;1,100;1,400;1,600&display=swap');
 
 :root {
   --max-width: 1100px;
@@ -95,13 +95,18 @@ body {
 
 h1 {
   font-size: 2rem;
-  color: #333;
+  color: 46494f;
   text-align: center;
   margin-bottom: 30px;
 }
 
 h2 {
   font-weight: 400;
+  color: #46494f;
+}
+
+p {
+  color: #46494f;
 }
 
 ul {

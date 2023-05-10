@@ -6,7 +6,7 @@ import styles from '@root/styles/Home.module.css'
 
 export default function Home(req, res) {
   const categories = [
-    { title: 'General', link: '/categories/general', index: 0 },
+    { title: 'Art', link: '/categories/art', index: 0 },
     { title: 'Blockchain', link: '/categories/blockchain', index: 1 },
     { title: 'Game', link: '/categories/game', index: 2 },
     { title: 'Marketplace', link: '/categories/marketplace', index: 3 },
