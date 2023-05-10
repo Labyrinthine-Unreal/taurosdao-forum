@@ -1,0 +1,11 @@
+.newTopicButton {
+    background: linear-gradient(90deg, #1f5999 0%, #1f5999 40px, #2569b5 40px, #2569b5 100%);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 12px;
+    margin: 20px 0;
+    cursor: pointer;
+    text-align: center;
+    display: block;
+}

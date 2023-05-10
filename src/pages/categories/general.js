@@ -7,6 +7,9 @@ import { useAuth } from '@clerk/nextjs';
 import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, UserButton } from '@clerk/nextjs'
 import withCategoryStyles from '@root/components/withCategoryStyles';
 import { useRouter } from 'next/router';
+import styles from '@root/styles/Categories.module.css'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPencil } from "@fortawesome/free-solid-svg-icons";
 
 const General = () => {
   const secret = Clerk.session.getToken({ template: 'fauna' })
@@ -31,7 +34,7 @@ const General = () => {
       <Header/>
       Hello, {user.fullName}
       <h1>General Topics</h1>
-      <button onClick={handleNewTopic}>Start a New Topic</button>
+      <button onClick={handleNewTopic} className={styles.newTopicButton}><FontAwesomeIcon icon={faPencil} style={{ marginRight: "20px" }} />New Topic</button>
       <TopicList/>
     </div>
   );

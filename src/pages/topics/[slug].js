@@ -54,23 +54,29 @@ const TopicPage = () => {
     <div>
       <Header/>
       <div className={styles.container}>
-        <table className={styles.topicTable}>
-          <tbody>
-            <tr>
-              <td className={styles.leftColumn}>
-                <div>{topicData.user}</div>
-                <div>Number of posts: 0</div>
-                <div>Date Joined: N/A</div>
-              </td>
-              <td className={styles.rightColumn}>
-              <div>{data?.topics_by_slug.topic}</div>
-                <p className={styles.date}>19 February 2023, 22:09</p>
-                <div>{parse(data?.topics_by_slug.content)}</div>
-                {isAuthor && <button>Edit Topic</button>}
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div className={styles.tableContainer}>
+          <button className={styles.replyButton}>Post Reply</button>
+          <table className={styles.topicTable}>
+            <tbody>
+              <tr>
+                <td className={styles.leftColumn}>
+                  <div>{topicData.user}</div>
+                  <div><span>Posts:</span> 0</div>
+                  <div><span>Joined:</span> N/A</div>
+                </td>
+                <td className={styles.rightColumn}>
+                <div className={styles.titleBlock}>
+                  <div className={styles.title}>{data?.topics_by_slug.topic}</div>
+                    <p className={styles.date}>19 February 2023, 22:09</p>
+                  </div>
+                  <div>{parse(data?.topics_by_slug.content)}</div>
+                  {isAuthor && <button>Edit Topic</button>}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <button className={styles.replyButton}>Post Reply</button>
+        </div>
       </div>
     </div>
   );

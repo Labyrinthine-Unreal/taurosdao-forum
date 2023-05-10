@@ -2,28 +2,65 @@
     display: flex;
     justify-content: center;
     margin-top: 80px;
-    width: 100%;
     margin-left: auto;
     margin-right: auto;
   }
 
 .topicTable {
-    width: 80%;
-    border-collapse: collapse;
+    width: 100%;
+    border: 0.1px solid #ddd;
+    padding: 30px 0;
+    background-color: white;
   }
   
   .leftColumn {
     width: 200px;
     padding: 10px;
     vertical-align: top;
+    text-align: center;
     border-right: 1px solid #ddd;
+    color: gray;
+    font-size: small;
+  }
+
+  .leftColumn span {
+    font-weight: 600;
   }
   
   .rightColumn {
-    padding: 10px;
+    padding: 20px;
+  }
+
+  .titleBlock {
+    margin-bottom: 10px;
+  }
+
+  .title {
+    font-size: 1.2em;
+    font-weight: bold;
   }
   
   .date {
     color: gray;
+    font-size: small;
+  }
+
+  .tableContainer {
+    display: flex;
+    width: 80%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .replyButton {
+    background-color: #2569b5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 20px 0;
+    cursor: pointer;
+    text-align: center;
+    display: block;
   }
   
