@@ -40,12 +40,12 @@ export default function Header(req, res) {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Simple Forum</title>
+        <title>TaurosDAO Forum</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header className={styles.header}>
         <div className={styles.logo}>LOGO</div>
-        <h1>Simple Forum</h1>
+        <h1 className={styles.title}>TaurosDAO Forum</h1>
         <div className={styles.avatar}>
           <UserButton />
         </div>

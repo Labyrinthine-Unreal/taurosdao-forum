@@ -4,12 +4,12 @@ import faunadb from 'faunadb';
 import { EditorState, convertToRaw } from 'draft-js';
 import { stateToHTML } from 'draft-js-export-html';
 import FlippingButton from './FlippingButton';
-import styles from './CreateTopic.module.css';
 import dynamic from 'next/dynamic';
 import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, UserButton } from '@clerk/nextjs'
 import slugify from 'slugify';
 import shortid from 'shortid';
 import { useRouter } from 'next/router';
+import styles from './CreateTopic.module.css'
 
 const Editor = dynamic(
   () => import('react-draft-wysiwyg').then((module) => module.Editor),
@@ -53,16 +53,15 @@ const CreateTopic = ({ onPostCreated }) => {
   
   return (
     <>
-    <div>
-      <h2>Create a New Topic</h2>
-      <form onSubmit={handleSubmit}>
+    <div className={styles.container}>
+      <h2>New Topic</h2>
+      <form onSubmit={handleSubmit} className={styles.topicInput}>
         <input
           type="text"
           id="topic"
           name="topic"
           value={topic}
           onChange={(e) => setTopic(e.target.value)}
-          className={styles.topicInput}
         />
         <br />
         <label htmlFor="content">Content:</label>

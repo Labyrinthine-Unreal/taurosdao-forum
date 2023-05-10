@@ -1,7 +1,11 @@
-/* src/components/CreateTopic/CreateTopic.module.css */
-
-.topicInput {
-    width: 50% !important;
+/* src/styles/CreateTopic/CreateTopic.module.css */
+.container {
+    align-items: center;
     border-color: blueviolet;
     border-radius: 5px;
+    padding: 0 50px;
+  }
+
+  .topicInput {
+    margin-top: 30px;
   }

@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { useAuth, useUser } from '@clerk/nextjs';
 import withCategoryStyles from '@root/components/withCategoryStyles';
 import parse from 'html-react-parser';
+import Header from '@root/components/Header';
 
 const CreateNewTopic = () => {
   const secret = Clerk.session.getToken({ template: 'fauna' });
@@ -21,11 +22,10 @@ const CreateNewTopic = () => {
 
   return (
     <>
+    <Header/>
     <div>
-      Hello, {user.fullName}
       {newPost ? (
         <div>
-          <h3>New Post:</h3>
           <div>{newPost.topic}</div>
           <div>{parse(newPost.content)}</div>
         </div>

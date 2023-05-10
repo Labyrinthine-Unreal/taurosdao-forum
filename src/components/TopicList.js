@@ -33,7 +33,7 @@ export default function TopicList() {
 
   return (
       <>
-        <div style={{ padding: '10px' }}>
+        <div>
           {data.topics_by_id.data.map((item) => {
               return (
                 <Link href={`/topics/${item.slug}`} key={item.id}>
