@@ -7,33 +7,26 @@ import { useAuth } from '@clerk/nextjs';
 import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, UserButton } from '@clerk/nextjs'
 import withCategoryStyles from '@root/components/withCategoryStyles';
 import { useRouter } from 'next/router';
-import styles from '@root/styles/Categories.module.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 
 const Art = () => {
-  const secret = Clerk.session.getToken({ template: 'fauna' })
-  console.log(secret)
-  const client = new faunadb.Client({ secret:"fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f", keepAlive: true });
-  console.log(client)
-  const { isLoaded, userId, sessionId, getToken } = useAuth();
-  const { user } = useUser()
-  const router = useRouter();
+  // const secret = Clerk.session.getToken({ template: 'fauna' })
+  // console.log(secret)
+  // const client = new faunadb.Client({ secret:"fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f", keepAlive: true });
+  // console.log(client)
+  // const { isLoaded, userId, sessionId, getToken } = useAuth();
+  // const { user } = useUser()
 
-  if (!isLoaded || !userId) {
-    return null;
-  }
-
-  const handleNewTopic = () => {
-    router.push('/categories/create-new-topic');
-  };
+  // if (!isLoaded || !userId) {
+  //   return null;
+  // }
   
   return (
     
     <div>
       <Header/>
       <h1>Art Topics</h1>
-      <button onClick={handleNewTopic} className={styles.newTopicButton}><FontAwesomeIcon icon={faPencil} style={{ marginRight: "20px" }} />New Topic</button>
       <TopicList/>
     </div>
   );
