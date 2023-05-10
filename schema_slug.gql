@@ -1,0 +1,1 @@
+type Query {  topic_by_slug(slug: String!): topics }

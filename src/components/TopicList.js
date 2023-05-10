@@ -12,7 +12,7 @@ import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, User
 
 const ITEMS_QUERY = gql`
 query MyTopicQuery {
-  topics_by_id{
+  topics_by_id(_size:100){
     data {
       _id
       topic 

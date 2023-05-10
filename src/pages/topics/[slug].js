@@ -8,7 +8,9 @@ import Header from '@root/components/Header';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faReply } from '@fortawesome/free-solid-svg-icons';
 import styles from './TopicPage.module.css';
-
+import Link from 'next/link';
+import UpdateTopic from '@root/components/UpdateTopic';
+import { ModalOverlay,Modal,Input,FormControl,ModalContent,ModalCloseButton,ModalHeader,ModalBody,FormLabel,ModalFooter,Button } from '@chakra-ui/react';
 const GET_TOPIC_BY_SLUG = gql`
 query MyTopicQuery($slug: String!){
   topics_by_slug(slug: $slug) {
@@ -16,6 +18,7 @@ query MyTopicQuery($slug: String!){
     slug
     topic
     content
+    user
     }
   }
 `;
@@ -49,10 +52,11 @@ const TopicPage = () => {
     return <h1>404: Not Found</h1>
   }
 
-  const isAuthor = user.username === topicData.user; // check if current user is the author
+  const isAuthor = user.username === data?.topics_by_slug.user // check if current user is the author
+  console.log(user.username)
+  console.log(data?.topics_by_slug.user)
 
-
-  return (
+    return (
     <div>
       <Header/>
       <div className={styles.topicHeading}>{data?.topics_by_slug.topic}</div>
@@ -73,7 +77,10 @@ const TopicPage = () => {
                     <p className={styles.date}>19 February 2023, 22:09</p>
                   </div>
                   <div className={styles.content}>{parse(data?.topics_by_slug.content)}</div>
-                  {isAuthor && <button>Edit Topic</button>}
+                  {isAuthor && 
+                    <UpdateTopic />}
+
+    
                 </td>
               </tr>
             </tbody>
