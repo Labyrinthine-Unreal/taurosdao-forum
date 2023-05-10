@@ -9,3 +9,7 @@
     text-align: center;
     display: block;
 }
+
+.newTopicButton:hover {
+    background: linear-gradient(90deg, #0e2744 0%, #0e2744 40px, #19487d 40px, #19487d 100%);
+}

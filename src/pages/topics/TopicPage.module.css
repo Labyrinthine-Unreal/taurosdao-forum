@@ -63,4 +63,8 @@
     text-align: center;
     display: block;
   }
+
+  .replyButton:hover {
+    background-color: #1f5999;
+  }
   
