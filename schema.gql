@@ -1,15 +1,25 @@
-type topics{
- topic: String
- content: String
- user: String
+type comments{
+ date: String
+ comment: String
+ forumID: String
  slug: String
+ user
 }
 type Query {
  topics_by_id: [topics!]
 }
 
 
-
+type comments{
+ date: String
+ comment: String
+ forumID: String
+ slug: String
+ user: String
+}
+type Query {
+ comments_by_id: [comments!]
+}
 
 # # Write your query or mutation here
  mutation topicCreation {

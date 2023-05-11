@@ -13,7 +13,7 @@ import UpdateTopic from '@root/components/UpdateTopic';
 import { ModalOverlay,Modal,Input,FormControl,ModalContent,ModalCloseButton,ModalHeader,ModalBody,FormLabel,ModalFooter,Button } from '@chakra-ui/react';
 import faunadb from 'faunadb';
 import CreateComment from '@root/components/CreateComment';
-
+import CommentList from '@root/components/CommentList';
 const client = new faunadb.Client({ secret:"fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f", keepAlive: true });
 console.log(client)
 
@@ -87,6 +87,7 @@ const TopicPage = () => {
                   {isAuthor && 
                     <UpdateTopic />}
                     <CreateComment />
+                    <CommentList />
 
     
                 </td>

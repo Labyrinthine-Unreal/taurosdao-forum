@@ -71,12 +71,15 @@ const CreateComment = ({ onPostCreated }) => {
 
         const generatedSlug = slugify(topic, { lower: true, strict: true }) + '-' + shortid.generate();
 
-        var createP = client.query(q.Create(q.Collection('comments')),
-                { data: {
-                    date: new Date().toString(),
-                    comment: comment, user: user.username, slug: generatedSlug } }
-            )
-            console.log(JSON.stringify(createP, null, 2))
+        var createP = client.query(
+            q.Create(
+              q.Collection('comments'),
+              { data: { forumID:data?.topics_by_slug._id, date: new Date().toString(), comment: comment, user: user.username, slug: slug } }
+            ))
+            // console.log(JSON.stringify(createP, null, 2))
+
+            // date: new Date().toString(), comment: comment, user: user.username, slug: generatedSlug
+        console.log(createP)
         
 
         createP.then(function (response) {
@@ -92,14 +95,14 @@ const CreateComment = ({ onPostCreated }) => {
             <div className={styles.container}>
                 <h2>Add Comment</h2>
                 <form onSubmit={handleSubmit} className={styles.topicInput}>
-                    {/* <input
+                    <input
                         type="text"
                         id="topic"
                         name="topic"
                         value={topic}
                         onChange={(e) => setTopic(e.target.value)}
                     />
-                    <br /> */}
+                    <br />
                     <label htmlFor="content">Comment</label>
                     <Editor
                         editorState={editorState}
