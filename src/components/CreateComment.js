@@ -90,7 +90,7 @@ const CreateComment = ({ onPostCreated }) => {
     return (
         <>
             <div className={styles.container}>
-                <h2>Edit Post</h2>
+                <h2>Add Comment</h2>
                 <form onSubmit={handleSubmit} className={styles.topicInput}>
                     {/* <input
                         type="text"
