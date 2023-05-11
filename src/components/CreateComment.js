@@ -62,7 +62,7 @@ const CreateComment = ({ onPostCreated }) => {
     
     //   const isAuthor = user.username === data?.topics_by_slug.user // check if current user is the author
       console.log(user.username)
-      console.log(data?.topics_by_slug._id)
+    //   console.log(data?.topics_by_slug._id)
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -71,7 +71,7 @@ const CreateComment = ({ onPostCreated }) => {
 
         const generatedSlug = slugify(topic, { lower: true, strict: true }) + '-' + shortid.generate();
 
-        var createP = client.query(q.Create(q.Collection('comments'), comment),
+        var createP = client.query(q.Create(q.Collection('comments')),
                 { data: {
                     date: new Date().toString(),
                     comment: comment, user: user.username, slug: generatedSlug } }
