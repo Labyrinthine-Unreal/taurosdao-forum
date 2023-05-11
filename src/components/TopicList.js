@@ -9,6 +9,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFile, faPencil } from '@fortawesome/free-solid-svg-icons'
 import styles from './TopicList.module.css';
 import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, UserButton } from '@clerk/nextjs'
+import faunadb from 'faunadb';
+
+const q = faunadb.query;
 
 const ITEMS_QUERY = gql`
 query MyTopicQuery {
@@ -23,6 +26,8 @@ query MyTopicQuery {
   }
  }
 `;
+
+
 console.log(ITEMS_QUERY)
 
 export default function TopicList() {
@@ -34,7 +39,12 @@ export default function TopicList() {
   if (loading) return 'Loading...';
   if (error) return `Error! ${error.message}`;
 
- 
+  const client = new faunadb.Client({ secret: "fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f", keepAlive: true });
+  console.log(client)
+
+  client.query(
+    q.Reverse([data])
+  )
 
  const handleNewTopic = () => {
   router.push('/categories/create-new-topic');

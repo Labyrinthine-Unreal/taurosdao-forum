@@ -11,6 +11,13 @@ import styles from './TopicPage.module.css';
 import Link from 'next/link';
 import UpdateTopic from '@root/components/UpdateTopic';
 import { ModalOverlay,Modal,Input,FormControl,ModalContent,ModalCloseButton,ModalHeader,ModalBody,FormLabel,ModalFooter,Button } from '@chakra-ui/react';
+import faunadb from 'faunadb';
+import CreateComment from '@root/components/CreateComment';
+
+const client = new faunadb.Client({ secret:"fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f", keepAlive: true });
+console.log(client)
+
+
 const GET_TOPIC_BY_SLUG = gql`
 query MyTopicQuery($slug: String!){
   topics_by_slug(slug: $slug) {
@@ -79,6 +86,7 @@ const TopicPage = () => {
                   <div className={styles.content}>{parse(data?.topics_by_slug.content)}</div>
                   {isAuthor && 
                     <UpdateTopic />}
+                    <CreateComment />
 
     
                 </td>
