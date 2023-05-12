@@ -14,10 +14,11 @@ import { ModalOverlay,Modal,Input,FormControl,ModalContent,ModalCloseButton,Moda
 import faunadb from 'faunadb';
 import CreateComment from '@root/components/CreateComment';
 import CommentList from '@root/components/CommentList';
-const client = new faunadb.Client({ secret:"fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f", keepAlive: true });
-console.log(client)
 import { CSSTransition } from 'react-transition-group';
+import ReplyButton from '@root/components/buttons/ReplyButton';
+import EditButton from '@root/components/buttons/EditButton';
 
+const client = new faunadb.Client({ secret:"fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f", keepAlive: true });
 
 const GET_TOPIC_BY_SLUG = gql`
 query MyTopicQuery($slug: String!){
@@ -45,19 +46,12 @@ const TopicPage = () => {
   const { user } = useUser();
 
   const [showEdit, setShowEdit] = useState(false);
-  const [showReply, setShowReply] = useState(false);
   
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
   
   // Render the topic data
   const topicData = data?.topics_by_slug.slug;
-  console.log(data)
-  console.log(data?.topics_by_slug.slug)
-
-  // if (!data?.topics_by_slug) {
-  //   return <h1>404: Not Found</h1>
-  // }
 
   if (!topicData) {
     return <h1>404: Not Found</h1>
@@ -67,14 +61,7 @@ const TopicPage = () => {
     setShowEdit(prevState => !prevState);
   };
 
-  const handleReplyToggle = () => {
-    console.log('Toggling reply...');
-    setShowReply(prevState => !prevState);
-  }
-
   const isAuthor = user.username === data?.topics_by_slug.user // check if current user is the author
-  console.log(user.username)
-  console.log(data?.topics_by_slug.user)
 
     return (
     <div>
@@ -82,15 +69,7 @@ const TopicPage = () => {
       <div className={styles.topicHeading}>{data?.topics_by_slug.topic}</div>
       <div className={styles.container}>
         <div className={styles.tableContainer}>
-          <button className={styles.replyButton} onClick={handleReplyToggle}><FontAwesomeIcon icon={faReply} style={{ marginRight: "20px" }} />Post Reply</button>
-          <CSSTransition
-            in={showReply}
-            timeout={300}
-            classNames="slide"
-            unmountOnExit
-          >
-            <CreateComment setShowReply={setShowReply} />
-          </CSSTransition>
+          <ReplyButton />
           
           <table className={styles.topicTable}>
             <tbody>
@@ -121,20 +100,12 @@ const TopicPage = () => {
                           
                         </div>
                     </CSSTransition>
-                    <CommentList />
                 </td>
               </tr>
             </tbody>
           </table>
-          <button className={styles.replyButton} onClick={handleReplyToggle}><FontAwesomeIcon icon={faReply} style={{ marginRight: "20px" }} />Post Reply</button>
-          <CSSTransition
-            in={showReply}
-            timeout={300}
-            classNames="slide"
-            unmountOnExit
-          >
-            <CreateComment setShowReply={setShowReply} />
-          </CSSTransition>
+          <ReplyButton />
+          <CommentList />
         </div>
       </div>
     </div>
