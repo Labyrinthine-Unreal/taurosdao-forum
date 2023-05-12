@@ -4,19 +4,13 @@ import { useRouter } from 'next/router';
 import { useQuery, gql } from '@apollo/client';
 import { useUser } from '@clerk/nextjs';
 import parse from 'html-react-parser';
-import Header from '@root/components/Header';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faReply } from '@fortawesome/free-solid-svg-icons';
+import Header from '@root/components/layout/Header';
 import styles from './TopicPage.module.css';
-import Link from 'next/link';
-import UpdateTopic from '@root/components/UpdateTopic';
-import { ModalOverlay,Modal,Input,FormControl,ModalContent,ModalCloseButton,ModalHeader,ModalBody,FormLabel,ModalFooter,Button } from '@chakra-ui/react';
+import UpdateTopic from '@root/components/topicComponents/UpdateTopic';
 import faunadb from 'faunadb';
-import CreateComment from '@root/components/CreateComment';
-import CommentList from '@root/components/CommentList';
+import CommentList from '@root/components/commentComponents/CommentList';
 import { CSSTransition } from 'react-transition-group';
 import ReplyButton from '@root/components/buttons/ReplyButton';
-import EditButton from '@root/components/buttons/EditButton';
 
 const client = new faunadb.Client({ secret:"fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f", keepAlive: true });
 

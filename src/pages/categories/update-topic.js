@@ -1,11 +1,11 @@
 // src/pages/categories/create-topic.js
-import UpdateTopic from '@root/components/UpdateTopic';
+import UpdateTopic from '@root/components/topicComponents/UpdateTopic';
 import faunadb from 'faunadb';
 import React, { useState } from 'react';
 import { useAuth, useUser } from '@clerk/nextjs';
-import withCategoryStyles from '@root/components/withCategoryStyles';
+import withCategoryStyles from '@root/components/cards/withCategoryStyles';
 import parse from 'html-react-parser';
-import Header from '@root/components/Header';
+import Header from '@root/components/layout/Header';
 
 const UpdatePrevTopic = () => {
   const secret = Clerk.session.getToken({ template: 'fauna' });

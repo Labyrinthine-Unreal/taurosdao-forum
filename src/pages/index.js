@@ -1,7 +1,7 @@
 // src/pages/index.js
 import React from 'react';
-import Header from '@root/components/Header';
-import CategoryCard from '@root/components/CategoryCard';
+import Header from '@root/components/layout/Header';
+import CategoryCard from '@root/components/cards/CategoryCard';
 import styles from '@root/styles/Home.module.css'
 
 export default function Home(req, res) {

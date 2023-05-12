@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import faunadb from 'faunadb';
 import { EditorState, convertToRaw } from 'draft-js';
 import { stateToHTML } from 'draft-js-export-html';
-import FlippingButton from './buttons/FlippingButton';
+import FlippingButton from '../buttons/FlippingButton';
 import dynamic from 'next/dynamic';
 import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, UserButton } from '@clerk/nextjs'
 import slugify from 'slugify';
