@@ -85,4 +85,13 @@
   .replyButton:hover {
       background: linear-gradient(90deg, #0e2744 0%, #0e2744 35px, #19487d 35px, #19487d 100%);
   }
+
+  .editButton {
+    margin: 20px 0 50px;;
+    padding: 10px 20px;
+    border: none;
+    background-color: #46494f;
+    color: white;
+    cursor: pointer;
+  }
   

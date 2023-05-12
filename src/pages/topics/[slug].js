@@ -1,5 +1,5 @@
 // src/pages/topics/[slug].js
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useQuery, gql } from '@apollo/client';
 import { useUser } from '@clerk/nextjs';
@@ -16,6 +16,7 @@ import CreateComment from '@root/components/CreateComment';
 import CommentList from '@root/components/CommentList';
 const client = new faunadb.Client({ secret:"fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f", keepAlive: true });
 console.log(client)
+import { CSSTransition } from 'react-transition-group';
 
 
 const GET_TOPIC_BY_SLUG = gql`
@@ -42,6 +43,8 @@ const TopicPage = () => {
   }) 
 
   const { user } = useUser();
+
+  const [showEdit, setShowEdit] = useState(false);
   
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
@@ -58,6 +61,10 @@ const TopicPage = () => {
   if (!topicData) {
     return <h1>404: Not Found</h1>
   }
+
+  const handleToggle = () => {
+    setShowEdit(prevState => !prevState);
+  };
 
   const isAuthor = user.username === data?.topics_by_slug.user // check if current user is the author
   console.log(user.username)
@@ -84,12 +91,22 @@ const TopicPage = () => {
                     <p className={styles.date}>19 February 2023, 22:09</p>
                   </div>
                   <div className={styles.content}>{parse(data?.topics_by_slug.content)}</div>
-                  {isAuthor && 
-                    <UpdateTopic />}
-                    <CreateComment />
-                    <CommentList />
 
-    
+                  {isAuthor && 
+                    <button className={styles.editButton} onClick={handleToggle}>{showEdit ? "Hide Form" : "Edit Post"}</button>}
+                    <CSSTransition
+                      in={showEdit}
+                      timeout={300}
+                      classNames="slide"
+                      unmountOnExit
+                    >
+                      <div>
+                        {isAuthor && showEdit &&
+                          <UpdateTopic setShowEdit={setShowEdit} />}
+                          <CreateComment />
+                          <CommentList />
+                        </div>
+                    </CSSTransition>
                 </td>
               </tr>
             </tbody>
