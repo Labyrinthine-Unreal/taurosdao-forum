@@ -1,4 +1,4 @@
-// src/components/TopicList.js
+// src/components/commentComponents/CommentList.js
 import React from "react";
 import Link from 'next/link';
 import gql from "graphql-tag";
@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import parse from 'html-react-parser';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFile, faPencil } from '@fortawesome/free-solid-svg-icons'
-import styles from './TopicList.module.css';
+import styles from '@root/components/topicComponents/TopicList.module.css';
 import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, UserButton } from '@clerk/nextjs'
 import faunadb from 'faunadb';
 

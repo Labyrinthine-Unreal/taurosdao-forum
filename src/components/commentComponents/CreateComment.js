@@ -3,14 +3,15 @@ import React, { useState } from 'react';
 import faunadb from 'faunadb';
 import { EditorState, convertToRaw } from 'draft-js';
 import { stateToHTML } from 'draft-js-export-html';
-import FlippingButton from '../buttons/FlippingButton';
+import FlippingButton from '@root/components/buttons/FlippingButton';
 import dynamic from 'next/dynamic';
 import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, UserButton } from '@clerk/nextjs'
 import slugify from 'slugify';
 import shortid from 'shortid';
 import { useRouter } from 'next/router';
-import styles from './CreateTopic.module.css'
+import styles from '@root/components/topicComponents/CreateTopic.module.css'
 import { useQuery, gql } from '@apollo/client';
+
 const Editor = dynamic(
     () => import('react-draft-wysiwyg').then((module) => module.Editor),
     { ssr: false }
