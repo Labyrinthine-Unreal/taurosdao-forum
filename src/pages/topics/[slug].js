@@ -45,6 +45,7 @@ const TopicPage = () => {
   const { user } = useUser();
 
   const [showEdit, setShowEdit] = useState(false);
+  const [showReply, setShowReply] = useState(false);
   
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
@@ -62,9 +63,14 @@ const TopicPage = () => {
     return <h1>404: Not Found</h1>
   }
 
-  const handleToggle = () => {
+  const handleEditToggle = () => {
     setShowEdit(prevState => !prevState);
   };
+
+  const handleReplyToggle = () => {
+    console.log('Toggling reply...');
+    setShowReply(prevState => !prevState);
+  }
 
   const isAuthor = user.username === data?.topics_by_slug.user // check if current user is the author
   console.log(user.username)
@@ -76,7 +82,16 @@ const TopicPage = () => {
       <div className={styles.topicHeading}>{data?.topics_by_slug.topic}</div>
       <div className={styles.container}>
         <div className={styles.tableContainer}>
-          <button className={styles.replyButton}><FontAwesomeIcon icon={faReply} style={{ marginRight: "20px" }} />Post Reply</button>
+          <button className={styles.replyButton} onClick={handleReplyToggle}><FontAwesomeIcon icon={faReply} style={{ marginRight: "20px" }} />Post Reply</button>
+          <CSSTransition
+            in={showReply}
+            timeout={300}
+            classNames="slide"
+            unmountOnExit
+          >
+            <CreateComment setShowReply={setShowReply} />
+          </CSSTransition>
+          
           <table className={styles.topicTable}>
             <tbody>
               <tr>
@@ -93,7 +108,7 @@ const TopicPage = () => {
                   <div className={styles.content}>{parse(data?.topics_by_slug.content)}</div>
                   
                   {isAuthor && 
-                    <button className={styles.editButton} onClick={handleToggle}>{showEdit ? "Hide Form" : "Edit Post"}</button>}
+                    <button className={styles.editButton} onClick={handleEditToggle}>{showEdit ? "Hide Form" : "Edit Post"}</button>}
                     <CSSTransition
                       in={showEdit}
                       timeout={300}
@@ -103,7 +118,7 @@ const TopicPage = () => {
                       <div>
                         {isAuthor && showEdit &&
                           <UpdateTopic setShowEdit={setShowEdit} />}
-                          <CreateComment />
+                          
                         </div>
                     </CSSTransition>
                     <CommentList />
@@ -111,7 +126,15 @@ const TopicPage = () => {
               </tr>
             </tbody>
           </table>
-          <button className={styles.replyButton}><FontAwesomeIcon icon={faReply} style={{ marginRight: "20px" }} />Post Reply</button>
+          <button className={styles.replyButton} onClick={handleReplyToggle}><FontAwesomeIcon icon={faReply} style={{ marginRight: "20px" }} />Post Reply</button>
+          <CSSTransition
+            in={showReply}
+            timeout={300}
+            classNames="slide"
+            unmountOnExit
+          >
+            <CreateComment setShowReply={setShowReply} />
+          </CSSTransition>
         </div>
       </div>
     </div>
