@@ -95,13 +95,13 @@ const CreateComment = ({ onPostCreated }) => {
             <div className={styles.container}>
                 <h2>Add Comment</h2>
                 <form onSubmit={handleSubmit} className={styles.topicInput}>
-                    <input
+                    {/* <input
                         type="text"
                         id="topic"
                         name="topic"
                         value={topic}
                         onChange={(e) => setTopic(e.target.value)}
-                    />
+                    /> */}
                     <br />
                     <label htmlFor="content">Comment</label>
                     <Editor
