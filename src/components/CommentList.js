@@ -59,7 +59,7 @@ export default function CommentList() {
           <table className={styles.topicTable}>
             <thead>
               <tr>
-                <th colSpan="5" className={styles.tableHeader}>Topics</th>
+                <th colSpan="5" className={styles.tableHeader}>Comments</th>
               </tr>
             </thead>
             <tbody>

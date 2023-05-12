@@ -91,7 +91,7 @@ const TopicPage = () => {
                     <p className={styles.date}>19 February 2023, 22:09</p>
                   </div>
                   <div className={styles.content}>{parse(data?.topics_by_slug.content)}</div>
-
+                  
                   {isAuthor && 
                     <button className={styles.editButton} onClick={handleToggle}>{showEdit ? "Hide Form" : "Edit Post"}</button>}
                     <CSSTransition
@@ -104,9 +104,9 @@ const TopicPage = () => {
                         {isAuthor && showEdit &&
                           <UpdateTopic setShowEdit={setShowEdit} />}
                           <CreateComment />
-                          <CommentList />
                         </div>
                     </CSSTransition>
+                    <CommentList />
                 </td>
               </tr>
             </tbody>
