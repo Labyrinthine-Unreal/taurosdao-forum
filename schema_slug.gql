@@ -1,1 +1,1 @@
-type Query {  topic_by_slug(slug: String!): topics }
+type Query {  comments_by_id(forumID: String!): comments }

@@ -28,7 +28,7 @@ query MyCommentQuery {
 `;
 
 
-console.log(ITEMS_QUERY)
+// console.log(ITEMS_QUERY)
 
 export default function CommentList() {
   const router = useRouter();
@@ -40,12 +40,11 @@ export default function CommentList() {
   if (error) return `Error! ${error.message}`;
 
   const client = new faunadb.Client({ secret: "fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f", keepAlive: true });
-  console.log(client)
+  // console.log(client)
 
-//   client.query(
-//     q.Reverse([data])
-//   )
-
+  const results = client.query(
+    q.Paginate(q.Match(q.Index("comments_by_id"), data.comments_by_id.slug)))
+  console.log(results)
 //  const handleNewTopic = () => {
 //   router.push('/categories/create-new-topic');
 // };
@@ -65,14 +64,15 @@ export default function CommentList() {
             <tbody>
               {data.comments_by_id.data.map((item) => {
                 return (
-                  <tr key={item.id} className={styles.topicRow}>
+                  <tr key={item.slug} className={styles.topicRow}>
                     <td className={styles.topicColumn}>
                       <FontAwesomeIcon icon={faFile} />
                     </td>
                     <td>
                       {/* <Link href={`/topics/${item.slug}`}> */}
                         <span className={styles.topicLink}>
-                          <div className={styles.topicTitle}>{item.topic}</div>
+                        {item.forumID}
+                          <div className={styles.topicTitle}>{item.comment}</div>
                           <div className={styles.topicAuthor}>Posted by {item.user} at {item.date}</div>
                         </span>
                       {/* </Link> */}
