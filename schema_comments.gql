@@ -1,0 +1,18 @@
+type comments{
+ date: String
+ comment: String
+ forumID: String
+ slug: String
+ user: String
+}
+
+
+type commentsSlug {
+  comment: comments @relation(name:"comment")
+  author: comments @relation(name:"user")
+  postID: comments @relation(name:"forumID")
+  slug: comments @relation(name:"slug")
+  date: comments @relation(name:"date")
+}
+
+

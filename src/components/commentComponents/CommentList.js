@@ -15,16 +15,18 @@ const q = faunadb.query;
 
 const ITEMS_QUERY = gql`
 query MyCommentQuery {
-  comments_by_id(_size:100){
-    data {
+  comments_by_id{
+    data{
+      _id
         date
       forumID
       comment
       user
       slug
     }
+    }
   }
- }
+ 
 `;
 
 
@@ -45,6 +47,11 @@ export default function CommentList() {
   const results = client.query(
     q.Paginate(q.Match(q.Index("comments_by_id"), data.comments_by_id.slug)))
   console.log(results)
+
+  // const isAuthor = user.username === data?.topics_by_slug.user // check if current user is the author
+  console.log(data?.comments_by_id.forumID)
+
+  const isPostID = data?.comments_by_id.forumID === data?.comments_by_id._id
 //  const handleNewTopic = () => {
 //   router.push('/categories/create-new-topic');
 // };
