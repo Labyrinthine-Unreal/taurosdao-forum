@@ -18,15 +18,16 @@
     color: grey;
     background-color: #ececec;
     border: 0.1px solid #ccc;
-    box-sizing: border-box;
   }
 
 .topicTable {
     width: 100%;
     border: 0.1px solid #ddd;
+    border-radius: 3px;
     padding: 30px 0;
-    background-color: white;
+    background-color: #ffffff;
     margin: 20px 0;
+    box-sizing: border-box;
   }
   
   .leftColumn {
