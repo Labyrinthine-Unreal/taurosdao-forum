@@ -16,3 +16,8 @@ type commentsSlug {
 }
 
 
+
+type commenter {
+  comment: String!
+  user: User!
+}

@@ -10,6 +10,16 @@ type Query {
 }
 
 
+type comments{
+ date: String
+ comment: String
+ forumID: String
+ slug: String
+ user: String
+}
+type Query {
+ comments_by_id: [comments!]
+}
 
 # # Write your query or mutation here
  mutation topicCreation {
