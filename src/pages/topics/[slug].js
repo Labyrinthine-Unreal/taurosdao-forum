@@ -98,8 +98,8 @@ const TopicPage = () => {
               </tr>
             </tbody>
           </table>
-          <ReplyButton />
           <CommentList />
+          <ReplyButton />
         </div>
       </div>
     </div>
