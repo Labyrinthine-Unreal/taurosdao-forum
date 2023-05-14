@@ -58,9 +58,7 @@ export default function CommentList() {
   return (
       <>
         <div className={styles.container}>
-          
-          {/* <button onClick={handleNewTopic} className={styles.newTopicButton}><FontAwesomeIcon icon={faPencil} style={{ marginRight: "20px" }} />New Topic</button> */}
-          
+                    
           <table className={styles.topicTable}>
             <thead>
               <tr>
