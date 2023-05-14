@@ -89,7 +89,7 @@ const CreateComment = ({ onPostCreated }) => {
             // var createT = client.query(q.Get(q.Match(q.Index("topics"), "")))
             // console.log(JSON.stringify(createP, null, 2))
 
-            // var createT = client.query(
+            // var createC = client.query(
             //     q.Create(
             //       q.Collection('comments'),
             //       { data: { 
@@ -102,7 +102,7 @@ const CreateComment = ({ onPostCreated }) => {
             //         content: data?.topics_by_slug.content } }
             //     ))
 
-            // var createT = client.query(
+            // var createC = client.query(
             //     q.Update(
             //         q.Ref(q.Collection('comments'), data?.topics_by_slug._id),
             //         { data: { comment: [comment]} }
