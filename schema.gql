@@ -4,6 +4,7 @@ type topics{
  forumID: String
  slug: String
  user: String
+ comments: [comments]!
 }
 type Query {
  topics_by_id: [topics!]

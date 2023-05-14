@@ -89,7 +89,6 @@ const CreateComment = ({ onPostCreated }) => {
             // var createT = client.query(q.Get(q.Match(q.Index("topics"), "")))
             // console.log(JSON.stringify(createP, null, 2))
 
-            // date: new Date().toString(), comment: comment, user: user.username, slug: generatedSlug
             // var createT = client.query(
             //     q.Create(
             //       q.Collection('comments'),
@@ -100,7 +99,7 @@ const CreateComment = ({ onPostCreated }) => {
             //         user: user.username,
             //         slug: slug,
             //         topic: data?.topics_by_slug.topic,
-            //         topic: data?.topics_by_slug.content } }
+            //         content: data?.topics_by_slug.content } }
             //     ))
 
             // var createT = client.query(

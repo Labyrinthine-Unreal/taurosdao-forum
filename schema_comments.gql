@@ -6,8 +6,18 @@ type comments{
  user: String
 }
 
-type Mutation{
-    createComment(forumID: ID!): String!
+
+type commentsSlug {
+  comment: comments @relation(name:"comment")
+  author: comments @relation(name:"user")
+  postID: comments @relation(name:"forumID")
+  slug: comments @relation(name:"slug")
+  date: comments @relation(name:"date")
+}
+
+type commenter {
+  comment: String!
+  user: User!
 }
 
 type topics{
@@ -16,7 +26,6 @@ type topics{
  forumID: String
  slug: String
  user: String
- comments: [comments]!
 }
 type Query {
  topics_by_id: [topics!]
