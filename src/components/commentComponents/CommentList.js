@@ -48,10 +48,8 @@ export default function CommentList() {
     q.Paginate(q.Match(q.Index("comments_by_id"), data.comments_by_id.slug)))
   console.log(results)
 
-  // const isAuthor = user.username === data?.topics_by_slug.user // check if current user is the author
-  // console.log(data?.comments_by_id.forumID)
 
-  const isPostID = data?.comments_by_id.forumID === data?.comments_by_id.slug
+  // const isPostID = data?.comments_by_id.forumID === data?.comments_by_id.slug
   // console.log(isPostID)
 
 
