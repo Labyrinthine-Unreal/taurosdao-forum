@@ -53,9 +53,7 @@ export default function CommentList() {
 
   const isPostID = data?.comments_by_id.forumID === data?.comments_by_id.slug
   // console.log(isPostID)
-//  const handleNewTopic = () => {
-//   router.push('/categories/create-new-topic');
-// };
+
 
   return (
       <>
