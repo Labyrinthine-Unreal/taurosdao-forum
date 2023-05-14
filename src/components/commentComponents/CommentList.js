@@ -83,25 +83,13 @@ export default function CommentList() {
                           <div className={styles.topicAuthor}>Posted by {item.user} at {item.date}</div>
                         </span>
                     </td>
-                    {/* <td className={styles.viewsAndReplies}>
-                      <div>0</div>
-                      <div>Replies</div>
-                    </td>
-                    <td className={styles.viewsAndReplies}>
-                      <div>0</div>
-                      <div>Views</div>
-                    </td>
-                    <td className={styles.dateAndTime}>
-                      <div>{item.user}</div>
-                      <div>Date and time</div>
-                    </td> */}
+                  
                   </tr>
                 );
               })}
             </tbody>
           </table>
           
-          {/* <button onClick={handleNewTopic} className={styles.newTopicButton}><FontAwesomeIcon icon={faPencil} style={{ marginRight: "20px" }} />New Topic</button> */}
         
         </div>
       </> 
@@ -109,15 +97,3 @@ export default function CommentList() {
   }
   
   
-  // <div>
-  //         {data.topics_by_id.data.map((item) => {
-  //             return (
-  //               <Link href={`/topics/${item.slug}`} key={item.id}>
-  //                 <div key={item.id} className={styles.topicItem}>
-  //                   <div className={styles.topicTitle}>{item.topic}:{item.user}</div> 
-  //                   <div className={styles.topicContent}>{parse(item.content)}:{item._id}</div>
-  //                 </div>
-  //               </Link>
-  //             );
-  //         })}
-  //       </div>
