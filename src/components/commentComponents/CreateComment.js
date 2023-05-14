@@ -75,11 +75,41 @@ const CreateComment = ({ onPostCreated }) => {
         var createP = client.query(
             q.Create(
               q.Collection('comments'),
-              { data: { forumID:data?.topics_by_slug._id, date: new Date().toString(), comment: comment, user: user.username, slug: slug } }
+              { data: { 
+                forumID:data?.topics_by_slug._id, 
+                date: new Date().toString(), 
+                comment: comment,
+                user: user.username,
+                slug: slug,
+                // topic: data?.topics_by_slug.topic,
+                // content: data?.topics_by_slug.content 
+            } }
             ))
+
+            // var createT = client.query(q.Get(q.Match(q.Index("topics"), "")))
             // console.log(JSON.stringify(createP, null, 2))
 
             // date: new Date().toString(), comment: comment, user: user.username, slug: generatedSlug
+            // var createT = client.query(
+            //     q.Create(
+            //       q.Collection('comments'),
+            //       { data: { 
+            //         postID:data?.topics_by_slug._id, 
+            //         date: new Date().toString(), 
+            //         comment: comment,
+            //         user: user.username,
+            //         slug: slug,
+            //         topic: data?.topics_by_slug.topic,
+            //         topic: data?.topics_by_slug.content } }
+            //     ))
+
+            // var createT = client.query(
+            //     q.Update(
+            //         q.Ref(q.Collection('comments'), data?.topics_by_slug._id),
+            //         { data: { comment: [comment]} }
+            //     )
+            // )
+
         console.log(createP)
         
 
@@ -88,6 +118,12 @@ const CreateComment = ({ onPostCreated }) => {
             // onPostCreated(response.data); // Call the callback with the new post data
             // router.push(`/topics/${response.data.slug}`); // Redirect the user to the new topic's page
         })
+
+        // createT.then(function (response) {
+        //     // console.log(response.ref.id); // Logs the ref to the console.
+        //     // onPostCreated(response.data); // Call the callback with the new post data
+        //     // router.push(`/topics/${response.data.slug}`); // Redirect the user to the new topic's page
+        // })
     };
 
 

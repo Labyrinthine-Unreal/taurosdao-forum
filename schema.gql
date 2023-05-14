@@ -1,9 +1,9 @@
-type comments{
+type topics{
  date: String
  comment: String
  forumID: String
  slug: String
- user
+ user: String
 }
 type Query {
  topics_by_id: [topics!]

@@ -49,9 +49,10 @@ export default function CommentList() {
   console.log(results)
 
   // const isAuthor = user.username === data?.topics_by_slug.user // check if current user is the author
-  console.log(data?.comments_by_id.forumID)
+  // console.log(data?.comments_by_id.forumID)
 
-  const isPostID = data?.comments_by_id.forumID === data?.comments_by_id._id
+  const isPostID = data?.comments_by_id.forumID === data?.comments_by_id.slug
+  // console.log(isPostID)
 //  const handleNewTopic = () => {
 //   router.push('/categories/create-new-topic');
 // };
@@ -76,13 +77,11 @@ export default function CommentList() {
                       <FontAwesomeIcon icon={faFile} />
                     </td>
                     <td>
-                      {/* <Link href={`/topics/${item.slug}`}> */}
                         <span className={styles.topicLink}>
                         {item.forumID}
                           <div className={styles.topicTitle}>{item.comment}</div>
                           <div className={styles.topicAuthor}>Posted by {item.user} at {item.date}</div>
                         </span>
-                      {/* </Link> */}
                     </td>
                     {/* <td className={styles.viewsAndReplies}>
                       <div>0</div>
