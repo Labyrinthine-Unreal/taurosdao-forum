@@ -30,7 +30,7 @@ query MyTopicQuery($slug: String!){
 
 // console.log(ITEMS_QUERY)
 
-export default function CommentList() {
+const CommentList = () => {
   const router = useRouter();
   const { slug } = router.query;
   const { data, loading, error } = useQuery(GET_TOPIC_BY_SLUG, {
@@ -51,51 +51,68 @@ export default function CommentList() {
     
   );
 
-  createP.then(function (response) {
-    console.log(response.data.map(
-      ([item]) => {
-        // console.log(item.value.id),
-        // slug,
-        // date,
-        // name,
-        // console.log(response.data)
-        // console.log(item)
-        console.log(response.data[0])
-        // console.log(response.data[0][3])
-
-        // console.log(response.ref)
-        // console.log(item)
-        // console.log(item.value.collection.id)
-        // console.log(item.value.collection.collection)
-        // console.log(response.data)
-        // console.log(item.ref.comment)
-        // console.log(item.ref.name)
-        // item.comment
-        // results.slug
-        // JSON.parse(JSON.stringify(item));
+  var results = createP.then(async function (response) {
+    response.data.map(
+      ([item,ref,comment,name,slug,date]) => {
+        // item
+        // ref
+        console.log(comment)
+        console.log(name)
+        console.log(response.data)
+        console.log(JSON.stringify(response.data))
+        console.log(response.data[0][3])
+        console.log(response.data[0][4])
+        console.log(response.data[1][3])
+        console.log(response.data[1][4])
       }
     )
-    )
- 
-}) 
+})
 
-
+  
 
   // const isPostID = data?.comments_by_id.forumID === data?.comments_by_id.slug
   // console.log(isPostID)
 
 
   return (
+    
       <>
+      
         <div>
-                    
+                   {/* <>
+                   {createP.then(async function (response) {
+    response.data.map(
+      ([item,ref,comment,name]) => {
+        // item
+        // ref
+        console.log(comment)
+        console.log(name)
+        console.log(response.data)
+        console.log(JSON.stringify(response.data))
+        console.log(response.data[0][3])
+        console.log(response.data[0][4])
+        console.log(response.data[1][3])
+        console.log(response.data[1][4])
+      }
+    )})}
+    </>  */}
           <table>
             <thead>
               <tr>
                 <th colSpan="5">Comments</th>
+                {/* {createP.data} */}
               </tr>
             </thead>
             <tbody>
+  
+            </tbody>
+          </table>
+          
+        
+        </div>
+        <>
+        {/* {results} */}
+              {/* <div> */}
               {/* {createP.then(function (response) {
               response.data.map((item) => {
                 return (
@@ -112,13 +129,12 @@ export default function CommentList() {
                   </tr>
                 );
               })})} */}
-            </tbody>
-          </table>
-          
-        
-        </div>
+              {/* </div> */}
+             </>
       </> 
+      
   );
   }
   
   
+  export default CommentList;
