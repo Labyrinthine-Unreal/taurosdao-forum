@@ -1,32 +1,30 @@
 // src/components/commentComponents/CommentList.js
-import React from "react";
-import Link from 'next/link';
-import gql from "graphql-tag";
-import { useQuery } from "@apollo/react-hooks";
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import { useQuery, gql } from '@apollo/client';
+import { useUser } from '@clerk/nextjs';
 import parse from 'html-react-parser';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFile, faPencil } from '@fortawesome/free-solid-svg-icons'
-import styles from '@root/components/topicComponents/TopicList.module.css';
-import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, UserButton } from '@clerk/nextjs'
+import Header from '@root/components/layout/Header';
+// import styles from './TopicPage.module.css';
+import UpdateTopic from '@root/components/topicComponents/UpdateTopic';
 import faunadb from 'faunadb';
-
+// import CommentList from '@root/components/commentComponents/CommentList';
+import { CSSTransition } from 'react-transition-group';
+import ReplyButton from '@root/components/buttons/ReplyButton';
 const q = faunadb.query;
+const client = new faunadb.Client({ secret:"fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f", keepAlive: true });
 
-const ITEMS_QUERY = gql`
-query MyCommentQuery {
-  getCommentsBySlug{
-    data{
-      _id
-        date
-      forumID
-      comment
-      user
-      slug
-    }
+const GET_TOPIC_BY_SLUG = gql`
+query MyTopicQuery($slug: String!){
+  topics_by_slug(slug: $slug) {
+    _id
+    slug
+    topic
+    content
+    user
+    comment
     }
   }
- 
 `;
 
 
@@ -34,8 +32,12 @@ query MyCommentQuery {
 
 export default function CommentList() {
   const router = useRouter();
-  const { data, loading, error } = useQuery(ITEMS_QUERY);
-  console.log(data)
+  const { slug } = router.query;
+  const { data, loading, error } = useQuery(GET_TOPIC_BY_SLUG, {
+    variables: { slug },
+    skip: !slug, 
+    // Skip the query if the slug is not available
+  }) 
   const { user } = useUser()
   
   if (loading) return 'Loading...';
@@ -44,9 +46,39 @@ export default function CommentList() {
   const client = new faunadb.Client({ secret: "fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f", keepAlive: true });
   // console.log(client)
 
-  const results = client.query(
-    q.Paginate(q.Match(q.Index("getcommentsBySlug"), data.comments_by_id.slug)))
-  console.log(results)
+  var createP = client.query(
+    q.Paginate(q.Match(q.Index("getCommentsBySlug"), data?.topics_by_slug.slug))
+    
+  );
+
+  createP.then(function (response) {
+    console.log(response.data.map(
+      ([item]) => {
+        // console.log(item.value.id),
+        // slug,
+        // date,
+        // name,
+        // console.log(response.data)
+        // console.log(item)
+        console.log(response.data[0])
+        // console.log(response.data[0][3])
+
+        // console.log(response.ref)
+        // console.log(item)
+        // console.log(item.value.collection.id)
+        // console.log(item.value.collection.collection)
+        // console.log(response.data)
+        // console.log(item.ref.comment)
+        // console.log(item.ref.name)
+        // item.comment
+        // results.slug
+        // JSON.parse(JSON.stringify(item));
+      }
+    )
+    )
+ 
+}) 
+
 
 
   // const isPostID = data?.comments_by_id.forumID === data?.comments_by_id.slug
@@ -55,32 +87,31 @@ export default function CommentList() {
 
   return (
       <>
-        <div className={styles.container}>
+        <div>
                     
-          <table className={styles.topicTable}>
+          <table>
             <thead>
               <tr>
-                <th colSpan="5" className={styles.tableHeader}>Comments</th>
+                <th colSpan="5">Comments</th>
               </tr>
             </thead>
             <tbody>
-              {data.comments_by_id.data.map((item) => {
+              {/* {createP.then(function (response) {
+              response.data.map((item) => {
                 return (
-                  <tr key={item.slug} className={styles.topicRow}>
-                    <td className={styles.topicColumn}>
+                  <tr key={item.slug}>
+                    <td >
                       <FontAwesomeIcon icon={faFile} />
                     </td>
                     <td>
-                        <span className={styles.topicLink}>
-                        {item.forumID}
-                          <div className={styles.topicTitle}>{item.comment}</div>
-                          <div className={styles.topicAuthor}>Posted by {item.user} at {item.date}</div>
+                        <span >
+                          {JSON.stringify(item.comment)}
                         </span>
                     </td>
                   
                   </tr>
                 );
-              })}
+              })})} */}
             </tbody>
           </table>
           

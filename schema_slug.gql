@@ -1,16 +1,8 @@
-type topics{
- date: String
- comment: [String]
- user: String
- topic: String
- content: String
- slug: String
-}
 
-type Query {  topics_by_slug(slug: String!): topics }
 
 type CreatedComment {
     commentId: String
+    comment: String
   }
 
 type Query {

@@ -56,61 +56,6 @@ const TopicPage = () => {
     setShowEdit(prevState => !prevState);
   };
 
-
-  var createP = client.query(
-    q.Paginate(q.Match(q.Index("getCommentsBySlug"), data?.topics_by_slug.slug))
-    
-  );
-
-  // console.log(createP)
-
-  createP.then(function (response) {
-    console.log(response.data.map(
-      (item) => {
-        console.log(item.value.id)
-        console.log(item.value)
-        // console.log(item.ref.comment)
-        // console.log(item.ref.name)
-        // item.comment
-        // results.slug
-        // JSON.parse(JSON.stringify(item));
-      }
-    )
-    )
-
-    // console.log(response.ref); // Logs the ref to the console. 
-    // console.log(response.comment)
-    // console.log(response)
-    // response.data.map(
-    //     ([ref,slug, date, name, comment]) => ({
-    //       commentId: ref.id,
-    //       slug,
-    //       date,
-    //       name,
-    //       comment,
-    //     }))
-
-    // onPostCreated(response.data); // Call the callback with the new post data
-    // router.push(`/topics/${response.data.slug}`); // Redirect the user to the new topic's page
-}) 
-// console.log(results)
-// console.log(results.data.map(
-//   (item) => {
-//     item.comment
-//   }
-// ))
-// console.log(results.ref.data)
-  // return results.data.map(
-  //   ([ref,slug, date, name, comment]) => ({
-  //     commentId: ref.id,
-  //     slug,
-  //     date,
-  //     name,
-  //     comment,
-  //   })
-  // );
-
-
   const isAuthor = user.username === data?.topics_by_slug.user // check if current user is the author
 
     return (
@@ -155,19 +100,7 @@ const TopicPage = () => {
             </tbody>
           </table>
           <ReplyButton />
-          
-          {/* <CommentList /> */}
-          {/* {results} */}
-    {/* {results.data.map(
-    ([ref,slug, date, name, comment]) => ({
-      commentId: ref.id,
-      slug,
-      date,
-      name,
-      comment,
-    })
-  )}  */}
-  
+          <CommentList />
         </div>
       </div>
     </div>
