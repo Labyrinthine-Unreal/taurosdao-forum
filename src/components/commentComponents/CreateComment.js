@@ -74,12 +74,12 @@ const CreateComment = ({ onPostCreated }) => {
 
         var createP = client.query(
             q.Create(
-              q.Collection('comments'),
+              q.Collection('CommentObject'),
               { data: { 
                 forumID:data?.topics_by_slug._id, 
                 date: new Date().toString(), 
                 comment: comment,
-                user: user.username,
+                name: user.username,
                 slug: slug,
                 // topic: data?.topics_by_slug.topic,
                 // content: data?.topics_by_slug.content 

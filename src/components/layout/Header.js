@@ -21,11 +21,11 @@ export default function Header(req, res) {
   }
 
   const secret = Clerk.session.getToken({ template: 'fauna' })
-  console.log(secret)
+  // console.log(secret)
   const client = new faunadb.Client({ secret: "fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f", keepAlive: true });
   // const client = new faunadb.Client({ secret: process.env.REACT_APP_FAUNA_SECRET_manager, keepAlive: true });
 
-  console.log(client)
+  // console.log(client)
 
   var createP = client.query(
     q.Create(
@@ -34,7 +34,7 @@ export default function Header(req, res) {
     )
   )
   createP.then(function (response) {
-    console.log(response.ref);
+    // console.log(response.ref);
   })
 
   return (

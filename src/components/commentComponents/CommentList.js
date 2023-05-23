@@ -15,7 +15,7 @@ const q = faunadb.query;
 
 const ITEMS_QUERY = gql`
 query MyCommentQuery {
-  comments_by_id{
+  getCommentsBySlug{
     data{
       _id
         date
@@ -45,7 +45,7 @@ export default function CommentList() {
   // console.log(client)
 
   const results = client.query(
-    q.Paginate(q.Match(q.Index("comments_by_id"), data.comments_by_id.slug)))
+    q.Paginate(q.Match(q.Index("getcommentsBySlug"), data.comments_by_id.slug)))
   console.log(results)
 
 
