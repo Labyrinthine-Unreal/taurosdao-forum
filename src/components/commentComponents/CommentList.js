@@ -12,7 +12,7 @@ import faunadb from 'faunadb';
 import { CSSTransition } from 'react-transition-group';
 import ReplyButton from '@root/components/buttons/ReplyButton';
 const q = faunadb.query;
-const client = new faunadb.Client({ secret:"fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f", keepAlive: true });
+const client = new faunadb.Client({ secret: "fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f", keepAlive: true });
 
 const GET_TOPIC_BY_SLUG = gql`
 query MyTopicQuery($slug: String!){
@@ -35,11 +35,11 @@ const CommentList = () => {
   const { slug } = router.query;
   const { data, loading, error } = useQuery(GET_TOPIC_BY_SLUG, {
     variables: { slug },
-    skip: !slug, 
+    skip: !slug,
     // Skip the query if the slug is not available
-  }) 
+  })
   const { user } = useUser()
-  
+
   if (loading) return 'Loading...';
   if (error) return `Error! ${error.message}`;
 
@@ -48,12 +48,12 @@ const CommentList = () => {
 
   var createP = client.query(
     q.Paginate(q.Match(q.Index("getCommentsBySlug"), data?.topics_by_slug.slug))
-    
+
   );
 
   var results = createP.then(async function (response) {
     response.data.map(
-      ([item,ref,comment,name,slug,date]) => {
+      ([item, ref, comment, name, slug, date]) => {
         // item
         // ref
         console.log(comment)
@@ -66,12 +66,10 @@ const CommentList = () => {
         console.log(response.data[1][4])
       }
     )
-})
-
-  
+  })
 }
-  // const isPostID = data?.comments_by_id.forumID === data?.comments_by_id.slug
-  // console.log(isPostID)
+// const isPostID = data?.comments_by_id.forumID === data?.comments_by_id.slug
+// console.log(isPostID)
 
 
 //   createP.then(function (response) {
@@ -90,7 +88,7 @@ const CommentList = () => {
 //       }
 //     )
 // })}
-          
-  
-  
-  export default CommentList;
+
+
+
+export default CommentList;
