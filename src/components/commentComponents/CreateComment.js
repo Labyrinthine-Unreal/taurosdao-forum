@@ -11,7 +11,7 @@ import shortid from 'shortid';
 import { useRouter } from 'next/router';
 import styles from '@root/components/topicComponents/CreateTopic.module.css'
 import { useQuery, gql } from '@apollo/client';
-
+import CommentList from './CommentList';
 const Editor = dynamic(
     () => import('react-draft-wysiwyg').then((module) => module.Editor),
     { ssr: false }
@@ -42,7 +42,7 @@ const CreateComment = ({ onPostCreated }) => {
     const { user } = useUser()
 
     const client = new faunadb.Client({ secret: "fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f", keepAlive: true });
-    console.log(client)
+    // console.log(client)
 
     const { data, loading, error } = useQuery(GET_TOPIC_BY_SLUG, {
         variables: { slug },
@@ -54,8 +54,8 @@ const CreateComment = ({ onPostCreated }) => {
       if (error) return <div>Error: {error.message}</div>;
 
       const topicData = data?.topics_by_slug.slug;
-      console.log(data)
-      console.log(data?.topics_by_slug.slug)
+    //   console.log(data)
+    //   console.log(data?.topics_by_slug.slug)
 
       if (!topicData) {
         return <h1>404: Not Found</h1>
@@ -87,7 +87,7 @@ const CreateComment = ({ onPostCreated }) => {
             ))
 
 
-        console.log(createP)
+        // console.log(createP)
         
 
         createP.then(function (response) {
@@ -123,6 +123,8 @@ const CreateComment = ({ onPostCreated }) => {
                     />
                 </form>
             </div>
+            {/* User Can only see comments if they want to reply */}
+            <CommentList /> 
         </>
     );
 };

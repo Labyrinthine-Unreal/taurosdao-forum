@@ -100,7 +100,7 @@ const TopicPage = () => {
             </tbody>
           </table>
           <ReplyButton />
-          <CommentList />
+          {/* <CommentList /> */}
         </div>
       </div>
     </div>

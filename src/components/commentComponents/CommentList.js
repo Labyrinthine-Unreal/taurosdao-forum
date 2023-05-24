@@ -69,72 +69,28 @@ const CommentList = () => {
 })
 
   
-
+}
   // const isPostID = data?.comments_by_id.forumID === data?.comments_by_id.slug
   // console.log(isPostID)
 
 
-  return (
-    
-      <>
-      
-        <div>
-                   {/* <>
-                   {createP.then(async function (response) {
-    response.data.map(
-      ([item,ref,comment,name]) => {
-        // item
-        // ref
-        console.log(comment)
-        console.log(name)
-        console.log(response.data)
-        console.log(JSON.stringify(response.data))
-        console.log(response.data[0][3])
-        console.log(response.data[0][4])
-        console.log(response.data[1][3])
-        console.log(response.data[1][4])
-      }
-    )})}
-    </>  */}
-          <table>
-            <thead>
-              <tr>
-                <th colSpan="5">Comments</th>
-                {/* {createP.data} */}
-              </tr>
-            </thead>
-            <tbody>
-  
-            </tbody>
-          </table>
+//   createP.then(function (response) {
+//     response.data.map(
+//       ([item,ref,comment,name,slug,date]) => {
+//         // item
+//         // ref
+//         console.log(comment)
+//         console.log(name)
+//         console.log(response.data)
+//         console.log(JSON.stringify(response.data))
+//         console.log(response.data[0][3])
+//         console.log(response.data[0][4])
+//         console.log(response.data[1][3])
+//         console.log(response.data[1][4])
+//       }
+//     )
+// })}
           
-        
-        </div>
-        <>
-        {/* {results} */}
-              {/* <div> */}
-              {/* {createP.then(function (response) {
-              response.data.map((item) => {
-                return (
-                  <tr key={item.slug}>
-                    <td >
-                      <FontAwesomeIcon icon={faFile} />
-                    </td>
-                    <td>
-                        <span >
-                          {JSON.stringify(item.comment)}
-                        </span>
-                    </td>
-                  
-                  </tr>
-                );
-              })})} */}
-              {/* </div> */}
-             </>
-      </> 
-      
-  );
-  }
   
   
   export default CommentList;
