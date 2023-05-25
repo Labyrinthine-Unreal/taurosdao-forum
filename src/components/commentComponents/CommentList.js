@@ -51,6 +51,7 @@ const CommentList = () => {
 
   );
 
+  var urls = {}
   var results = createP.then(async function (response) {
     response.data.map(
       ([item, ref, comment, name, slug, date]) => {
@@ -66,29 +67,45 @@ const CommentList = () => {
         console.log(response.data[1][4])
       }
     )
+    // console.log(JSON.stringify(results))
   })
-}
+  urls['data'] = results
+  console.log(urls['data'])
+  // const resultsArray = results[1]
+  // console.log(resultsArray)
+
+
+
 // const isPostID = data?.comments_by_id.forumID === data?.comments_by_id.slug
 // console.log(isPostID)
 
-
-//   createP.then(function (response) {
-//     response.data.map(
-//       ([item,ref,comment,name,slug,date]) => {
-//         // item
-//         // ref
-//         console.log(comment)
-//         console.log(name)
-//         console.log(response.data)
-//         console.log(JSON.stringify(response.data))
-//         console.log(response.data[0][3])
-//         console.log(response.data[0][4])
-//         console.log(response.data[1][3])
-//         console.log(response.data[1][4])
-//       }
-//     )
-// })}
-
-
+return (
+  <>
+  Comments
+  <br />
+  {/* {resultsArray} */}
+  {/* {urls['data']} */}
+  {/* {results} */}
+  {JSON.stringify(createP.then(function (response) {
+    response.data.map(
+      ([item, ref, comment, name, slug, date]) => {
+        // item
+        // ref
+        comment
+        console.log(name)
+        console.log(response.data)
+        // JSON.stringify(response.data)
+        [response.data[0][3]]
+        console.log(response.data[0][4])
+        console.log(response.data[1][3])
+        console.log(response.data[1][4])
+      }
+    )
+    // console.log(JSON.stringify(results))
+  }))} 
+  
+</>
+)
+}
 
 export default CommentList;
