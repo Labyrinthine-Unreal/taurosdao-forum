@@ -66,6 +66,7 @@ const CreateTopic = ({ onPostCreated }) => {
         <br />
         <label htmlFor="content">Content:</label>
         <Editor
+          toolbarOnFocus
           editorState={editorState}
           toolbarClassName="toolbarClassName"
           wrapperClassName="wrapperClassName"

@@ -7,18 +7,29 @@
   }
 
   .topicHeading {
-    width: 100%;
-    height: 90px;
+    position: relative;
+    width: 70%;
+    height: 50px;
     display: flex;
     padding-left: 145px;
     justify-content: space-between;
     align-items: center;
     font-size: 1.5em;
     font-weight: 300;
-    color: grey;
-    background-color: #ececec;
-    border: 0.1px solid #ccc;
+    color: black;
+    background-color: orange;
     box-sizing: border-box;
+  }
+
+  .topicHeading::after {
+    content: '';
+    position: absolute;
+    bottom: -20px; /* adjust these values to change the size of the shadow */
+    right: -10px;
+    width: 100%; /* adjust these values to change the size of the shadow */
+    height: 50px;
+    background-color: gray;
+    z-index: -1;
   }
 
 .topicTable {

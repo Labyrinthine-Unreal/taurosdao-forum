@@ -1,4 +1,4 @@
-// src/components/UpdateTopic.js
+// src/components/commentComponents/CreateComment.js
 import React, { useState } from 'react';
 import faunadb from 'faunadb';
 import { EditorState, convertToRaw } from 'draft-js';
@@ -42,7 +42,6 @@ const CreateComment = ({ onPostCreated }) => {
     const { user } = useUser()
 
     const client = new faunadb.Client({ secret: "fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f", keepAlive: true });
-    // console.log(client)
 
     const { data, loading, error } = useQuery(GET_TOPIC_BY_SLUG, {
         variables: { slug },
@@ -54,21 +53,19 @@ const CreateComment = ({ onPostCreated }) => {
       if (error) return <div>Error: {error.message}</div>;
 
       const topicData = data?.topics_by_slug.slug;
-    //   console.log(data)
-    //   console.log(data?.topics_by_slug.slug)
 
       if (!topicData) {
         return <h1>404: Not Found</h1>
       }
-    
-    //   const isAuthor = user.username === data?.topics_by_slug.user // check if current user is the author
-      console.log(user.username)
-    //   console.log(data?.topics_by_slug._id)
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const contentState = editorState.getCurrentContent();
-        const comment = stateToHTML(contentState);
+        const comment = stateToHTML(contentState, {
+          blockRenderers: {
+            unstyled: (block) => block.getText()
+          }
+        });
 
         const generatedSlug = slugify(topic, { lower: true, strict: true }) + '-' + shortid.generate();
 
@@ -81,18 +78,11 @@ const CreateComment = ({ onPostCreated }) => {
                 comment: comment,
                 name: user.username,
                 slug: slug,
-                // topic: data?.topics_by_slug.topic,
-                // content: data?.topics_by_slug.content 
             } }
             ))
-
-
-        // console.log(createP)
         
 
         createP.then(function (response) {
-            console.log(response.ref.id); // Logs the ref to the console.
-            // onPostCreated(response.data); // Call the callback with the new post data
             router.push(`/topics/${response.data.slug}`); // Redirect the user to the new topic's page
         })
 

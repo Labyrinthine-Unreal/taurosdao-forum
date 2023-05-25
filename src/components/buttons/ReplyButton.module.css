@@ -5,10 +5,12 @@
     border: none;
     border-radius: 3px;
     padding: 10px 12px;
-    margin: 20px 0;
     cursor: pointer;
     text-align: center;
     display: block;
+    margin-right: 0;
+    margin-left: auto;
+    margin-bottom: 40px;
   }
 
   .replyButton:hover {

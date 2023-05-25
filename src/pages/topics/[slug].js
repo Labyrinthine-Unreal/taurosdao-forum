@@ -64,7 +64,6 @@ const TopicPage = () => {
       <div className={styles.topicHeading}>{data?.topics_by_slug.topic}</div>
       <div className={styles.container}>
         <div className={styles.tableContainer}>
-          <ReplyButton />
           
           <table className={styles.topicTable}>
             <tbody>
