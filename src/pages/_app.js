@@ -33,7 +33,7 @@ function MyApp({ Component, pageProps }) {
   // Otherwise, use Clerk to require authentication
   return (
     // <ApolloProvider client={client} />
-    <ClerkProvider publishableKey={clerkPubKey} {...pageProps}>
+    <ClerkProvider pk_test_bWludC1zcGlkZXItNzAuY2xlcmsuYWNjb3VudHMuZGV2JA {...pageProps}>
       <ApolloProvider client={client} />
 
       {isPublicPage ? (
