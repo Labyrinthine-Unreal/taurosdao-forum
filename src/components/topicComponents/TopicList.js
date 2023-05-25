@@ -41,7 +41,7 @@ export default function TopicList() {
   if (loading) return 'Loading...';
   if (error) return `Error! ${error.message}`;
 
-  const client = new faunadb.Client({ secret: process.env.FAUNADB_SECRET, keepAlive: true });
+  const client = new faunadb.Client({ secret: "fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f", keepAlive: true });
   console.log(client)
 
   client.query(

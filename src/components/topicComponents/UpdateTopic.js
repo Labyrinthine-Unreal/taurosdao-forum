@@ -40,7 +40,7 @@ const UpdateTopic = ({ onPostCreated }) => {
     const { slug } = router.query;
     const { user } = useUser()
 
-    const client = new faunadb.Client({ secret: process.env.FAUNADB_SECRET, keepAlive: true });
+    const client = new faunadb.Client({ secret: "fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f", keepAlive: true });
     console.log(client)
 
     const { data, loading, error } = useQuery(GET_TOPIC_BY_SLUG, {
