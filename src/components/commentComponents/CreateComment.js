@@ -124,7 +124,7 @@ const CreateComment = ({ onPostCreated }) => {
                 </form>
             </div>
             {/* User Can only see comments if they want to reply */}
-            <CommentList /> 
+            {/* <CommentList />  */}
         </>
     );
 };
