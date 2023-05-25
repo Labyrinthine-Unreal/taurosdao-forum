@@ -1,0 +1,81 @@
+.container {
+    width: 80%;
+    margin: auto;
+  }
+  
+  .commentTable {
+    width: 100%;
+    border-collapse: collapse;
+    border-right: 0.1px solid lightgrey;
+    border-bottom: 0.1px solid lightgrey;
+    background-color: #ffffffbb;
+  }
+
+  .commentRow td:first-child {
+    background-color: lightgrey;
+  }
+
+  .commentTable td {
+    padding: 20px 10px;
+  }
+  
+  .tableHeader {
+    height: 50px;
+    background-color: #46494f;
+    color: white;
+    text-align: left;
+    padding-left: 10px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+  }
+  
+  .commentLink {
+    text-decoration: none;
+    color: black;
+  }
+  
+  .commentTitle {
+    font-weight: bold;
+  }
+  
+  .commentAuthor {
+    font-size: small;
+    color: grey;
+  }
+  
+  .commentColumn {
+    background-color: lightgrey;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .viewsAndReplies {
+    font-size: small;
+    color: grey;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .dateAndTime {
+    font-size: small;
+    color: grey;
+    text-align: right;
+  }
+
+  .newCommentButton {
+    background: linear-gradient(90deg, #1f5999 0%, #1f5999 35px, #2569b5 35px, #2569b5 100%);
+    color: white;
+    font-size: small;
+    border: none;
+    border-radius: 3px;
+    padding: 10px 12px;
+    margin: 20px 0;
+    cursor: pointer;
+    text-align: center;
+    display: block;
+}
+
+.newCommentButton:hover {
+    background: linear-gradient(90deg, #0e2744 0%, #0e2744 35px, #19487d 35px, #19487d 100%);
+}
+  

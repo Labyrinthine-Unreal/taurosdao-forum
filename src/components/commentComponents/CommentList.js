@@ -9,6 +9,9 @@ import UpdateTopic from '@root/components/topicComponents/UpdateTopic';
 import faunadb from 'faunadb';
 import { CSSTransition } from 'react-transition-group';
 import ReplyButton from '@root/components/buttons/ReplyButton';
+import styles from './CommentList.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFile, faPencil } from '@fortawesome/free-solid-svg-icons'
 
 const q = faunadb.query;
 const client = new faunadb.Client({ secret: "fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f", keepAlive: true });
@@ -52,13 +55,9 @@ const CommentList = () => {
               console.log(JSON.stringify(response.data))
               // Check if response.data[0] is defined and is an array with at least 5 elements
               if (Array.isArray(response.data[0]) && response.data[0].length >= 5) {
-                console.log(response.data[0][3])
-                console.log(response.data[0][4])
               }
               // Check if response.data[1] is defined and is an array with at least 5 elements
               if (Array.isArray(response.data[1]) && response.data[1].length >= 5) {
-                console.log(response.data[1][3])
-                console.log(response.data[1][4])
               }
             }
           )
@@ -73,14 +72,33 @@ const CommentList = () => {
 
   return (
     <>
-      Comments
-      <br />
-      {comments.map(([item, ref, comment, name, slug, date], index) => (
-  <div key={index}>
-    <p>{comment}</p>
-    <p>{name}</p>
-  </div>
-))}
+        <div className={styles.container}>
+          <table className={styles.commentTable}>
+            <thead>
+              <tr>
+                <th colSpan="5" className={styles.tableHeader}>Comments</th>
+              </tr>
+            </thead>
+            <tbody>
+              {comments.map(([item, ref, comment, name, slug, date], index) => {
+                return (
+                  <tr key={index} className={styles.commentRow}>
+                    <td className={styles.commentColumn}>
+                      <FontAwesomeIcon icon={faFile} />
+                    </td>
+                    <td>
+                      <div className={styles.commentAuthor}>Posted by {comment} at time</div>
+                      <div className={styles.commentContent}>{name}</div>
+                    </td>
+                    <td className={styles.dateAndTime}>
+                      <div>Date and Time</div>
+                    </td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
+        </div>
     </>
   )
 }
