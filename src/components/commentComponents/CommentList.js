@@ -80,18 +80,18 @@ const CommentList = () => {
               </tr>
             </thead>
             <tbody>
-              {comments.map(([item, ref, comment, name, slug, date], index) => {
+              {comments.map(([item, slug, name,comment, date, ref], index) => {
                 return (
                   <tr key={index} className={styles.commentRow}>
                     <td className={styles.commentColumn}>
                       <FontAwesomeIcon icon={faFile} />
                     </td>
                     <td>
-                      <div className={styles.commentAuthor}>Posted by {comment} at time</div>
-                      <div className={styles.commentContent}>{name}</div>
+                      <div className={styles.commentAuthor}>Posted by {name} at {date}</div>
+                      <div className={styles.commentContent}>{comment}</div>
                     </td>
                     <td className={styles.dateAndTime}>
-                      <div>Date and Time</div>
+                      <div>{date}</div>
                     </td>
                   </tr>
                 )
