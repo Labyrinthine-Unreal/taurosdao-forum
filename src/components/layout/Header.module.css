@@ -1,7 +1,7 @@
 .container {
-    background-color: #46494f;
-    color: white;
-    padding: 50px;
+    background-color: white;
+    color: black;
+    padding: 10px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -17,7 +17,7 @@
   }
 
   .title {
-    color: white;
+    color: black;
     font-weight: 400;
     align-items: center;
     margin-bottom: 0;
