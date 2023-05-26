@@ -23,16 +23,16 @@ function MyApp({ Component, pageProps }) {
     cache: new InMemoryCache(),
     uri: "https://graphql.us.fauna.com/graphql",
     headers: {
-      authorization: `Bearer ${"fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f"}`, //FaunaAdmin != manager_role
+      authorization: `Bearer ${process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY}`, //FaunaAdmin != manager_role
     },
   });
 
-
+ const pubKey= process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
   // If the current route is listed as public, render it directly
   // Otherwise, use Clerk to require authentication
   return (
     // <ApolloProvider client={client} />
-    <ClerkProvider publishableKey='pk_test_bWludC1zcGlkZXItNzAuY2xlcmsuYWNjb3VudHMuZGV2JA' {...pageProps}>
+    <ClerkProvider publishableKey={pubKey} {...pageProps}>
       <ApolloProvider client={client} />
 
       {isPublicPage ? (

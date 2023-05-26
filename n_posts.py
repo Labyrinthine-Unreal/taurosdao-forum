@@ -3,7 +3,7 @@ from faunadb.client import FaunaClient
 from faunadb.objects import Ref
 from faunadb.errors import BadRequest, NotFound
 
-client = FaunaClient(secret="fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f",domain="db.us.fauna.com")
+client = FaunaClient(secret=process.env.FAUNA_SECRET_KEY,domain="db.us.fauna.com")
 
 n_posts = client.query(q.paginate(q.match(q.ref("indexes/topics_by_id"))))
 

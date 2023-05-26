@@ -4,6 +4,10 @@ const nextConfig = {
   experimental: {
     appDir: true,
 },
+// env: {
+//   NEXT_PUBLIC_FAUNA_SECRET_KEY: process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY,
+//   // CONTENTFUL_ACCESS_TOKEN: process.env.CONTENTFUL_ACCESS_TOKEN,
+// },
 }
 
 module.exports = {
@@ -17,4 +21,5 @@ module.exports = {
 
       return config;
   }
+  
 }

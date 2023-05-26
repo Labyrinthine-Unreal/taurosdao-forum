@@ -3,7 +3,7 @@ import { Client, query as q } from 'faunadb';
 
 export const faunaClient = new Client({
 domain:"db.us.fauna.com",
-  secret: process.env.FAUNADB_SECRET,
+  domain:"db.us.fauna.com", secret: process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY,
 });
 
 export async function createTopic(category, title, content) {
