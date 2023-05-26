@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Box, Button,Flex, Spacer, Center, Grid, HStack, SimpleGrid, Text, Link, Heading, Collapse, useDisclosure, IconButton } from '@chakra-ui/react'
 // import { Textarea } from '@nextui-org/react';
-import { Input } from 'web3uikit';
 import faunadb from 'faunadb';
 import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, UserButton } from '@clerk/nextjs'
 
