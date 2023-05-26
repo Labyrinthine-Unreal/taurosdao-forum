@@ -1,0 +1,6 @@
+type KEY{
+ key: String
+}
+type Query {
+ keys_by_id: [KEY!]
+}

@@ -11,6 +11,7 @@ import faunadb from 'faunadb';
 import CommentList from '@root/components/commentComponents/CommentList';
 import { CSSTransition } from 'react-transition-group';
 import ReplyButton from '@root/components/buttons/ReplyButton';
+import GPT from '@root/components/GPT/gpt';
 const q = faunadb.query;
 const client = new faunadb.Client({ domain:"db.us.fauna.com", secret:process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY, keepAlive: true });
 
@@ -99,6 +100,7 @@ const TopicPage = () => {
             </tbody>
           </table>
           <ReplyButton />
+          <GPT />
           <CommentList />
         </div>
       </div>
