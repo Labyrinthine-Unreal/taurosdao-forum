@@ -26,7 +26,7 @@ const Art = () => {
     
     <div>
       <Header/>
-      <h1>Art Topics</h1>
+      <h1>Art</h1>
       <TopicList/>
     </div>
   );
