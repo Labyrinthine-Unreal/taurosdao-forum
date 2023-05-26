@@ -54,7 +54,7 @@ const CreateTopic = ({ onPostCreated }) => {
   return (
     <>
     <div className={styles.container}>
-      <h2>New Topic</h2>
+      <h2>Create New Topic</h2>
       <form onSubmit={handleSubmit} className={styles.topicInput}>
         <input
           type="text"
