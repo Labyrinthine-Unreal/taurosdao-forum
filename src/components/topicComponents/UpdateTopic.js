@@ -89,7 +89,7 @@ const UpdateTopic = ({ onPostCreated }) => {
     return (
         <>
             <div className={styles.container}>
-                <h2>Edit Post</h2>
+                <h2>Edit This Post</h2>
                 <form onSubmit={handleSubmit} className={styles.topicInput}>
                     <input
                         type="text"
