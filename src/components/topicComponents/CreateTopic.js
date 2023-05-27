@@ -1,4 +1,4 @@
-// src/components/CreateTopic.js
+// src/components/topicComponents/CreateTopic.js
 import React, { useState } from 'react';
 import faunadb from 'faunadb';
 import { EditorState, convertToRaw } from 'draft-js';
@@ -31,8 +31,11 @@ const CreateTopic = ({ onPostCreated }) => {
 
   const router = useRouter();
 
+  const [isPosting, setIsPosting] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsPosting(true);
     const contentState = editorState.getCurrentContent();
     const content = stateToHTML(contentState);
 
@@ -47,6 +50,7 @@ const CreateTopic = ({ onPostCreated }) => {
       console.log(response.ref); // Logs the ref to the console.
       onPostCreated(response.data); // Call the callback with the new post data
       router.push(`/topics/${response.data.slug}`); // Redirect the user to the new topic's page
+      setIsPosting(false);
     })
   };
 
