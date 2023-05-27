@@ -28,7 +28,7 @@ query MyTopicQuery {
 
 export default function TopicList({ topics, switchView }) {
   const router = useRouter();
-  const client = new faunadb.Client({domain:"db.us.fauna.com", secret: "fnAFE6V8EKAASSWA304UUK2Dw0yczeBiSbEPoJJ4", keepAlive: true });
+  const client = new faunadb.Client({domain:"db.us.fauna.com", secret: process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY, keepAlive: true });
   console.log(client)
 
   const { data, loading, error } = useQuery(ITEMS_QUERY);
