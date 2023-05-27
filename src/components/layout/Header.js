@@ -22,7 +22,7 @@ export default function Header(req, res) {
 
   const secret = Clerk.session.getToken({ template: 'fauna' })
   // console.log(secret)
-  const client = new faunadb.Client({ secret: "fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f", keepAlive: true });
+  const client = new faunadb.Client({ secret: process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY, keepAlive: true });
   // const client = new faunadb.Client({ secret: process.env.REACT_APP_FAUNA_SECRET_manager, keepAlive: true });
 
   // console.log(client)

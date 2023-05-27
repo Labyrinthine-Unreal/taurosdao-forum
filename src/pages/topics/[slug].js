@@ -12,7 +12,7 @@ import CommentList from '@root/components/commentComponents/CommentList';
 import { CSSTransition } from 'react-transition-group';
 import ReplyButton from '@root/components/buttons/ReplyButton';
 const q = faunadb.query;
-const client = new faunadb.Client({ secret:"fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f", keepAlive: true });
+const client = new faunadb.Client({ domain:"db.us.fauna.com", secret: process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY, keepAlive: true });
 
 const GET_TOPIC_BY_SLUG = gql`
 query MyTopicQuery($slug: String!){

@@ -1,16 +1,46 @@
 // src/components/topicComponents/TopicList.js
 import React from "react";
 import Link from 'next/link';
+import gql from "graphql-tag";
+import { useQuery } from "@apollo/react-hooks";
 import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFile, faPencil } from '@fortawesome/free-solid-svg-icons'
 import styles from './TopicList.module.css';
 import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, UserButton } from '@clerk/nextjs'
+import faunadb from 'faunadb';
+const q = faunadb.query;
+ 
+
+const ITEMS_QUERY = gql`
+query MyTopicQuery {
+  topics_by_id(_size:100){
+    data {
+      _id
+      topic 
+      content
+      user
+      slug
+    }
+  }
+ }
+`;
 
 export default function TopicList({ topics, switchView }) {
   const router = useRouter();
-  const { user } = useUser()
+  const client = new faunadb.Client({domain:"db.us.fauna.com", secret: "fnAFE6V8EKAASSWA304UUK2Dw0yczeBiSbEPoJJ4", keepAlive: true });
+  console.log(client)
+
+  const { data, loading, error } = useQuery(ITEMS_QUERY);
+  console.log(data)
+
+  const { user } = useUser();
   
+  if (loading) return 'Loading...';
+  if (error) return `Error! ${error.message}`;
+
+
+
   const handleNewTopic = () => {
     router.push('/categories/create-new-topic');
   };
@@ -29,7 +59,7 @@ export default function TopicList({ topics, switchView }) {
             </tr>
           </thead>
           <tbody>
-            {topics.map((item) => {
+            {data.topics_by_id.data.map((item) => {
               return (
                 <tr key={item.id} className={styles.topicRow}>
                   <td className={styles.topicColumn}>

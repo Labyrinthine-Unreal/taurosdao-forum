@@ -26,7 +26,7 @@ const Art = () => {
   const [topics, setTopics] = useState([]);
   const { loading, error, data } = useQuery(ITEMS_QUERY);
 
-  const client = useMemo(() => new faunadb.Client({ domain:"db.us.fauna.com", secret: "fnAFE6V8EKAASSWA304UUK2Dw0yczeBiSbEPoJJ4", keepAlive: true }), []);
+  const client = useMemo(() => new faunadb.Client({ domain:"db.us.fauna.com", secret: process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY, keepAlive: true }), []);
 
   useEffect(() => {
     if (data && data.topics_by_id) {
