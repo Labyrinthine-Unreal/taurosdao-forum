@@ -1,11 +1,10 @@
 .bubbleContainer {
-  position: relative; /* add this line */
-  /* display: flex; */
+  position: relative;
   flex-wrap: wrap;
   justify-content: space-around;
-  width: 100vw; /* add this line */
-  height: 80vh; /* add this line */
-  overflow: hidden; /* add this line */
+  width: 100vw;
+  height: 80vh;
+  overflow: hidden;
 }
 
 

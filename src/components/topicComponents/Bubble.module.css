@@ -6,3 +6,14 @@
   background-color: #888;
   border-radius: 50%;
 }
+
+.bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -10px; /* Adjust this value to move the "tail" up or down */
+  left: 45%; /* Adjust this value to move the "tail" left or right */
+  width: 10px;
+  height: 20px; /* Adjust this to change the size of the "tail" */
+  background-color: inherit; /* The "tail" will be the same color as the bubble */
+  border-radius: 50%;
+}
