@@ -1,19 +1,20 @@
 .bubble {
   position: absolute;
   bottom: 0;
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   background-color: #888;
   border-radius: 50%;
+  transform: scaleY(1.1);
 }
 
 .bubble::after {
   content: "";
   position: absolute;
-  bottom: -10px; /* Adjust this value to move the "tail" up or down */
+  bottom: -15px; /* Adjust this value to move the "tail" up or down */
   left: 45%; /* Adjust this value to move the "tail" left or right */
-  width: 10px;
-  height: 20px; /* Adjust this to change the size of the "tail" */
+  width: 15px;
+  height: 50px; /* Adjust this to change the size of the "tail" */
   background-color: inherit; /* The "tail" will be the same color as the bubble */
   border-radius: 50%;
 }

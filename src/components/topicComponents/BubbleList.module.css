@@ -3,13 +3,13 @@
   flex-wrap: wrap;
   justify-content: space-around;
   width: 100vw;
-  height: 80vh;
+  height: 100vh;
   overflow: hidden;
 }
 
 
 .switchButton {
   position: fixed;
-  top: 20px;
+  bottom: 20px;
   left: 20px;
 }

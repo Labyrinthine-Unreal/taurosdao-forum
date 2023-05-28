@@ -48,7 +48,7 @@ const Art = () => {
   return (
     <div>
       <Header />
-      <h1>Art</h1>
+      {/* <h1>Art</h1> */}
       {viewMode === 'list' && <TopicList topics={topics} switchView={switchToBubbleView} />}
       {viewMode === 'bubble' && <BubbleList topics={topics} switchView={switchToListView} />}
     </div>
