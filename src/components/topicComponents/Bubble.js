@@ -9,7 +9,7 @@ const Bubble = ({ slug, title, content }) => {
   
   useEffect(() => {
     gsap.set(bubbleRef.current, {
-      left: `${Math.random() * 100}%`, // Random horizontal start position
+      left: Math.random() * 100 + "%", // Random horizontal start position
       bottom: Math.random() * -100 + "vh", // Random vertical start position
     });
     
@@ -20,7 +20,7 @@ const Bubble = ({ slug, title, content }) => {
 
     tlVertical.to(bubbleRef.current, {
       y: "-100vh",
-      duration: Math.random() * 7 + 3, // random duration between 3 and 7 seconds
+      duration: Math.random() * 10 + 6, // random duration between 3 and 7 seconds
       ease: "linear",
       repeat: -1, // repeat animation forever
     });
@@ -33,7 +33,7 @@ const Bubble = ({ slug, title, content }) => {
 
     tlHorizontal.to(bubbleRef.current, {
       x: '+=50',
-      duration: Math.random() * 2 + 1, // random duration between 1 and 3 seconds
+      duration: Math.random() * 3 + 1, // random duration between 1 and 3 seconds
       ease: "sine.inOut",
     });
 
