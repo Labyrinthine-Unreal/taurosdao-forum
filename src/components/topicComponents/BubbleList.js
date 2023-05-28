@@ -1,9 +1,9 @@
 // src/components/topicComponents/BubbleList.js
 import Bubble from './Bubble';
+import styles from './BubbleList.module.css';
 import { useRouter } from 'next/router';
 
 const BubbleList = ({topics, switchView}) => {
-    console.log(topics);
   const router = useRouter();
 
   const onPostClick = (slug) => {
@@ -11,13 +11,15 @@ const BubbleList = ({topics, switchView}) => {
   };
 
   return (
-    <div className="bubble-container">
-      <button onClick={ switchView }>Switch to List View</button>
-      {topics && topics.map((topic) => (
+    <div className={styles.bubbleContainer}>
+      <button className={styles.switchButton} onClick={switchView}>Switch to List View</button>
+      {topics && topics.map((topic, index) => (
         <Bubble
-          key={topic.slug}
+          key={topic.id}
+          id={index}
           slug={topic.slug}
           title={topic.topic}
+          content={topic.content}
           onClick={() => onPostClick(topic.slug)}
         />
       ))}
@@ -26,4 +28,3 @@ const BubbleList = ({topics, switchView}) => {
 };
 
 export default BubbleList;
-

@@ -1,22 +1,16 @@
-.bubble {
-    position: relative;
-    display: inline-block;
-    width: 100px;
-    height: 100px;
-    background-color: #888;
-    border-radius: 50%;
-    animation: float 3s ease-in infinite;
-  }
-  
-  @keyframes float {
-    0% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-20px);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
-  
+.bubbleContainer {
+  position: relative; /* add this line */
+  /* display: flex; */
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100vw; /* add this line */
+  height: 80vh; /* add this line */
+  overflow: hidden; /* add this line */
+}
+
+
+.switchButton {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+}
