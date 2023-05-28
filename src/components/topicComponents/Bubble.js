@@ -1,12 +1,15 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { useRouter } from 'next/router';
+import { motion, useAnimation } from 'framer-motion';
 import styles from './Bubble.module.css';
 import styles3D from './Bubble3D.module.css';
+import { set } from 'draft-js/lib/DefaultDraftBlockRenderMap';
 
 const Bubble = ({ slug, title, content }) => {
   const bubbleRef = useRef(null);
   const router = useRouter();
+  const controls = useAnimation();
 
   const colors = ["#ff7f7f", "#7fff7f", "#7f7fff", "yellow", "orange", "pink"];
   const color = colors[Math.floor(Math.random() * colors.length)]; // select
@@ -48,15 +51,28 @@ const Bubble = ({ slug, title, content }) => {
     });
 
   }, []);
+
+  const handleClick = () => {
+    controls.start({
+      scale: 100,
+      transition: { duration: 5 },
+    })
   
+    // navigate after animation completes
+    setTimeout(() => {
+      router.push(`/topics/${slug}`);
+    }, 500);
+  };
+
   return (
-    <div
+    <motion.div
       ref={bubbleRef}
       className={styles.bubble} 
-      onClick={() => router.push(`/topics/${slug}`)}
+      onClick={handleClick}
+      animate={controls}
     >
       <h2>{title}</h2>
-    </div>
+    </motion.div>
   );
 };
 
