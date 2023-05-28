@@ -4,9 +4,8 @@ import { useRouter } from 'next/router';
 import { motion, useAnimation } from 'framer-motion';
 import styles from './Bubble.module.css';
 import styles3D from './Bubble3D.module.css';
-import { set } from 'draft-js/lib/DefaultDraftBlockRenderMap';
 
-const Bubble = ({ slug, title, content }) => {
+const Bubble = ({ slug, title, author }) => {
   const bubbleRef = useRef(null);
   const router = useRouter();
   const controls = useAnimation();
@@ -21,6 +20,9 @@ const Bubble = ({ slug, title, content }) => {
       top: `${Math.random() * 50 + 50}%`, // Random vertical start position between 50% and 100%
     });
 
+    // Calculate the bubble width
+    const bubbleWidth = bubbleRef.current.offsetWidth;
+
     const tlVertical = gsap.timeline({
       repeat: -1,
       delay: Math.random() * -5, // random start time between now and 5 seconds ago
@@ -34,19 +36,26 @@ const Bubble = ({ slug, title, content }) => {
 
     tlVertical.to(bubbleRef.current, {
       top: "-100%", // move to the top of the screen
-      duration: Math.random() * 10 + 6, // random duration between 3 and 10 seconds
+      duration: Math.random() * 10 + 6, // random duration between 6 and 10 seconds
       ease: "linear",
     });
 
     const tlHorizontal = gsap.timeline({
       repeat: -1,
       yoyo: true,
-      delay: Math.random() * 4, // random start time between now and 2 seconds ago
+      delay: Math.random() * 4, // random start time between now and 4 seconds ago
     });
 
     tlHorizontal.to(bubbleRef.current, {
-      left: `+=${Math.random() > 0.5 ? '-' : ''}50%`, // move left or right by 50%
-      duration: Math.random() * 4 + 2, // random duration between 1 and 3 seconds
+      // Set the left property to the screen width minus the bubble width
+      left: `calc(100% - ${bubbleWidth}px)`,
+      // left: `+=${Math.random() > 0.5 ? '-' : ''}50%`, // move left or right by 50%
+      duration: Math.random() * 4 + 2, // random duration between 2 and 4 seconds
+      ease: "sine.inOut",
+    })
+    .to(bubbleRef.current, {
+      left: "0%",
+      duration: Math.random() * 4 + 2,
       ease: "sine.inOut",
     });
 
@@ -71,7 +80,10 @@ const Bubble = ({ slug, title, content }) => {
       onClick={handleClick}
       animate={controls}
     >
-      <h2>{title}</h2>
+      <div className={styles.textWrapper}>
+        <h2>{author}</h2>
+        <h2>{title}</h2>
+      </div>
     </motion.div>
   );
 };

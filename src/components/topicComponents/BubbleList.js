@@ -20,6 +20,7 @@ const BubbleList = ({topics, switchView}) => {
           slug={topic.slug}
           title={topic.topic}
           content={topic.content}
+          author={topic.user}
           onClick={() => onPostClick(topic.slug)}
         />
       ))}
