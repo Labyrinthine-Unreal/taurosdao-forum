@@ -59,11 +59,11 @@ const Bubble = ({ slug, title, author }) => {
       ease: "sine.inOut",
     });
 
-  }, []);
+  });
 
   const handleClick = () => {
     controls.start({
-      scale: 100,
+      scale: 80,
       transition: { duration: 5 },
     })
   
