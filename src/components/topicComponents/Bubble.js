@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { useRouter } from 'next/router';
 import styles from './Bubble.module.css';
+import styles3D from './Bubble3D.module.css';
 
 const Bubble = ({ slug, title, content }) => {
   const bubbleRef = useRef(null);
@@ -51,7 +52,7 @@ const Bubble = ({ slug, title, content }) => {
   return (
     <div
       ref={bubbleRef}
-      className={styles.bubble}
+      className={styles.bubble} 
       onClick={() => router.push(`/topics/${slug}`)}
     >
       <h2>{title}</h2>

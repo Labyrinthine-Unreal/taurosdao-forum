@@ -1,0 +1,59 @@
+.bubble {
+    background-color: white; /* default color, will be covered by gradient */
+    border-radius: 50%;
+    box-shadow: 10px 10px 15px rgba(0,0,0,0.1), -10px -10px 15px rgba(255,255,255,0.7);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .bubble::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, rgba(0,0,0,0.1) 0%, transparent 50%, rgba(255,255,255,0.7) 100%);
+    transform: rotate(0deg);
+    transition: transform 1s;
+  }
+  
+  .color1 {
+    --color-start: #ff7f7f;
+    --color-end: #ff3f3f;
+  }
+  
+  .color2 {
+    --color-start: #7fff7f;
+    --color-end: #3fff3f;
+  }
+  
+  .color3 {
+    --color-start: #7f7fff;
+    --color-end: #3f3fff;
+  }
+  
+  .color4 {
+    --color-start: yellow;
+    --color-end: gold;
+  }
+  
+  .color5 {
+    --color-start: orange;
+    --color-end: darkorange;
+  }
+  
+  .color6 {
+    --color-start: pink;
+    --color-end: deeppink;
+  }
+  
+  .color1, .color2, .color3, .color4, .color5, .color6 {
+    background: var(--color-start);
+    background: radial-gradient(circle at top left, var(--color-start), var(--color-end));
+  }
+  
+  .bubble:hover::before {
+    transform: rotate(1turn);
+  }
+  

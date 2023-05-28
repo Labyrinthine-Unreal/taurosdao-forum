@@ -1,6 +1,10 @@
-.bubble {
+.bubble-container {
   position: absolute;
   bottom: 0;
+}
+
+.bubble {
+  position: relative;
   width: 150px;
   height: 150px;
   background-color: #888;
@@ -11,7 +15,7 @@
 .bubble::after {
   content: "";
   position: absolute;
-  bottom: -15px; /* Adjust this value to move the "tail" up or down */
+  bottom: -20px; /* Adjust this value to move the "tail" up or down */
   left: 45%; /* Adjust this value to move the "tail" left or right */
   width: 15px;
   height: 50px; /* Adjust this to change the size of the "tail" */
