@@ -25,7 +25,12 @@ const getResponseFromOpenAI = async () => {
       body: JSON.stringify({ prompt: prompt }),
       
     });
-
+    String.prototype.format = function () {
+      var i = 0, args = arguments;
+      return this.replace(/{}/g, function () {
+        return typeof args[i] != 'undefined' ? args[i++] : '';
+      });
+    };
     const data = await response.json();
     setIsLoading(false);
     console.log(data.text);
@@ -33,7 +38,7 @@ const getResponseFromOpenAI = async () => {
     var createP = client.query(
         q.Create(
           q.Collection('Prompts'),
-          { data: { user: user.username, prompt:prompt, GPTresponse:data.text,date: new Date().toString() } }
+          { data: { user: user.username,query:prompt, prompt:'{}:'.format(user.username)+prompt+'{}'.format(data.text), GPTresponse:data.text,date: new Date().toString() } }
         ))
       createP.then(function(response) {
         console.log(response.ref); // Logs the ref to the console.

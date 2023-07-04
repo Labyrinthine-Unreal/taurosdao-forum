@@ -8,9 +8,11 @@ import parse from 'html-react-parser';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFile, faPencil } from '@fortawesome/free-solid-svg-icons'
 import styles from './TopicList.module.css';
+import { Stack, Center,Divider,Text } from "@chakra-ui/react";
 import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, UserButton } from '@clerk/nextjs'
-import faunadb from 'faunadb';
+import { Card, CardHeader, Flex,Avatar,Heading,IconButton,Button,BsThreeDotsVertical,BiLike,BiChat,BiShare,Box,Image,CardBody, CardFooter } from '@chakra-ui/react'
 
+import faunadb from 'faunadb';
 const q = faunadb.query;
 
 const ITEMS_QUERY = gql`
@@ -54,31 +56,45 @@ export default function TopicList() {
 
   return (
       <>
+
         <div className={styles.container}>
-          
+        {/* <Stack direction='row' h='100px' p={4}>
+  <Divider orientation='vertical' />
+  <Text>Chakra UI</Text>
+</Stack> */}
           <button onClick={handleNewTopic} className={styles.newTopicButton}><FontAwesomeIcon icon={faPencil} style={{ marginRight: "20px" }} />New Topic</button>
           
           <table className={styles.topicTable}>
             <thead>
               <tr>
+
                 <th colSpan="5" className={styles.tableHeader}>Topics</th>
               </tr>
             </thead>
+
             <tbody>
               {data.topics_by_id.data.map((item) => {
+                                    
                 return (
                   <tr key={item.id} className={styles.topicRow}>
                     <td className={styles.topicColumn}>
                       <FontAwesomeIcon icon={faFile} />
                     </td>
                     <td>
+                      
                       <Link href={`/topics/${item.slug}`}>
                         <span className={styles.topicLink}>
-                          <div className={styles.topicTitle}>{item.topic}</div>
-                          <div className={styles.topicAuthor}>Posted by {item.user} at time</div>
+                          <div className={styles.topicTitle}>
+                            {item.topic}
+                            </div>
+                          <div className={styles.topicAuthor}>
+                            Posted by {item.user} at time
+                            </div>
                         </span>
                       </Link>
                     </td>
+
+                    
                     <td className={styles.viewsAndReplies}>
                       <div>0</div>
                       <div>Replies</div>
@@ -91,6 +107,7 @@ export default function TopicList() {
                       <div>{item.user}</div>
                       <div>Date and time</div>
                     </td>
+
                   </tr>
                 );
               })}
