@@ -1,0 +1,34 @@
+type Game{
+ date: String
+ topic: String
+ content: String
+ slug: String
+ user: String
+}
+type Query {
+ game_by_slug(slug:String!):Game
+}
+
+# type CreatedGameComment {
+#     commentId: String
+#     comment: String
+#   }
+
+# type Query {
+#     getAllGameComments: [GameCommentObject]
+#     getGameCommentsBySlug(slug: String!): [GameCommentObject]
+#   }
+
+
+# type GameCommentObject {
+#     commentId: String
+#     slug: String
+#     date: String
+#     name: String
+#     comment: String
+# }
+
+# type Query {
+#  game_by_id: [Game!]
+# }
+

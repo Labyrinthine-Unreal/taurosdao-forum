@@ -1,0 +1,34 @@
+type Marketplace{
+ date: String
+ topic: String
+ content: String
+ slug: String
+ user: String
+}
+# type Query {
+#  marketplace_by_slug(slug:String!):Marketplace
+# }
+
+# type CreatedMarketplaceComment {
+#     commentId: String
+#     comment: String
+#   }
+
+# type Query {
+#     getAllMarketplaceComments: [MarketplaceCommentObject]
+#     getMarketplaceCommentsBySlug(slug: String!): [MarketplaceCommentObject]
+#   }
+
+
+# type MarketplaceCommentObject {
+#     commentId: String
+#     slug: String
+#     date: String
+#     name: String
+#     comment: String
+# }
+
+# type Query {
+#  marketplace_by_id: [Marketplace!]
+# }
+

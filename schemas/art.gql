@@ -1,0 +1,34 @@
+type art{
+ date: String
+ topic: String
+ content: String
+ slug: String
+ user: String
+}
+type Query {
+ art_by_slug(slug:String!):art
+}
+
+# type CreatedArtComment {
+#     commentId: String
+#     comment: String
+#   }
+
+# type Query {
+#     getAllRtComments: [ArtCommentObject]
+#     getArtCommentsBySlug(slug: String!): [ArtCommentObject]
+#   }
+
+
+# type ArtCommentObject {
+#     commentId: String
+#     slug: String
+#     date: String
+#     name: String
+#     comment: String
+# }
+
+# type Query {
+#  art_by_id: [art!]
+# }
+

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faReply } from '@fortawesome/free-solid-svg-icons';
 import styles from './ReplyButton.module.css';
-import CreateComment from '@root/components/commentComponents/Forum/CreateComment';
+import CreateComment from '@root/components/commentComponents/Game/CreateComment';
 import { CSSTransition } from 'react-transition-group';
 
 const ReplyButton = () => {

@@ -1,0 +1,34 @@
+type AI{
+ date: String
+ topic: String
+ content: String
+ slug: String
+ user: String
+}
+# type Query {
+#  AI_by_slug(slug:String!):AI
+# }
+
+type CreatedAIComment {
+    commentId: String
+    comment: String
+  }
+
+type Query {
+    getAllAIComments: [AICommentObject]
+    getAICommentsBySlug(slug: String!): [AICommentObject]
+  }
+
+
+type AICommentObject {
+    commentId: String
+    slug: String
+    date: String
+    name: String
+    comment: String
+}
+
+# type Query {
+#  AI_by_id: [AI!]
+# }
+
