@@ -1,4 +1,4 @@
-// src/components/TopicList.js
+// src/components/topicComponents/Art/TopicList.js
 import React from "react";
 import Link from 'next/link';
 import gql from "graphql-tag";

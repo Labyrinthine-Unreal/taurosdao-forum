@@ -1,4 +1,4 @@
-// src/components/commentComponents/CommentList.js
+// src/components/commentComponents/Marketplace/CommentList.js
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useQuery, gql } from '@apollo/client';

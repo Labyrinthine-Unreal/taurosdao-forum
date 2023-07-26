@@ -1,4 +1,4 @@
-// src/components/commentComponents/CreateComment.js
+// src/components/commentComponents/Art/CreateComment.js
 import React, { useState } from 'react';
 import faunadb from 'faunadb';
 import { EditorState, convertToRaw } from 'draft-js';

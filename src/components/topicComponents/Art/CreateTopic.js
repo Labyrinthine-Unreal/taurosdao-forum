@@ -1,4 +1,4 @@
-// src/components/CreateTopic.js
+// src/components/topicComponents/Art/CreateTopic.js
 import React, { useState } from 'react';
 import faunadb from 'faunadb';
 import { EditorState, convertToRaw } from 'draft-js';

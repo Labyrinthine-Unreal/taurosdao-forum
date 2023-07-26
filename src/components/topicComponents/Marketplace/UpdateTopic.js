@@ -1,4 +1,4 @@
-// src/components/UpdateTopic.js
+// src/components/topicComponents/Marketplace/UpdateTopic.js
 import React, { useState } from 'react';
 import faunadb from 'faunadb';
 import { EditorState, convertToRaw } from 'draft-js';
