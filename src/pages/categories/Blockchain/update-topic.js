@@ -1,4 +1,4 @@
-// src/pages/categories/create-topic.js
+// src/pages/categories/Blockchain/update-topic.js
 import UpdateTopic from '@root/components/topicComponents/Blockchain/UpdateTopic';
 import faunadb from 'faunadb';
 import React, { useState } from 'react';

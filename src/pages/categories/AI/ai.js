@@ -1,4 +1,4 @@
-// src/pages/categories/ai.js
+// src/pages/categories/AI/ai.js
 import TopicList from '@root/components/topicComponents/AI/TopicList';
 import React from 'react';
 import Header from '@root/components/layout/Header';

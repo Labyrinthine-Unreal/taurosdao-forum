@@ -1,4 +1,4 @@
-// src/pages/categories/forum.js
+// src/pages/categories/Forum/forum.js
 import TopicList from '@root/components/topicComponents/Forum/TopicList';
 import React from 'react';
 import Header from '@root/components/layout/Header';

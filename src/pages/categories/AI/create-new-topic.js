@@ -1,4 +1,4 @@
-// src/pages/categories/create-topic.js
+// src/pages/categories/AI/create-new-topic.js
 import CreateTopic from '@root/components/topicComponents/AI/CreateTopic';
 import faunadb from 'faunadb';
 import React, { useState } from 'react';

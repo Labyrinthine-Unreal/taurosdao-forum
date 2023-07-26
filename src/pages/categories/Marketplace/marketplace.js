@@ -1,4 +1,4 @@
-// src/pages/categories/marketplace.js
+// src/pages/categories//Marketplace/marketplace.js
 import TopicList from '@root/components/topicComponents/Marketplace/TopicList';
 import React from 'react';
 import Header from '@root/components/layout/Header';

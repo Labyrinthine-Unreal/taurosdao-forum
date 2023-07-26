@@ -1,4 +1,4 @@
-// src/pages/categories/blockchain.js
+// src/pages/categories/Blockchain/blockchain.js
 import TopicList from '@root/components/topicComponents/Blockchain/TopicList';
 import React from 'react';
 import Header from '@root/components/layout/Header';

@@ -1,4 +1,4 @@
-// src/pages/categories/create-topic.js
+// src/pages/categories/Game/update-topic.js
 import UpdateTopic from '@root/components/topicComponents/Game/UpdateTopic';
 import faunadb from 'faunadb';
 import React, { useState } from 'react';
