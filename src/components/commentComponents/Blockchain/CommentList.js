@@ -8,7 +8,7 @@ import Header from '@root/components/layout/Header';
 import UpdateTopic from '@root/components/topicComponents/Art/UpdateTopic';
 import faunadb from 'faunadb';
 import { CSSTransition } from 'react-transition-group';
-import ReplyButton from '@root/components/buttons/artReplyButton';
+import ReplyButton from '@root/components/buttons/blockchainReplyButton';
 import styles from '../CommentList.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFile, faPencil } from '@fortawesome/free-solid-svg-icons'

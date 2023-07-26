@@ -1,4 +1,4 @@
-// src/components/commentComponents/CommentList.js
+// src/components/commentComponents/Forum/CommentList.js
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useQuery, gql } from '@apollo/client';
@@ -8,7 +8,7 @@ import Header from '@root/components/layout/Header';
 import UpdateTopic from '@root/components/topicComponents/Art/UpdateTopic';
 import faunadb from 'faunadb';
 import { CSSTransition } from 'react-transition-group';
-import ReplyButton from '@root/components/buttons/ReplyButton';
+import ReplyButton from '@root/components/buttons/forumReplyButton';
 import styles from '../CommentList.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFile, faPencil } from '@fortawesome/free-solid-svg-icons'

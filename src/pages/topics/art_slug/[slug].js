@@ -1,4 +1,4 @@
-// src/pages/topics/[slug].js
+// src/pages/topics/art_slug/[slug].js
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useQuery, gql } from '@apollo/client';
