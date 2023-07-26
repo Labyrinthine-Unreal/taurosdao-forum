@@ -1,38 +1,19 @@
-// src/pages/categories/game.js
+// src/pages/categories/marketplace.js
 import TopicList from '@root/components/topicComponents/Marketplace/TopicList';
-import faunadb from 'faunadb';
 import React from 'react';
-import { useAuth } from '@clerk/nextjs';
-import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, UserButton } from '@clerk/nextjs'
+import Header from '@root/components/layout/Header';
 import withCategoryStyles from '@root/components/cards/withCategoryStyles';
-import { useRouter } from 'next/router';
 
-const Game = () => {
-  const secret = Clerk.session.getToken({ template: 'fauna' })
-  console.log(secret)
-  const client = new faunadb.Client({ domain:"db.us.fauna.com", secret:process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY, keepAlive: true });
-  console.log(client)
-  const { isLoaded, userId, sessionId, getToken } = useAuth();
-  const { user } = useUser()
-  const router = useRouter();
-
-  if (!isLoaded || !userId) {
-    return null;
-  }
-
-  const handleNewTopic = () => {
-    router.push('/categories/Game/create-new-topic');
-  };
+const Marketplace = () => {
   
   return (
     
     <div>
-      Hello, {user.fullName}
-      <h1>Game Topics</h1>
-      <button onClick={handleNewTopic}>Start a New Topic</button>
+      <Header/>
+      <h1>Marketplace Topics</h1>
       <TopicList/>
     </div>
   );
 };
 
-export default withCategoryStyles(Game);
+export default withCategoryStyles(Marketplace);
