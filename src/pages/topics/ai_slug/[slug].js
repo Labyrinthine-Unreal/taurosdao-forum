@@ -10,7 +10,7 @@ import UpdateTopic from '@root/components/topicComponents/AI/UpdateTopic';
 import faunadb from 'faunadb';
 import CommentList from '@root/components/commentComponents/AI/CommentList';
 import { CSSTransition } from 'react-transition-group';
-import ReplyButton from '@root/components/buttons/AIReplyButton';
+import ReplyButton from '@root/components/buttons/aiReplyButton';
 import GPT from '@root/components/GPT/gpt';
 const q = faunadb.query;
 const client = new faunadb.Client({ domain:"db.us.fauna.com", secret:process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY, keepAlive: true });
