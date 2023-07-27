@@ -40,7 +40,7 @@ const CreateTopic = ({ onPostCreated }) => {
 
     var createP = client.query(
       q.Create(
-        q.Collection('Marketplace'),
+        q.Collection('marketplace'),
         { data: { topic: topic, content:content,user:user.username, slug: generatedSlug } }
       ))
     createP.then(function(response) {

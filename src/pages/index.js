@@ -6,12 +6,12 @@ import styles from '@root/styles/Home.module.css'
 
 export default function Home(req, res) {
   const categories = [
-    { title: 'Art', link: '/categories/Art/art', index: 0 },
-    { title: 'Blockchain', link: '/categories/Blockchain/blockchain', index: 1 },
-    { title: 'Game', link: '/categories/Game/game', index: 2 },
-    { title: 'Marketplace', link: '/categories/Marketplace/marketplace', index: 3 },
-    { title: 'AI', link: '/categories/AI/ai', index: 4 },
-    { title: 'Forum', link: '/categories/Forum/forum', index: 5 }
+    { title: 'Art', link: '/categories/art/art', index: 0 },
+    { title: 'Blockchain', link: '/categories/blockchain/blockchain', index: 1 },
+    { title: 'Game', link: '/categories/game/game', index: 2 },
+    { title: 'Marketplace', link: '/categories/marketplace/marketplace', index: 3 },
+    { title: 'AI', link: '/categories/ai/ai', index: 4 },
+    { title: 'Forum', link: '/categories/general/general', index: 5 }
   ];
 
   const categoryCardsRef = categories.map(() => React.createRef());

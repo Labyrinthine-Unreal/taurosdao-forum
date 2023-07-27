@@ -10,14 +10,14 @@ import UpdateTopic from '@root/components/topicComponents/AI/UpdateTopic';
 import faunadb from 'faunadb';
 import CommentList from '@root/components/commentComponents/AI/CommentList';
 import { CSSTransition } from 'react-transition-group';
-import ReplyButton from '@root/components/buttons/AIReplyButton';
+import ReplyButton from '@root/components/buttons/aiReplyButton';
 import GPT from '@root/components/GPT/gpt';
 const q = faunadb.query;
 const client = new faunadb.Client({ domain:"db.us.fauna.com", secret:process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY, keepAlive: true });
 
 const GET_TOPIC_BY_SLUG = gql`
 query MyTopicQuery($slug: String!){
-  AI_by_slug(slug: $slug) {
+  ai_by_slug(slug: $slug) {
     _id
     slug
     topic
@@ -47,7 +47,7 @@ const TopicPage = () => {
   if (error) return <div>Error: {error.message}</div>;
   
   // Render the topic data
-  const topicData = data?.AI_by_slug.slug;
+  const topicData = data?.ai_by_slug.slug;
 
   if (!topicData) {
     return <h1>404: Not Found</h1>
@@ -57,12 +57,12 @@ const TopicPage = () => {
     setShowEdit(prevState => !prevState);
   };
 
-  const isAuthor = user.username === data?.AI_by_slug.user // check if current user is the author
+  const isAuthor = user.username === data?.ai_by_slug.user // check if current user is the author
 
     return (
     <div>
       <Header/>
-      <div className={styles.topicHeading}>{data?.AI_by_slug.topic}</div>
+      <div className={styles.topicHeading}>{data?.ai_by_slug.topic}</div>
       <div className={styles.container}>
         <div className={styles.tableContainer}>
           
@@ -76,10 +76,10 @@ const TopicPage = () => {
                 </td>
                 <td className={styles.rightColumn}>
                 <div className={styles.titleBlock}>
-                  <div className={styles.title}>{data?.AI_by_slug.topic}</div>
+                  <div className={styles.title}>{data?.ai_by_slug.topic}</div>
                     <p className={styles.date}>19 February 2023, 22:09</p>
                   </div>
-                  <div className={styles.content}>{parse(data?.AI_by_slug.content)}</div>
+                  <div className={styles.content}>{parse(data?.ai_by_slug.content)}</div>
                   
                   {isAuthor && 
                     <button className={styles.editButton} onClick={handleEditToggle}>{showEdit ? "Hide Form" : "Edit Post"}</button>}

@@ -71,7 +71,7 @@ const CreateComment = ({ onPostCreated }) => {
 
         var createP = client.query(
             q.Create(
-              q.Collection('AiCommentObject'),
+              q.Collection('aiComments'),
               { data: { 
                 forumID:data?.ai_by_slug._id, 
                 date: new Date().toString(), 

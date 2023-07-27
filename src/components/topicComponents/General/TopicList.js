@@ -17,7 +17,7 @@ const q = faunadb.query;
 
 const ITEMS_QUERY = gql`
 query MyTopicQuery {
-  forum_by_id(_size:100){
+  general_by_id(_size:100){
     data {
       _id
       topic 
@@ -51,7 +51,7 @@ export default function TopicList() {
   )
 
  const handleNewTopic = () => {
-  router.push('/categories/forum/create-new-topic');
+  router.push('/categories/general/create-new-topic');
 };
 
   return (
@@ -73,7 +73,7 @@ export default function TopicList() {
             </thead>
 
             <tbody>
-              {data.forum_by_id.data.map((item) => {
+              {data.general_by_id.data.map((item) => {
                                     
                 return (
                   <tr key={item.id} className={styles.topicRow}>
@@ -82,7 +82,7 @@ export default function TopicList() {
                     </td>
                     <td>
                       
-                      <Link href={`/topics/forum_slug/${item.slug}`}>
+                      <Link href={`/topics/general_slug/${item.slug}`}>
                         <span className={styles.topicLink}>
                           <div className={styles.topicTitle}>
                             {item.topic}
@@ -123,7 +123,7 @@ export default function TopicList() {
   
   
   // <div>
-  //         {data.forum_by_id.data.map((item) => {
+  //         {data.general_by_id.data.map((item) => {
   //             return (
   //               <Link href={`/topics/${item.slug}`} key={item.id}>
   //                 <div key={item.id} className={styles.topicItem}>

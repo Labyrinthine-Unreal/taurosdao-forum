@@ -41,7 +41,7 @@ const CommentList = () => {
   useEffect(() => {
     if (data?.marketplace_by_slug.slug) {
       var createP = client.query(
-        q.Paginate(q.Match(q.Index("getMarketplaceCommentsBySlug"), data?.marketplace_by_slug.slug))
+        q.Paginate(q.Match(q.Index("marketplaceCommentsBySlug"), data?.marketplace_by_slug.slug))
       );
       createP.then(async function (response) {
         // Check if response.data is defined and is an array

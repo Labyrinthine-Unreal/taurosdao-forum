@@ -1,4 +1,4 @@
-# type ai{
+# type general{
 #  date: String
 #  topic: String
 #  content: String
@@ -6,21 +6,21 @@
 #  user: String
 # }
 # type Query {
-#  ai_by_slug(slug:String!):ai
+#  general_by_slug(slug:String!):general
 # }
 
-# type CreatedAIComment {
+# type CreatedTopicsComment {
 #     commentId: String
 #     comment: String
 #   }
 
 type Query {
-    # getAllAIComments: [AICommentObject]
-    aiCommentsBySlug(slug: String!): [aiComments]
+    # getAllTopicsComments: [TopicsCommentObject]
+    generalCommentsBySlug(slug: String!): [generalComments]
   }
 
 
-type aiComments {
+type generalComments {
     commentId: String
     slug: String
     date: String
@@ -29,6 +29,5 @@ type aiComments {
 }
 
 # type Query {
-#  ai_by_id: [ai!]
+#  general_by_id: [general!]
 # }
-

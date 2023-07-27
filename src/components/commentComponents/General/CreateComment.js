@@ -22,7 +22,7 @@ const CreateComment = ({ onPostCreated }) => {
 
     const GET_TOPIC_BY_SLUG = gql`
     query MyTopicQuery($slug: String!){
-      forum_by_slug(slug: $slug) {
+      general_by_slug(slug: $slug) {
         _id
         slug
         topic
@@ -52,7 +52,7 @@ const CreateComment = ({ onPostCreated }) => {
       if (loading) return <div>Loading...</div>;
       if (error) return <div>Error: {error.message}</div>;
 
-      const topicData = data?.forum_by_slug.slug;
+      const topicData = data?.general_by_slug.slug;
 
       if (!topicData) {
         return <h1>404: Not Found</h1>
@@ -71,9 +71,9 @@ const CreateComment = ({ onPostCreated }) => {
 
         var createP = client.query(
             q.Create(
-              q.Collection('forumCommentObject'),
+              q.Collection('generalComments'),
               { data: { 
-                forumID:data?.forum_by_slug._id, 
+                forumID:data?.general_by_slug._id, 
                 date: new Date().toString(), 
                 comment: comment,
                 name: user.username,
@@ -83,7 +83,7 @@ const CreateComment = ({ onPostCreated }) => {
         
 
         createP.then(function (response) {
-            router.push(`/topics/forum_slug/${response.data.slug}`); // Redirect the user to the new topic's page
+            router.push(`/topics/general_slug/${response.data.slug}`); // Redirect the user to the new topic's page
         })
 
     };

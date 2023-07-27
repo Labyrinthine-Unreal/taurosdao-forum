@@ -73,7 +73,7 @@ const UpdateTopic = ({ onPostCreated }) => {
 
         var createP = client.query(
             q.Update(
-                q.Ref(q.Collection('Marketplace'), data?.marketplace_by_slug._id),
+                q.Ref(q.Collection('marketplace'), data?.marketplace_by_slug._id),
                 { data: { topic: topic, content: content, user: user.username, slug: generatedSlug } }
             )
         )

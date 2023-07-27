@@ -1,5 +1,5 @@
 // src/pages/categories/Forum/forum.js
-import TopicList from '@root/components/topicComponents/Forum/TopicList';
+import TopicList from '@root/components/topicComponents/General/TopicList';
 import React from 'react';
 import Header from '@root/components/layout/Header';
 import withCategoryStyles from '@root/components/cards/withCategoryStyles';
@@ -10,7 +10,7 @@ const Forum = () => {
     
     <div>
       <Header/>
-      <h1>Forum Topics</h1>
+      <h1>General Topics</h1>
       <TopicList/>
     </div>
   );

@@ -71,7 +71,7 @@ const CreateComment = ({ onPostCreated }) => {
 
         var createP = client.query(
             q.Create(
-              q.Collection('blockchainCommentObject'),
+              q.Collection('blockchainComments'),
               { data: { 
                 forumID:data?.blockchain_by_slug._id, 
                 date: new Date().toString(), 

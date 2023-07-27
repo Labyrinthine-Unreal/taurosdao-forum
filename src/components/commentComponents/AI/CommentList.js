@@ -42,7 +42,7 @@ const CommentList = () => {
   useEffect(() => {
     if (data?.ai_by_slug.slug) {
       var createP = client.query(
-        q.Paginate(q.Match(q.Index("getAiCommentsBySlug"), data?.ai_by_slug.slug))
+        q.Paginate(q.Match(q.Index("aiCommentsBySlug"), data?.ai_by_slug.slug))
       );
       createP.then(async function (response) {
         // Check if response.data is defined and is an array

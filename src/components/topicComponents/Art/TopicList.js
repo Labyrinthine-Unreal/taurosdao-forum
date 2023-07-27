@@ -51,7 +51,7 @@ export default function TopicList() {
   )
 
  const handleNewTopic = () => {
-  router.push('/categories/Art/create-new-topic');
+  router.push('/categories/art/create-new-topic');
 };
 
   return (

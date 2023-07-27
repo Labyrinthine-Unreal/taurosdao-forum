@@ -71,7 +71,7 @@ const CreateComment = ({ onPostCreated }) => {
 
         var createP = client.query(
             q.Create(
-              q.Collection('MarketplaceCommentObject'),
+              q.Collection('marketplaceComments'),
               { data: { 
                 forumID:data?.marketplace_by_slug._id, 
                 date: new Date().toString(), 

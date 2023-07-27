@@ -5,7 +5,7 @@ import { useQuery, gql } from '@apollo/client';
 import { useUser } from '@clerk/nextjs';
 import parse from 'html-react-parser';
 import Header from '@root/components/layout/Header';
-import UpdateTopic from '@root/components/topicComponents/Forum/UpdateTopic';
+import UpdateTopic from '@root/components/topicComponents/General/UpdateTopic';
 import faunadb from 'faunadb';
 import { CSSTransition } from 'react-transition-group';
 import ReplyButton from '@root/components/buttons/forumReplyButton';
@@ -18,7 +18,7 @@ const client = new faunadb.Client({ domain:"db.us.fauna.com", secret: process.en
 
 const GET_TOPIC_BY_SLUG = gql`
 query MyTopicQuery($slug: String!){
-  forum_by_slug(slug: $slug) {
+  general_by_slug(slug: $slug) {
     _id
     slug
     topic
@@ -40,9 +40,9 @@ const CommentList = () => {
   const [comments, setComments] = useState([]); // <-- store comments in state
 
   useEffect(() => {
-    if (data?.forum_by_slug.slug) {
+    if (data?.general_by_slug.slug) {
       var createP = client.query(
-        q.Paginate(q.Match(q.Index("getforumCommentsBySlug"), data?.forum_by_slug.slug))
+        q.Paginate(q.Match(q.Index("generalCommentsBySlug"), data?.general_by_slug.slug))
       );
       createP.then(async function (response) {
         // Check if response.data is defined and is an array

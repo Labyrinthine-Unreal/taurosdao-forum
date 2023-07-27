@@ -71,7 +71,7 @@ const CreateComment = ({ onPostCreated }) => {
 
         var createP = client.query(
             q.Create(
-              q.Collection('ArtCommentObject'),
+              q.Collection('artComments'),
               { data: { 
                 forumID:data?.art_by_slug._id, 
                 date: new Date().toString(), 

@@ -71,7 +71,7 @@ const CreateComment = ({ onPostCreated }) => {
 
         var createP = client.query(
             q.Create(
-              q.Collection('gameCommentObject'),
+              q.Collection('gameComments'),
               { data: { 
                 forumID:data?.game_by_slug._id, 
                 date: new Date().toString(), 

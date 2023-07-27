@@ -6,9 +6,9 @@ import { useUser } from '@clerk/nextjs';
 import parse from 'html-react-parser';
 import Header from '@root/components/layout/Header';
 import styles from '../TopicPage.module.css';
-import UpdateTopic from '@root/components/topicComponents/Forum/UpdateTopic';
+import UpdateTopic from '@root/components/topicComponents/General/UpdateTopic';
 import faunadb from 'faunadb';
-import CommentList from '@root/components/commentComponents/Forum/CommentList';
+import CommentList from '@root/components/commentComponents/General/CommentList';
 import { CSSTransition } from 'react-transition-group';
 import ReplyButton from '@root/components/buttons/forumReplyButton';
 import GPT from '@root/components/GPT/gpt';
@@ -17,13 +17,12 @@ const client = new faunadb.Client({ domain:"db.us.fauna.com", secret:process.env
 
 const GET_TOPIC_BY_SLUG = gql`
 query MyTopicQuery($slug: String!){
-  topics_by_slug(slug: $slug) {
+  general_by_slug(slug: $slug) {
     _id
     slug
     topic
     content
     user
-    comment
     }
   }
 `;
@@ -47,7 +46,7 @@ const TopicPage = () => {
   if (error) return <div>Error: {error.message}</div>;
   
   // Render the topic data
-  const topicData = data?.topics_by_slug.slug;
+  const topicData = data?.general_by_slug.slug;
 
   if (!topicData) {
     return <h1>404: Not Found</h1>
@@ -57,12 +56,12 @@ const TopicPage = () => {
     setShowEdit(prevState => !prevState);
   };
 
-  const isAuthor = user.username === data?.topics_by_slug.user // check if current user is the author
+  const isAuthor = user.username === data?.general_by_slug.user // check if current user is the author
 
     return (
     <div>
       <Header/>
-      <div className={styles.topicHeading}>{data?.topics_by_slug.topic}</div>
+      <div className={styles.topicHeading}>{data?.general_by_slug.topic}</div>
       <div className={styles.container}>
         <div className={styles.tableContainer}>
           
@@ -76,10 +75,10 @@ const TopicPage = () => {
                 </td>
                 <td className={styles.rightColumn}>
                 <div className={styles.titleBlock}>
-                  <div className={styles.title}>{data?.topics_by_slug.topic}</div>
+                  <div className={styles.title}>{data?.general_by_slug.topic}</div>
                     <p className={styles.date}>19 February 2023, 22:09</p>
                   </div>
-                  <div className={styles.content}>{parse(data?.topics_by_slug.content)}</div>
+                  <div className={styles.content}>{parse(data?.general_by_slug.content)}</div>
                   
                   {isAuthor && 
                     <button className={styles.editButton} onClick={handleEditToggle}>{showEdit ? "Hide Form" : "Edit Post"}</button>}

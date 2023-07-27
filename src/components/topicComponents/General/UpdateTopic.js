@@ -73,7 +73,7 @@ const UpdateTopic = ({ onPostCreated }) => {
 
         var createP = client.query(
             q.Update(
-                q.Ref(q.Collection('forum'), data?.forum_by_slug._id),
+                q.Ref(q.Collection('general'), data?.forum_by_slug._id),
                 { data: { topic: topic, content: content, user: user.username, slug: generatedSlug } }
             )
         )
@@ -81,7 +81,7 @@ const UpdateTopic = ({ onPostCreated }) => {
         createP.then(function (response) {
             console.log(response.ref); // Logs the ref to the console.
             // onPostCreated(response.data); // Call the callback with the new post data
-            router.push(`/topics/forum_slug/${response.data.slug}`); // Redirect the user to the new topic's page
+            router.push(`/topics/general_slug/${response.data.slug}`); // Redirect the user to the new topic's page
         })
     };
 

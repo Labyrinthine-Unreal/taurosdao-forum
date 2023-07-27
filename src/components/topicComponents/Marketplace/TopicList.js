@@ -51,7 +51,7 @@ export default function TopicList() {
   )
 
  const handleNewTopic = () => {
-  router.push('/categories/Marketplace/create-new-topic');
+  router.push('/categories/marketplace/create-new-topic');
 };
 
   return (
