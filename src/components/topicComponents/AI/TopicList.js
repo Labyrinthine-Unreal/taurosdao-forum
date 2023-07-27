@@ -17,7 +17,7 @@ const q = faunadb.query;
 
 const ITEMS_QUERY = gql`
 query MyTopicQuery {
-  ai_by_id(_size:100){
+  AI_by_id(_size:100){
     data {
       _id
       topic 
@@ -73,7 +73,7 @@ export default function TopicList() {
             </thead>
 
             <tbody>
-              {data.ai_by_id.data.map((item) => {
+              {data.AI_by_id.data.map((item) => {
                                     
                 return (
                   <tr key={item.id} className={styles.topicRow}>
@@ -123,7 +123,7 @@ export default function TopicList() {
   
   
   // <div>
-  //         {data.ai_by_id.data.map((item) => {
+  //         {data.AI_by_id.data.map((item) => {
   //             return (
   //               <Link href={`/topics/${item.slug}`} key={item.id}>
   //                 <div key={item.id} className={styles.topicItem}>
