@@ -14,6 +14,7 @@ import { faFile, faPencil } from '@fortawesome/free-solid-svg-icons'
 const q = faunadb.query;
 const client = new faunadb.Client({ domain:"db.us.fauna.com", secret: process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY, keepAlive: true });
 
+// At the moment this is called from the [slug] in each category
 const CommentList = ({ category }) => {
   const router = useRouter();
   const { slug } = router.query;

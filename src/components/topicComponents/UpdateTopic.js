@@ -18,6 +18,8 @@ const Editor = dynamic(
 );
 
 const q = faunadb.query;
+
+// At the moment this is called from [slug] in each category
 const UpdateTopic = ({ category }) => {
 
     const GET_TOPIC_BY_SLUG = gql`

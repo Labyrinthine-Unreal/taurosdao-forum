@@ -19,6 +19,8 @@ const Editor = dynamic(
 );
 
 const q = faunadb.query;
+
+// At the moment this is called from the button for each category
 const CreateComment = ({ category, onPostCreated }) => {
     const GET_TOPIC_BY_SLUG = gql`
     query MyTopicQuery($slug: String!){
