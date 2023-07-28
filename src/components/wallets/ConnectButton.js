@@ -85,8 +85,8 @@ export default function Connect() {
           {<Center
             fontSize={14}
             fontWeight="semibold"
-            bg="#009688bb"
-            color="#fff"
+            bg="#009688bb" 
+            color="#fff" 
             border="1px"
             _hover={{ bg: "teal.400" }}
             position="absolute"

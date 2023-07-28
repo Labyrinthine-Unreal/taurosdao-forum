@@ -12,7 +12,7 @@ import Connect from "../wallets/ConnectButton";
 const q = faunadb.query;
 
 export default function Header(req, res) {
-  
+
   const { user } = useUser()
 
   const { isLoaded, userId, sessionId, getToken } = useAuth();
@@ -25,7 +25,7 @@ export default function Header(req, res) {
 
   const secret = Clerk.session.getToken({ template: 'fauna' })
   // console.log(secret)
-  const client = new faunadb.Client({ domain:"db.us.fauna.com", secret: process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY, keepAlive: true });
+  const client = new faunadb.Client({ domain: "db.us.fauna.com", secret: process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY, keepAlive: true });
   // const client = new faunadb.Client({ domain:"db.us.fauna.com", secret: process.env.REACT_APP_FAUNA_SECRET_manager, keepAlive: true });
 
   // console.log(client)
@@ -60,31 +60,31 @@ export default function Header(req, res) {
         <SignInButton />
       </SignedOut>
       <Flex
-      as="header"
-      position="sticky"
-      top="0"
-      bg="black"
-      color="white"
-      px="28"
-      py="4"
-      align="center"
-      justify="space-between"
-      zIndex={2}
-    >
-      <Box>
-        {/* <Image src="/images/logos/TaurosDAO-logo.png" width="300px" height="auto" alt="TaurosDAO Logo" /> */}
-      </Box>
-      <Spacer />
-      <Box>
-        <IconButton as="a" href="https://twitter.com/taurosdao" target="blank" aria-label="Twitter" icon={<FaTwitter />} mx="1" variant="ghost" isRound={true} fontSize="26px" _hover={{ color: "teal" }} />
-        <IconButton as="a" href="https://instagram.com/taurosdao" target="blank" aria-label="Instagram" icon={<FaInstagram />} mx="1" variant="ghost" isRound={true} fontSize="26px" _hover={{ color: "teal" }} />
-        <IconButton as="a" href="https://discord.com/invite/taurosdao" target="blank" aria-label="Discord" icon={<FaDiscord />} mx="1" variant="ghost" isRound={true} fontSize="26px" _hover={{ color: "teal" }} />
-      </Box>
-      <Spacer />
-      {/* <Button background="linear-gradient(45deg, #FFD700, #DAA520)" color="black" _hover={{background: "linear-gradient(45deg, #DAA520, #FFD700)"}} ml="4">Connect</Button> */}
-    {/* <Connect /> */}
-    </Flex>
-    {/* <Connect /> */}
+        as="header"
+        position="sticky"
+        top="0"
+        bg="black"
+        color="white"
+        px="28"
+        py="4"
+        align="center"
+        justify="space-between"
+        zIndex={2}
+      >
+        <Box>
+          {/* <Image src="/images/logos/TaurosDAO-logo.png" width="300px" height="auto" alt="TaurosDAO Logo" /> */}
+        </Box>
+        <Spacer />
+        <Box>
+          <IconButton as="a" href="https://twitter.com/taurosdao" target="blank" aria-label="Twitter" icon={<FaTwitter />} mx="1" variant="ghost" isRound={true} fontSize="26px" _hover={{ color: "teal" }} />
+          <IconButton as="a" href="https://instagram.com/taurosdao" target="blank" aria-label="Instagram" icon={<FaInstagram />} mx="1" variant="ghost" isRound={true} fontSize="26px" _hover={{ color: "teal" }} />
+          <IconButton as="a" href="https://discord.com/invite/taurosdao" target="blank" aria-label="Discord" icon={<FaDiscord />} mx="1" variant="ghost" isRound={true} fontSize="26px" _hover={{ color: "teal" }} />
+        </Box>
+        <Spacer />
+        {/* <Button background="linear-gradient(45deg, #FFD700, #DAA520)" color="black" _hover={{background: "linear-gradient(45deg, #DAA520, #FFD700)"}} ml="4">Connect</Button> */}
+        {/* <Connect /> */}
+      </Flex>
+      {/* <Connect /> */}
     </div>
   );
 }

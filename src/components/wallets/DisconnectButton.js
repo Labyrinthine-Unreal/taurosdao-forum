@@ -1,5 +1,5 @@
 import { Flex, Center, Button, Icon } from '@chakra-ui/react'
-import styles from '@styles/SignIn.module.css'
+import styles from '../layout/Header.module.css'
 import { useMoralis } from "react-moralis"
 import { AiOutlineWallet } from 'react-icons/ai'
 import { useEffect, useState, } from "react";
