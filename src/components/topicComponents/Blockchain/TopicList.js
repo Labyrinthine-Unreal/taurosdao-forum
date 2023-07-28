@@ -11,6 +11,7 @@ import styles from '../TopicList.module.css';
 import { Stack, Center,Divider,Text } from "@chakra-ui/react";
 import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, UserButton } from '@clerk/nextjs'
 import { Card, CardHeader, Flex,Avatar,Heading,IconButton,Button,BsThreeDotsVertical,BiLike,BiChat,BiShare,Box,Image,CardBody, CardFooter } from '@chakra-ui/react'
+import { useAccount, useEnsAvatar, useDisconnect, useConnect } from 'wagmi'
 
 import faunadb from 'faunadb';
 const q = faunadb.query;
@@ -24,6 +25,7 @@ query MyTopicQuery {
       content
       user
       slug
+      eth_address
     }
     after
     before
@@ -88,7 +90,7 @@ export default function TopicList() {
                             {item.topic}
                             </div>
                           <div className={styles.topicAuthor}>
-                            Posted by {item.user} at time
+                            Posted by {item.user}/{item.eth_address} at time
                             </div>
                         </span>
                       </Link>

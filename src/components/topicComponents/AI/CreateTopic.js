@@ -10,6 +10,7 @@ import slugify from 'slugify';
 import shortid from 'shortid';
 import { useRouter } from 'next/router';
 import styles from '../CreateTopic.module.css'
+import { useAccount, useEnsAvatar, useDisconnect, useConnect } from 'wagmi'
 
 const Editor = dynamic(
   () => import('react-draft-wysiwyg').then((module) => module.Editor),
@@ -25,7 +26,7 @@ const CreateTopic = ({ onPostCreated }) => {
   
   const client = new faunadb.Client({ domain:"db.us.fauna.com", secret: process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY, keepAlive: true });
   console.log(client)
-  
+  const { address, isConnected } = useAccount()
 
   const { user } = useUser()
 
@@ -41,7 +42,7 @@ const CreateTopic = ({ onPostCreated }) => {
     var createP = client.query(
       q.Create(
         q.Collection('ai'),
-        { data: { topic: topic, content:content,user:user.username, slug: generatedSlug } }
+        { data: { topic: topic, content:content,user:user.username, slug: generatedSlug,eth_address:address  } }
       ))
     createP.then(function(response) {
       console.log(response.ref); // Logs the ref to the console.

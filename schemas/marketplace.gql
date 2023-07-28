@@ -4,6 +4,7 @@ type marketplace{
  content: String
  slug: String
  user: String
+ eth_address:String
 }
 type Query {
  marketplace_by_slug(slug:String!):marketplace

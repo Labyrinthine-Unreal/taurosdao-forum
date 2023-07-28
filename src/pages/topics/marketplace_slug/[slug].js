@@ -23,7 +23,7 @@ query MyTopicQuery($slug: String!){
     topic
     content
     user
-    # comment
+    eth_address
     }
   }
 `;
@@ -70,7 +70,9 @@ const TopicPage = () => {
             <tbody>
               <tr>
                 <td className={styles.leftColumn}>
-                  <div>{topicData.user}</div>
+                  <div>{topicData.user}
+                  {data?.marketplace_by_slug.eth_address}
+                  </div>
                   <div><span>Posts:</span> 0</div>
                   <div><span>Joined:</span> N/A</div>
                 </td>

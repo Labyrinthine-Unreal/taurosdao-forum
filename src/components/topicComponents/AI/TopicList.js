@@ -24,6 +24,7 @@ query MyTopicQuery {
       content
       user
       slug
+      eth_address
     }
     after
     before

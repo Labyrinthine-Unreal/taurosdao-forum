@@ -11,6 +11,8 @@ import shortid from 'shortid';
 import { useRouter } from 'next/router';
 import styles from '../CreateTopic.module.css'
 import { useQuery, gql } from '@apollo/client';
+import { useAccount, useEnsAvatar, useDisconnect, useConnect } from 'wagmi'
+
 const Editor = dynamic(
     () => import('react-draft-wysiwyg').then((module) => module.Editor),
     { ssr: false }
@@ -39,7 +41,7 @@ const UpdateTopic = ({ onPostCreated }) => {
     const router = useRouter();
     const { slug } = router.query;
     const { user } = useUser()
-
+    const { address, isConnected } = useAccount()
     const client = new faunadb.Client({ domain:"db.us.fauna.com", secret: process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY, keepAlive: true });
     console.log(client)
 
@@ -74,7 +76,7 @@ const UpdateTopic = ({ onPostCreated }) => {
         var createP = client.query(
             q.Update(
                 q.Ref(q.Collection('marketplace'), data?.marketplace_by_slug._id),
-                { data: { topic: topic, content: content, user: user.username, slug: generatedSlug } }
+                { data: { topic: topic, content: content, user: user.username, slug: generatedSlug,eth_address:address } }
             )
         )
 

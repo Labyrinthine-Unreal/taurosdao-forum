@@ -1,5 +1,5 @@
 import { Box, Center, Icon, Button, Image, Divider, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton, Spacer } from '@chakra-ui/react'
-import styles from '../../styles/SignIn.module.css'
+import styles from '../layout/Header.module.css'
 import { useAccount, useEnsAvatar, useDisconnect, useConnect } from 'wagmi'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 import { WalletConnectConnector } from 'wagmi/connectors/walletConnect';

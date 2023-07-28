@@ -24,6 +24,7 @@ query MyTopicQuery {
       content
       user
       slug
+      eth_address
     }
     after
     before
@@ -88,7 +89,7 @@ export default function TopicList() {
                             {item.topic}
                             </div>
                           <div className={styles.topicAuthor}>
-                            Posted by {item.user} at time
+                            Posted by {item.user}/{item.eth_address} at time
                             </div>
                         </span>
                       </Link>

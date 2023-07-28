@@ -1,32 +1,33 @@
-# type ai{
-#  date: String
-#  topic: String
-#  content: String
-#  slug: String
-#  user: String
-# }
-# type Query {
-#  ai_by_slug(slug:String!):ai
-# }
+type ai{
+ date: String
+ topic: String
+ content: String
+ slug: String
+ user: String
+ eth_address:String
+}
+type Query {
+ ai_by_slug(slug:String!):ai
+}
 
 # type CreatedAIComment {
 #     commentId: String
 #     comment: String
 #   }
 
-type Query {
-    # getAllAIComments: [AICommentObject]
-    aiCommentsBySlug(slug: String!): [aiComments]
-  }
+# type Query {
+#     # getAllAIComments: [AICommentObject]
+#     aiCommentsBySlug(slug: String!): [aiComments]
+#   }
 
 
-type aiComments {
-    commentId: String
-    slug: String
-    date: String
-    name: String
-    comment: String
-}
+# type aiComments {
+#     commentId: String
+#     slug: String
+#     date: String
+#     name: String
+#     comment: String
+# }
 
 # type Query {
 #  ai_by_id: [ai!]

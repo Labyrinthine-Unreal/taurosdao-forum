@@ -27,6 +27,7 @@ const UpdateTopic = ({ onPostCreated }) => {
         topic
         content
         user
+        eth_address
         }
       }
     `;
@@ -74,7 +75,7 @@ const UpdateTopic = ({ onPostCreated }) => {
         var createP = client.query(
             q.Update(
                 q.Ref(q.Collection('ai'), data?.ai_by_slug._id),
-                { data: { topic: topic, content: content, user: user.username, slug: generatedSlug } }
+                { data: { topic: topic, content: content, user: user.username, slug: generatedSlug,eth_address:address  } }
             )
         )
 

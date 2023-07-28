@@ -51,6 +51,7 @@ export default function Header(req, res) {
         <div className={styles.avatar}>
           <UserButton />
         </div>
+        <Connect />
       </header>
 
       <SignedIn>
@@ -71,7 +72,7 @@ export default function Header(req, res) {
       zIndex={2}
     >
       <Box>
-        <Image src="/images/logos/TaurosDAO-logo.png" width="300px" height="auto" alt="TaurosDAO Logo" />
+        {/* <Image src="/images/logos/TaurosDAO-logo.png" width="300px" height="auto" alt="TaurosDAO Logo" /> */}
       </Box>
       <Spacer />
       <Box>
@@ -79,9 +80,11 @@ export default function Header(req, res) {
         <IconButton as="a" href="https://instagram.com/taurosdao" target="blank" aria-label="Instagram" icon={<FaInstagram />} mx="1" variant="ghost" isRound={true} fontSize="26px" _hover={{ color: "teal" }} />
         <IconButton as="a" href="https://discord.com/invite/taurosdao" target="blank" aria-label="Discord" icon={<FaDiscord />} mx="1" variant="ghost" isRound={true} fontSize="26px" _hover={{ color: "teal" }} />
       </Box>
+      <Spacer />
       {/* <Button background="linear-gradient(45deg, #FFD700, #DAA520)" color="black" _hover={{background: "linear-gradient(45deg, #DAA520, #FFD700)"}} ml="4">Connect</Button> */}
-    <Connect />
+    {/* <Connect /> */}
     </Flex>
+    {/* <Connect /> */}
     </div>
   );
 }

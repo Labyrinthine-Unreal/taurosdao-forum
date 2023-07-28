@@ -12,6 +12,8 @@ import { useRouter } from 'next/router';
 import styles from '@root/components/topicComponents/CreateTopic.module.css'
 import { useQuery, gql } from '@apollo/client';
 import CommentList from './CommentList';
+import { useAccount, useEnsAvatar, useDisconnect, useConnect } from 'wagmi'
+
 const Editor = dynamic(
     () => import('react-draft-wysiwyg').then((module) => module.Editor),
     { ssr: false }
@@ -28,10 +30,11 @@ const CreateComment = ({ onPostCreated }) => {
         topic
         content
         user
+        eth_address
         }
       }
     `;
-
+    const { address, isConnected } = useAccount()
     const [topic, setTopic] = useState('');
     const [editorState, setEditorState] = useState(() =>
         EditorState.createEmpty()
@@ -78,6 +81,7 @@ const CreateComment = ({ onPostCreated }) => {
                 comment: comment,
                 name: user.username,
                 slug: slug,
+                eth_address: address
             } }
             ))
         

@@ -4,6 +4,7 @@ type general{
  content: String
  slug: String
  user: String
+ eth_address:String
 }
 type Query {
  general_by_slug(slug:String!):general

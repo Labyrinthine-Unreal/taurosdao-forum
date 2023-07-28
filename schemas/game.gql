@@ -4,6 +4,7 @@ type game{
  content: String
  slug: String
  user: String
+ eth_address:String
 }
 type Query {
  game_by_slug(slug:String!):game

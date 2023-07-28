@@ -10,7 +10,7 @@ import slugify from 'slugify';
 import shortid from 'shortid';
 import { useRouter } from 'next/router';
 import styles from '../CreateTopic.module.css'
-
+import { useAccount, useEnsAvatar, useDisconnect, useConnect } from 'wagmi'
 const Editor = dynamic(
   () => import('react-draft-wysiwyg').then((module) => module.Editor),
   { ssr: false }
@@ -28,7 +28,7 @@ const CreateTopic = ({ onPostCreated }) => {
   
 
   const { user } = useUser()
-
+  const { address, isConnected } = useAccount()
   const router = useRouter();
 
   const handleSubmit = (e) => {
@@ -41,7 +41,7 @@ const CreateTopic = ({ onPostCreated }) => {
     var createP = client.query(
       q.Create(
         q.Collection('marketplace'),
-        { data: { topic: topic, content:content,user:user.username, slug: generatedSlug } }
+        { data: { topic: topic, content:content,user:user.username, slug: generatedSlug,eth_address:address } }
       ))
     createP.then(function(response) {
       console.log(response.ref); // Logs the ref to the console.

@@ -24,7 +24,7 @@ query MyTopicQuery($slug: String!){
     topic
     content
     user
-    # comment
+    eth_address
     }
   }
 `;
@@ -48,7 +48,7 @@ const CommentList = () => {
         // Check if response.data is defined and is an array
         if (Array.isArray(response.data)) {
           response.data.map(
-            ([item, ref, comment, name, slug, date]) => {
+            ([item, ref, comment, name, slug, date,eth_address]) => {
               console.log(comment)
               console.log(name)
               console.log(response.data)
@@ -80,7 +80,7 @@ const CommentList = () => {
               </tr>
             </thead>
             <tbody>
-            {comments.map(([item, slug, name,comment, date, ref], index) => {
+            {comments.map(([item, slug, name,comment, date, ref,eth_address], index) => {
                 return (
                   <tr key={index} className={styles.commentRow}>
                     <td className={styles.commentColumn}>
