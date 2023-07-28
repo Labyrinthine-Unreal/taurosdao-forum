@@ -21,7 +21,7 @@ const UpdateTopic = ({ onPostCreated }) => {
 
     const GET_TOPIC_BY_SLUG = gql`
     query MyTopicQuery($slug: String!){
-      forum_by_slug(slug: $slug) {
+      general_by_slug(slug: $slug) {
         _id
         slug
         topic
@@ -52,17 +52,17 @@ const UpdateTopic = ({ onPostCreated }) => {
       if (loading) return <div>Loading...</div>;
       if (error) return <div>Error: {error.message}</div>;
 
-      const topicData = data?.forum_by_slug.slug;
+      const topicData = data?.general_by_slug.slug;
       console.log(data)
-      console.log(data?.forum_by_slug.slug)
+      console.log(data?.general_by_slug.slug)
 
       if (!topicData) {
         return <h1>404: Not Found</h1>
       }
     
-    //   const isAuthor = user.username === data?.forum_by_slug.user // check if current user is the author
+    //   const isAuthor = user.username === data?.general_by_slug.user // check if current user is the author
       console.log(user.username)
-      console.log(data?.forum_by_slug._id)
+      console.log(data?.general_by_slug._id)
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -73,7 +73,7 @@ const UpdateTopic = ({ onPostCreated }) => {
 
         var createP = client.query(
             q.Update(
-                q.Ref(q.Collection('general'), data?.forum_by_slug._id),
+                q.Ref(q.Collection('general'), data?.general_by_slug._id),
                 { data: { topic: topic, content: content, user: user.username, slug: generatedSlug } }
             )
         )

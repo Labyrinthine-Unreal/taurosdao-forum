@@ -1,13 +1,13 @@
-type Marketplace{
+type marketplace{
  date: String
  topic: String
  content: String
  slug: String
  user: String
 }
-# type Query {
-#  marketplace_by_slug(slug:String!):Marketplace
-# }
+type Query {
+ marketplace_by_slug(slug:String!):marketplace
+}
 
 # type CreatedMarketplaceComment {
 #     commentId: String
@@ -29,6 +29,6 @@ type Marketplace{
 # }
 
 # type Query {
-#  marketplace_by_id: [Marketplace!]
+#  marketplace_by_id: [marketplace!]
 # }
 

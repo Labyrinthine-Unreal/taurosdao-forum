@@ -5,6 +5,10 @@ import styles from './Header.module.css'
 import { useAuth } from '@clerk/nextjs';
 import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, UserButton } from '@clerk/nextjs'
 import faunadb from 'faunadb';
+import { Box, Flex, Link, Button, Image, Spacer, IconButton } from "@chakra-ui/react";
+import { FaTwitter, FaInstagram, FaDiscord } from "react-icons/fa";
+import Connect from "../wallets/ConnectButton";
+import { useAccount, useEnsAvatar, useDisconnect, useConnect } from 'wagmi'
 
 const q = faunadb.query;
 
@@ -26,11 +30,12 @@ export default function Header(req, res) {
   // const client = new faunadb.Client({ domain:"db.us.fauna.com", secret: process.env.REACT_APP_FAUNA_SECRET_manager, keepAlive: true });
 
   // console.log(client)
+  const { address, isConnected } = useAccount()
 
   var createP = client.query(
     q.Create(
-      q.Collection('user'),
-      { data: { user: userId, name: user.firstName } }
+      q.Collection('users'),
+      { data: { user:userId, name:user.firstName, eth_address:address} }
     )
   )
   createP.then(function (response) {
@@ -45,18 +50,56 @@ export default function Header(req, res) {
       </Head>
       <header className={styles.header}>
         <div className={styles.title}>TaurosDAO</div>
-        <div className={styles.avatar}>
+        {/* <div className={styles.avatar}>
           <UserButton />
-        </div>
-      </header>
-
+        </div> */}
+      {/* </header> */}
+{/* 
       <SignedIn>
-        {/* Mount the UserButton component */}
       </SignedIn>
       <SignedOut>
-        {/* Signed out users get sign in button */}
+        <SignInButton />
+      </SignedOut> */}
+      <Flex
+      as="header"
+      position="sticky"
+      top="0"
+      bg="black"
+      color="white"
+      px="28"
+      py="4"
+      align="center"
+      justify="space-between"
+      zIndex={2}
+    >
+      {/* <Box>
+        <Image src="/images/logos/TaurosDAO-logo.png" width="300px" height="auto" alt="TaurosDAO Logo" />
+      </Box>
+      <Spacer />
+      <Box fontSize="20" pr="6">
+        <Link p="2" href="/members" _hover={{ color: "teal" }}>Members</Link>
+        <Link p="2" href="/categories/governance" _hover={{ color: "teal" }}>Governance</Link>
+      </Box> */}
+      <Box>
+        <IconButton as="a" href="https://twitter.com/taurosdao" target="blank" aria-label="Twitter" icon={<FaTwitter />} mx="1" variant="ghost" isRound={true} fontSize="26px" _hover={{ color: "teal" }} />
+        <IconButton as="a" href="https://instagram.com/taurosdao" target="blank" aria-label="Instagram" icon={<FaInstagram />} mx="1" variant="ghost" isRound={true} fontSize="26px" _hover={{ color: "teal" }} />
+        <IconButton as="a" href="https://discord.com/invite/taurosdao" target="blank" aria-label="Discord" icon={<FaDiscord />} mx="1" variant="ghost" isRound={true} fontSize="26px" _hover={{ color: "teal" }} />
+      </Box>
+      {/* <Button background="linear-gradient(45deg, #FFD700, #DAA520)" color="black" _hover={{background: "linear-gradient(45deg, #DAA520, #FFD700)"}} ml="4">Connect</Button> */}
+    <Connect />
+
+    <div className={styles.avatar}>
+          <UserButton />
+        </div>
+
+    <SignedIn>
+      </SignedIn>
+      <SignedOut>
         <SignInButton />
       </SignedOut>
+    </Flex>
+    </header>
     </div>
+    
   );
 }

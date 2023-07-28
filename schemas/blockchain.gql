@@ -1,13 +1,13 @@
-type Blockchain{
+type blockchain{
  date: String
  topic: String
  content: String
  slug: String
  user: String
 }
-# type Query {
-#  blockchain_by_slug(slug:String!):Blockchain
-# }
+type Query {
+ blockchain_by_slug(slug:String!):blockchain
+}
 
 # type CreatedBlockchainComment {
 #     commentId: String
@@ -29,6 +29,6 @@ type Blockchain{
 # }
 
 # type Query {
-#  blockchain_by_id: [Blockchain!]
+#  blockchain_by_id: [blockchain!]
 # }
 

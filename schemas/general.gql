@@ -1,32 +1,32 @@
-# type general{
-#  date: String
-#  topic: String
-#  content: String
-#  slug: String
-#  user: String
-# }
-# type Query {
-#  general_by_slug(slug:String!):general
-# }
+type general{
+ date: String
+ topic: String
+ content: String
+ slug: String
+ user: String
+}
+type Query {
+ general_by_slug(slug:String!):general
+}
 
 # type CreatedTopicsComment {
 #     commentId: String
 #     comment: String
 #   }
 
-type Query {
-    # getAllTopicsComments: [TopicsCommentObject]
-    generalCommentsBySlug(slug: String!): [generalComments]
-  }
+# type Query {
+#     # getAllTopicsComments: [TopicsCommentObject]
+#     generalCommentsBySlug(slug: String!): [generalComments]
+#   }
 
 
-type generalComments {
-    commentId: String
-    slug: String
-    date: String
-    name: String
-    comment: String
-}
+# type generalComments {
+#     commentId: String
+#     slug: String
+#     date: String
+#     name: String
+#     comment: String
+# }
 
 # type Query {
 #  general_by_id: [general!]

@@ -1,4 +1,4 @@
-type Game{
+type game{
  date: String
  topic: String
  content: String
@@ -6,7 +6,7 @@ type Game{
  user: String
 }
 type Query {
- game_by_slug(slug:String!):Game
+ game_by_slug(slug:String!):game
 }
 
 # type CreatedGameComment {
@@ -29,6 +29,6 @@ type Query {
 # }
 
 # type Query {
-#  game_by_id: [Game!]
+#  game_by_id: [game!]
 # }
 
