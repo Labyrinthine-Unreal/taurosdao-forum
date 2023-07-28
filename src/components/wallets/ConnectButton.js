@@ -19,7 +19,7 @@ export default function Connect() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { connectAsync } = useConnect()
   const q = faunadb.query;
-  const client = new faunadb.Client({ secret: "fnAFDZGm3pAASZlfCHemrt0fvXUPK1gb0ZqnbR6f", keepAlive: true });
+  const client = new faunadb.Client({ secret: process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY, keepAlive: true });
 
   const { chains } = configureChains(
     [mainnet],
