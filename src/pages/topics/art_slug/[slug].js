@@ -8,7 +8,7 @@ import Header from '@root/components/layout/Header';
 import styles from '../TopicPage.module.css';
 import UpdateTopic from '@root/components/topicComponents/Art/UpdateTopic';
 import faunadb from 'faunadb';
-import CommentList from '@root/components/commentComponents/Art/CommentList';
+import CommentList from '@root/components/commentComponents/CommentList';
 import { CSSTransition } from 'react-transition-group';
 import ReplyButton from '@root/components/buttons/artReplyButton';
 import GPT from '@root/components/GPT/gpt';
@@ -93,7 +93,7 @@ const TopicPage = () => {
                     >
                       <div>
                         {isAuthor && showEdit &&
-                          <UpdateTopic setShowEdit={setShowEdit} />}
+                          <UpdateTopic category="art" setShowEdit={setShowEdit} />}
                           
                         </div>
                     </CSSTransition>
@@ -103,7 +103,7 @@ const TopicPage = () => {
           </table>
           <ReplyButton />
           <GPT />
-          <CommentList />
+          <CommentList category="art" />
         </div>
       </div>
     </div>

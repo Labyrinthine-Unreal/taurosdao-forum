@@ -1,18 +1,16 @@
-// src/components/topicComponents/Art/UpdateTopic.js
+// src/components/topicComponents/AI/UpdateTopic.js
 import React, { useState } from 'react';
 import faunadb from 'faunadb';
-import { EditorState, convertToRaw } from 'draft-js';
+import { EditorState } from 'draft-js';
 import { stateToHTML } from 'draft-js-export-html';
-import FlippingButton from '../../buttons/FlippingButton';
+import FlippingButton from '../buttons/FlippingButton';
 import dynamic from 'next/dynamic';
-import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, UserButton } from '@clerk/nextjs'
+import { useUser } from '@clerk/nextjs'
 import slugify from 'slugify';
 import shortid from 'shortid';
 import { useRouter } from 'next/router';
-import styles from '../CreateTopic.module.css'
+import styles from './CreateTopic.module.css'
 import { useQuery, gql } from '@apollo/client';
-import { useAccount, useEnsAvatar, useDisconnect, useConnect } from 'wagmi'
-
 
 const Editor = dynamic(
     () => import('react-draft-wysiwyg').then((module) => module.Editor),
@@ -20,11 +18,11 @@ const Editor = dynamic(
 );
 
 const q = faunadb.query;
-const UpdateTopic = ({ onPostCreated }) => {
+const UpdateTopic = ({ category }) => {
 
     const GET_TOPIC_BY_SLUG = gql`
     query MyTopicQuery($slug: String!){
-      art_by_slug(slug: $slug) {
+      ${category}_by_slug(slug: $slug) {
         _id
         slug
         topic
@@ -34,7 +32,6 @@ const UpdateTopic = ({ onPostCreated }) => {
         }
       }
     `;
-  const { address, isConnected } = useAccount()
 
     const [topic, setTopic] = useState('');
     const [editorState, setEditorState] = useState(() =>
@@ -44,7 +41,8 @@ const UpdateTopic = ({ onPostCreated }) => {
     const router = useRouter();
     const { slug } = router.query;
     const { user } = useUser()
-
+    const { address, isConnected } = useAccount()
+    
     const client = new faunadb.Client({ domain:"db.us.fauna.com", secret: process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY, keepAlive: true });
     console.log(client)
 
@@ -57,17 +55,17 @@ const UpdateTopic = ({ onPostCreated }) => {
       if (loading) return <div>Loading...</div>;
       if (error) return <div>Error: {error.message}</div>;
 
-      const topicData = data?.art_by_slug.slug;
+      const topicData = data[`${category}_by_slug`].slug;
       console.log(data)
-      console.log(data?.art_by_slug.slug)
+      console.log(data[`${category}_by_slug`].slug)
 
       if (!topicData) {
         return <h1>404: Not Found</h1>
       }
     
-    //   const isAuthor = user.username === data?.art_by_slug.user // check if current user is the author
+    //   const isAuthor = user.username === data[`${category}_by_slug`].user // check if current user is the author
       console.log(user.username)
-      console.log(data?.art_by_slug._id)
+      console.log(data[`${category}_by_slug`]._id)
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -78,7 +76,7 @@ const UpdateTopic = ({ onPostCreated }) => {
 
         var createP = client.query(
             q.Update(
-                q.Ref(q.Collection('art'), data?.art_by_slug._id),
+                q.Ref(q.Collection(category), data[`${category}_by_slug`]._id),
                 { data: { topic: topic, content: content, user: user.username, slug: generatedSlug,eth_address:address } }
             )
         )
@@ -86,7 +84,7 @@ const UpdateTopic = ({ onPostCreated }) => {
         createP.then(function (response) {
             console.log(response.ref); // Logs the ref to the console.
             // onPostCreated(response.data); // Call the callback with the new post data
-            router.push(`/topics/art_slug/${response.data.slug}`); // Redirect the user to the new topic's page
+            router.push(`/topics/${category}_slug/${response.data.slug}`); // Redirect the user to the new topic's page
         })
     };
 

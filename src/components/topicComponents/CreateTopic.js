@@ -1,16 +1,16 @@
 // src/components/topicComponents/AI/CreateTopic.js
 import React, { useState } from 'react';
 import faunadb from 'faunadb';
-import { EditorState, convertToRaw } from 'draft-js';
+import { EditorState } from 'draft-js';
 import { stateToHTML } from 'draft-js-export-html';
-import FlippingButton from '../../buttons/FlippingButton';
+import FlippingButton from '../buttons/FlippingButton';
 import dynamic from 'next/dynamic';
-import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, UserButton } from '@clerk/nextjs'
+import { useUser } from '@clerk/nextjs'
 import slugify from 'slugify';
 import shortid from 'shortid';
 import { useRouter } from 'next/router';
-import styles from '../CreateTopic.module.css'
-import { useAccount, useEnsAvatar, useDisconnect, useConnect } from 'wagmi'
+import styles from './CreateTopic.module.css'
+import { useAccount } from 'wagmi'
 
 const Editor = dynamic(
   () => import('react-draft-wysiwyg').then((module) => module.Editor),
@@ -18,7 +18,7 @@ const Editor = dynamic(
 );
 
 const q = faunadb.query;
-const CreateTopic = ({ onPostCreated }) => {
+const CreateTopic = ({ onPostCreated, category }) => {
   const [topic, setTopic] = useState('');
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
@@ -26,10 +26,10 @@ const CreateTopic = ({ onPostCreated }) => {
   
   const client = new faunadb.Client({ domain:"db.us.fauna.com", secret: process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY, keepAlive: true });
   console.log(client)
-  const { address, isConnected } = useAccount()
-
+  
   const { user } = useUser()
-
+  const { address, isConnected } = useAccount()
+  
   const router = useRouter();
 
   const handleSubmit = (e) => {
@@ -41,13 +41,13 @@ const CreateTopic = ({ onPostCreated }) => {
 
     var createP = client.query(
       q.Create(
-        q.Collection('ai'),
-        { data: { topic: topic, content:content,user:user.username, slug: generatedSlug,eth_address:address  } }
+        q.Collection(category),
+        { data: { topic: topic, content:content,user:user.username, slug: generatedSlug,eth_address:address } }
       ))
     createP.then(function(response) {
       console.log(response.ref); // Logs the ref to the console.
       onPostCreated(response.data); // Call the callback with the new post data
-      router.push(`/topics/ai_slug/${response.data.slug}`); // Redirect the user to the new topic's page
+      router.push(`/topics/${category}_slug/${response.data.slug}`); // Redirect the user to the new topic's page
     })
   };
 

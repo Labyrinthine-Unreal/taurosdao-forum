@@ -1,66 +1,57 @@
-// src/components/commentComponents/Marketplace/CommentList.js
+// src/components/commentComponents/CommentList.js
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useQuery, gql } from '@apollo/client';
 import { useUser } from '@clerk/nextjs';
 import parse from 'html-react-parser';
 import Header from '@root/components/layout/Header';
-import UpdateTopic from '@root/components/topicComponents/Marketplace/UpdateTopic';
 import faunadb from 'faunadb';
 import { CSSTransition } from 'react-transition-group';
-import styles from '../CommentList.module.css'
+import styles from './CommentList.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFile, faPencil } from '@fortawesome/free-solid-svg-icons'
 
 const q = faunadb.query;
 const client = new faunadb.Client({ domain:"db.us.fauna.com", secret: process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY, keepAlive: true });
 
-const GET_TOPIC_BY_SLUG = gql`
-query MyTopicQuery($slug: String!){
-  marketplace_by_slug(slug: $slug) {
-    _id
-    slug
-    topic
-    content
-    user
-    # comment
-    }
-  }
-`;
-
-const CommentList = () => {
+const CommentList = ({ category }) => {
   const router = useRouter();
   const { slug } = router.query;
+  const GET_TOPIC_BY_SLUG = gql`
+    query MyTopicQuery($slug: String!){
+      ${category}_by_slug(slug: $slug) {
+        _id
+        slug
+        topic
+        content
+        user
+        eth_address
+        }
+      }
+    `;
   const { data, loading, error } = useQuery(GET_TOPIC_BY_SLUG, {
     variables: { slug },
     skip: !slug,
   })
   const { user } = useUser()
-  const [comments, setComments] = useState([]); // <-- store comments in state
+  const [comments, setComments] = useState([]);
 
   useEffect(() => {
-    if (data?.marketplace_by_slug.slug) {
+    if (data?.[`${category}_by_slug`]?.slug) {
       var createP = client.query(
-        q.Paginate(q.Match(q.Index("marketplaceCommentsBySlug"), data?.marketplace_by_slug.slug))
+        q.Paginate(q.Match(q.Index(`${category}CommentsBySlug`), data?.[`${category}_by_slug`]?.slug))
       );
       createP.then(async function (response) {
-        // Check if response.data is defined and is an array
         if (Array.isArray(response.data)) {
           response.data.map(
-            ([item, ref, comment, name, slug, date]) => {
+            ([item, ref, comment, name, slug, date,eth_address]) => {
               console.log(comment)
               console.log(name)
               console.log(response.data)
               console.log(JSON.stringify(response.data))
-              // Check if response.data[0] is defined and is an array with at least 5 elements
-              if (Array.isArray(response.data[0]) && response.data[0].length >= 5) {
-              }
-              // Check if response.data[1] is defined and is an array with at least 5 elements
-              if (Array.isArray(response.data[1]) && response.data[1].length >= 5) {
-              }
             }
           )
-          setComments(response.data); // <-- update comments state
+          setComments(response.data);
         }
       })
     }
@@ -79,14 +70,14 @@ const CommentList = () => {
               </tr>
             </thead>
             <tbody>
-            {comments.map(([item, slug, name,comment, date, ref], index) => {
+            {comments.map(([item, slug, name,comment, date, ref,eth_address], index) => {
                 return (
                   <tr key={index} className={styles.commentRow}>
                     <td className={styles.commentColumn}>
                       <FontAwesomeIcon icon={faFile} />
                     </td>
                     <td>
-                      <div className={styles.commentAuthor}>Posted by {name} at {date}</div>
+                      <div className={styles.commentAuthor}>Posted by {name}/{eth_address} at {date}</div>
                       {comment}
                     </td>
                     <td className={styles.dateAndTime}>

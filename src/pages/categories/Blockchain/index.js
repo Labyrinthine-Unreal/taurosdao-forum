@@ -1,19 +1,19 @@
 // src/pages/categories/Blockchain/blockchain.js
-import TopicList from '@root/components/topicComponents/Art/TopicList';
+import TopicList from '@root/components/topicComponents/TopicList';
 import React from 'react';
 import Header from '@root/components/layout/Header';
 import withCategoryStyles from '@root/components/cards/withCategoryStyles';
 
-const Art = () => {
+const Blockchain = () => {
   
   return (
     
     <div>
       <Header/>
-      <h1>Art Topics</h1>
-      <TopicList/>
+      <h1>Blockchain Topics</h1>
+      <TopicList category="blockchain" />
     </div>
   );
 };
 
-export default withCategoryStyles(Art);
+export default withCategoryStyles(Blockchain);

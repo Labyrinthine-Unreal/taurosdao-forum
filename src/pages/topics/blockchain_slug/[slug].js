@@ -6,9 +6,9 @@ import { useUser } from '@clerk/nextjs';
 import parse from 'html-react-parser';
 import Header from '@root/components/layout/Header';
 import styles from '../TopicPage.module.css';
-import UpdateTopic from '@root/components/topicComponents/Blockchain/UpdateTopic';
+import UpdateTopic from '@root/components/topicComponents/UpdateTopic';
 import faunadb from 'faunadb';
-import CommentList from '@root/components/commentComponents/Blockchain/CommentList';
+import CommentList from '@root/components/commentComponents/CommentList';
 import { CSSTransition } from 'react-transition-group';
 import ReplyButton from '@root/components/buttons/blockchainReplyButton';
 import GPT from '@root/components/GPT/gpt';
@@ -94,7 +94,7 @@ const TopicPage = () => {
                     >
                       <div>
                         {isAuthor && showEdit &&
-                          <UpdateTopic setShowEdit={setShowEdit} />}
+                          <UpdateTopic category="blockchain" setShowEdit={setShowEdit} />}
                           
                         </div>
                     </CSSTransition>
@@ -104,7 +104,7 @@ const TopicPage = () => {
           </table>
           <ReplyButton />
           <GPT />
-          <CommentList />
+          <CommentList category="blockchain" />
         </div>
       </div>
     </div>

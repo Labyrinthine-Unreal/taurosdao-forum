@@ -1,19 +1,19 @@
-// src/pages/categories/Game/game.js
-import TopicList from '@root/components/topicComponents/Game/TopicList';
+// src/pages/categories/AI/ai.js
+import TopicList from '@root/components/topicComponents/TopicList';
 import React from 'react';
 import Header from '@root/components/layout/Header';
 import withCategoryStyles from '@root/components/cards/withCategoryStyles';
 
-const Game = () => {
+const AI = () => {
   
   return (
     
     <div>
       <Header/>
-      <h1>Game Topics</h1>
-      <TopicList/>
+      <h1>AI Topics</h1>
+      <TopicList category="ai"/>
     </div>
   );
 };
 
-export default withCategoryStyles(Game);
+export default withCategoryStyles(AI);

@@ -1,5 +1,5 @@
 // src/pages/categories/Forum/create-new-topic.js
-import CreateTopic from '@root/components/topicComponents/General/CreateTopic';
+import CreateTopic from '@root/components/topicComponents/CreateTopic';
 import faunadb from 'faunadb';
 import React, { useState } from 'react';
 import { useAuth, useUser } from '@clerk/nextjs';
@@ -30,7 +30,7 @@ const CreateNewTopic = () => {
           <div>{parse(newPost.content)}</div>
         </div>
       ) : (
-        <CreateTopic onPostCreated={handlePostCreated} />
+        <CreateTopic category="general" onPostCreated={handlePostCreated} />
       )}
     </div>
     </>

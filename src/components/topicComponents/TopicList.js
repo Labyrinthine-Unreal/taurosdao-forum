@@ -1,41 +1,37 @@
-// src/components/topicComponents/Forum/TopicList.js
+// src/components/topicComponents/TopicList.js
 import React from "react";
 import Link from 'next/link';
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
 import { useRouter } from 'next/router';
-import parse from 'html-react-parser';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFile, faPencil } from '@fortawesome/free-solid-svg-icons'
-import styles from '../TopicList.module.css';
-import { Stack, Center,Divider,Text } from "@chakra-ui/react";
-import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, UserButton } from '@clerk/nextjs'
-import { Card, CardHeader, Flex,Avatar,Heading,IconButton,Button,BsThreeDotsVertical,BiLike,BiChat,BiShare,Box,Image,CardBody, CardFooter } from '@chakra-ui/react'
+import styles from './TopicList.module.css';
+import { useUser } from '@clerk/nextjs'
 
 import faunadb from 'faunadb';
 const q = faunadb.query;
 
-const ITEMS_QUERY = gql`
-query MyTopicQuery {
-  general_by_id(_size:100){
-    data {
-      _id
-      topic 
-      content
-      user
-      slug
-      eth_address
+export default function TopicList({ category }) {
+  const ITEMS_QUERY = gql`
+  query MyTopicQuery {
+    ${category}_by_id(_size:100){
+      data {
+        _id
+        topic 
+        content
+        user
+        slug
+        eth_address
+      }
+      after
+      before
     }
-    after
-    before
   }
- }
-`;
+  `;
 
+  console.log(ITEMS_QUERY)
 
-console.log(ITEMS_QUERY)
-
-export default function TopicList() {
   const router = useRouter();
   const { data, loading, error } = useQuery(ITEMS_QUERY);
   console.log(data)
@@ -52,50 +48,39 @@ export default function TopicList() {
   )
 
  const handleNewTopic = () => {
-  router.push('/categories/general/create-new-topic');
+  router.push(`/categories/${category}/create-new-topic`);
 };
 
   return (
       <>
-
         <div className={styles.container}>
-        {/* <Stack direction='row' h='100px' p={4}>
-  <Divider orientation='vertical' />
-  <Text>Chakra UI</Text>
-</Stack> */}
           <button onClick={handleNewTopic} className={styles.newTopicButton}><FontAwesomeIcon icon={faPencil} style={{ marginRight: "20px" }} />New Topic</button>
           
           <table className={styles.topicTable}>
             <thead>
               <tr>
-
                 <th colSpan="5" className={styles.tableHeader}>Topics</th>
               </tr>
             </thead>
-
             <tbody>
-              {data.general_by_id.data.map((item) => {
-                                    
+              {data[`${category}_by_id`]?.data.map((item) => {              
                 return (
                   <tr key={item.id} className={styles.topicRow}>
                     <td className={styles.topicColumn}>
                       <FontAwesomeIcon icon={faFile} />
                     </td>
                     <td>
-                      
-                      <Link href={`/topics/general_slug/${item.slug}`}>
+                      <Link href={`/topics/${category}_slug/${item.slug}`}>
                         <span className={styles.topicLink}>
                           <div className={styles.topicTitle}>
                             {item.topic}
                             </div>
                           <div className={styles.topicAuthor}>
-                            Posted by {item.user}/{item.eth_address} at time
+                            Posted by {item.user} at time
                             </div>
                         </span>
                       </Link>
                     </td>
-
-                    
                     <td className={styles.viewsAndReplies}>
                       <div>0</div>
                       <div>Replies</div>
@@ -108,7 +93,6 @@ export default function TopicList() {
                       <div>{item.user}</div>
                       <div>Date and time</div>
                     </td>
-
                   </tr>
                 );
               })}
@@ -116,22 +100,7 @@ export default function TopicList() {
           </table>
           
           <button onClick={handleNewTopic} className={styles.newTopicButton}><FontAwesomeIcon icon={faPencil} style={{ marginRight: "20px" }} />New Topic</button>
-        
         </div>
       </> 
-  );
+    );
   }
-  
-  
-  // <div>
-  //         {data.general_by_id.data.map((item) => {
-  //             return (
-  //               <Link href={`/topics/${item.slug}`} key={item.id}>
-  //                 <div key={item.id} className={styles.topicItem}>
-  //                   <div className={styles.topicTitle}>{item.topic}:{item.user}</div> 
-  //                   <div className={styles.topicContent}>{parse(item.content)}:{item._id}</div>
-  //                 </div>
-  //               </Link>
-  //             );
-  //         })}
-  //       </div>

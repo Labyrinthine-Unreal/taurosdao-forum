@@ -1,15 +1,15 @@
-// src/components/topicComponents/Blockchain/UpdateTopic.js
+// src/components/commentComponents/Art/CreateComment.js
 import React, { useState } from 'react';
 import faunadb from 'faunadb';
 import { EditorState, convertToRaw } from 'draft-js';
 import { stateToHTML } from 'draft-js-export-html';
-import FlippingButton from '../../buttons/FlippingButton';
+import FlippingButton from '@root/components/buttons/FlippingButton';
 import dynamic from 'next/dynamic';
 import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, UserButton } from '@clerk/nextjs'
 import slugify from 'slugify';
 import shortid from 'shortid';
 import { useRouter } from 'next/router';
-import styles from '../CreateTopic.module.css'
+import styles from '@root/components/topicComponents/CreateTopic.module.css'
 import { useQuery, gql } from '@apollo/client';
 import { useAccount, useEnsAvatar, useDisconnect, useConnect } from 'wagmi'
 
@@ -19,11 +19,10 @@ const Editor = dynamic(
 );
 
 const q = faunadb.query;
-const UpdateTopic = ({ onPostCreated }) => {
-
+const CreateComment = ({ category, onPostCreated }) => {
     const GET_TOPIC_BY_SLUG = gql`
     query MyTopicQuery($slug: String!){
-      blockchain_by_slug(slug: $slug) {
+      ${category}_by_slug(slug: $slug) {
         _id
         slug
         topic
@@ -33,7 +32,7 @@ const UpdateTopic = ({ onPostCreated }) => {
         }
       }
     `;
-
+    const { address, isConnected } = useAccount()
     const [topic, setTopic] = useState('');
     const [editorState, setEditorState] = useState(() =>
         EditorState.createEmpty()
@@ -42,10 +41,8 @@ const UpdateTopic = ({ onPostCreated }) => {
     const router = useRouter();
     const { slug } = router.query;
     const { user } = useUser()
-    const { address, isConnected } = useAccount()
-    
+
     const client = new faunadb.Client({ domain:"db.us.fauna.com", secret: process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY, keepAlive: true });
-    console.log(client)
 
     const { data, loading, error } = useQuery(GET_TOPIC_BY_SLUG, {
         variables: { slug },
@@ -56,54 +53,52 @@ const UpdateTopic = ({ onPostCreated }) => {
       if (loading) return <div>Loading...</div>;
       if (error) return <div>Error: {error.message}</div>;
 
-      const topicData = data?.blockchain_by_slug.slug;
-      console.log(data)
-      console.log(data?.blockchain_by_slug.slug)
+      const topicData = data?.[`${category}_by_slug`]?.slug;
 
       if (!topicData) {
         return <h1>404: Not Found</h1>
       }
-    
-    //   const isAuthor = user.username === data?.blockchain_by_slug.user // check if current user is the author
-      console.log(user.username)
-      console.log(data?.blockchain_by_slug._id)
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const contentState = editorState.getCurrentContent();
-        const content = stateToHTML(contentState);
+        const comment = stateToHTML(contentState, {
+          blockRenderers: {
+            unstyled: (block) => block.getText()
+          }
+        });
 
         const generatedSlug = slugify(topic, { lower: true, strict: true }) + '-' + shortid.generate();
 
         var createP = client.query(
-            q.Update(
-                q.Ref(q.Collection('blockchain'), data?.blockchain_by_slug._id),
-                { data: { topic: topic, content: content, user: user.username, slug: generatedSlug,eth_address:address } }
-            )
-        )
+            q.Create(
+              q.Collection(`${category}Comments`),
+              { data: { 
+                forumID:data?.[`${category}_by_slug`]._id, 
+                date: new Date().toString(), 
+                comment: comment,
+                name: user.username,
+                slug: slug,
+                eth_address:address
+            } }
+            ))
+        
 
         createP.then(function (response) {
-            console.log(response.ref); // Logs the ref to the console.
-            // onPostCreated(response.data); // Call the callback with the new post data
-            router.push(`/topics/blockchain_slug/${response.data.slug}`); // Redirect the user to the new topic's page
+            router.push(`/topics/${category}_slug/${response.data.slug}`); // Redirect the user to the new topic's page
         })
+
     };
 
 
     return (
         <>
             <div className={styles.container}>
-                <h2>Edit Post</h2>
+                <h2>Add Comment</h2>
                 <form onSubmit={handleSubmit} className={styles.topicInput}>
-                    <input
-                        type="text"
-                        id="topic"
-                        name="topic"
-                        value={topic}
-                        onChange={(e) => setTopic(e.target.value)}
-                    />
+             
                     <br />
-                    <label htmlFor="content">Content:</label>
+                    <label htmlFor="content">Comment</label>
                     <Editor
                         editorState={editorState}
                         toolbarClassName="toolbarClassName"
@@ -124,4 +119,4 @@ const UpdateTopic = ({ onPostCreated }) => {
     );
 };
 
-export default UpdateTopic;
+export default CreateComment;

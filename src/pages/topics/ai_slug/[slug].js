@@ -6,9 +6,9 @@ import { useUser } from '@clerk/nextjs';
 import parse from 'html-react-parser';
 import Header from '@root/components/layout/Header';
 import styles from '../TopicPage.module.css';
-import UpdateTopic from '@root/components/topicComponents/AI/UpdateTopic';
+import UpdateTopic from '@root/components/topicComponents/UpdateTopic';
 import faunadb from 'faunadb';
-import CommentList from '@root/components/commentComponents/AI/CommentList';
+import CommentList from '@root/components/commentComponents/CommentList';
 import { CSSTransition } from 'react-transition-group';
 import ReplyButton from '@root/components/buttons/aiReplyButton';
 import GPT from '@root/components/GPT/gpt';
@@ -93,7 +93,7 @@ const TopicPage = () => {
                     >
                       <div>
                         {isAuthor && showEdit &&
-                          <UpdateTopic setShowEdit={setShowEdit} />}
+                          <UpdateTopic category="ai" setShowEdit={setShowEdit} />}
                           
                         </div>
                     </CSSTransition>
@@ -103,7 +103,7 @@ const TopicPage = () => {
           </table>
           <ReplyButton />
           <GPT />
-          <CommentList />
+          <CommentList category="ai" />
         </div>
       </div>
     </div>
