@@ -68,7 +68,7 @@ export default function Connect() {
   var createP = client.query(
     q.Create(
       q.Collection('users'),
-      { data: { user: address } }
+      { data: { name: address } }
     )
   )
   createP.then(function (response) {
