@@ -10,7 +10,8 @@ import { infuraProvider } from 'wagmi/providers/infura'
 import { AiOutlineWallet } from 'react-icons/ai'
 import { useState, useEffect } from 'react';
 import faunadb from 'faunadb';
-
+import { useAuth } from '@clerk/nextjs';
+import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, UserButton } from '@clerk/nextjs'
 export default function Connect() {
   
   const [shortWallet, setWalletAddress] = useState();
@@ -19,6 +20,18 @@ export default function Connect() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { connectAsync } = useConnect()
   const q = faunadb.query;
+  const { user } = useUser()
+
+  const { isLoaded, userId, sessionId, getToken } = useAuth();
+  // console.log(getToken)
+
+  // In case the user signs out while on the page.
+  if (!isLoaded || !userId) {
+    return null;
+  }
+
+  const secret = Clerk.session.getToken({ template: 'fauna' })
+
   const client = new faunadb.Client({ secret: process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY, keepAlive: true });
 
   const { chains } = configureChains(
@@ -68,7 +81,7 @@ export default function Connect() {
   var createP = client.query(
     q.Create(
       q.Collection('users'),
-      { data: { user: address } }
+      { data: { name: address, user:user.firstName } }
     )
   )
   createP.then(function (response) {
