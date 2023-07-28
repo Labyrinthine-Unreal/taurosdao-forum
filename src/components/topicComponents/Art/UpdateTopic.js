@@ -11,6 +11,9 @@ import shortid from 'shortid';
 import { useRouter } from 'next/router';
 import styles from '../CreateTopic.module.css'
 import { useQuery, gql } from '@apollo/client';
+import { useAccount, useEnsAvatar, useDisconnect, useConnect } from 'wagmi'
+
+
 const Editor = dynamic(
     () => import('react-draft-wysiwyg').then((module) => module.Editor),
     { ssr: false }
@@ -27,9 +30,11 @@ const UpdateTopic = ({ onPostCreated }) => {
         topic
         content
         user
+        eth_address
         }
       }
     `;
+  const { address, isConnected } = useAccount()
 
     const [topic, setTopic] = useState('');
     const [editorState, setEditorState] = useState(() =>
@@ -74,7 +79,7 @@ const UpdateTopic = ({ onPostCreated }) => {
         var createP = client.query(
             q.Update(
                 q.Ref(q.Collection('art'), data?.art_by_slug._id),
-                { data: { topic: topic, content: content, user: user.username, slug: generatedSlug } }
+                { data: { topic: topic, content: content, user: user.username, slug: generatedSlug,eth_address:address } }
             )
         )
 

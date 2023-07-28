@@ -23,6 +23,7 @@ query MyTopicQuery($slug: String!){
     topic
     content
     user
+    eth_address
     }
   }
 `;
@@ -75,6 +76,8 @@ const TopicPage = () => {
                 </td>
                 <td className={styles.rightColumn}>
                 <div className={styles.titleBlock}>
+                <div className={styles.title}>{data?.art_by_slug.eth_address}</div>
+
                   <div className={styles.title}>{data?.art_by_slug.topic}</div>
                     <p className={styles.date}>19 February 2023, 22:09</p>
                   </div>

@@ -4,10 +4,11 @@ type art{
  content: String
  slug: String
  user: String
+ eth_address:String
 }
-# type Query {
-#  art_by_slug(slug:String!):art
-# }
+type Query {
+ art_by_slug(slug:String!):art
+}
 
 # type CreatedArtComment {
 #     commentId: String
