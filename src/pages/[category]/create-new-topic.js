@@ -20,7 +20,8 @@ const CreateNewTopic = () => {
   // Use the useRouter hook from Next.js
   const router = useRouter();
   // Extract the category from the path. This assumes the path is of the form /[category]/create-new-topic
-  const category = router.pathname.split('/')[1];
+  const category = router.asPath.split('/')[1];
+  console.log(router.asPath.split('/')[1])
 
   const handlePostCreated = (post) => {
     setNewPost(post);

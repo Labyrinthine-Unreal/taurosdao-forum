@@ -11,6 +11,7 @@ import shortid from 'shortid';
 import { useRouter } from 'next/router';
 import styles from './CreateTopic.module.css'
 import { useQuery, gql } from '@apollo/client';
+import { useAccount } from 'wagmi'
 
 const Editor = dynamic(
     () => import('react-draft-wysiwyg').then((module) => module.Editor),
@@ -86,7 +87,7 @@ const UpdateTopic = ({ category }) => {
         createP.then(function (response) {
             console.log(response.ref); // Logs the ref to the console.
             // onPostCreated(response.data); // Call the callback with the new post data
-            router.push(`/topics/${category}_slug/${response.data.slug}`); // Redirect the user to the new topic's page
+            router.push(`/${category}/${response.data.slug}`); // Redirect the user to the new topic's page
         })
     };
 
