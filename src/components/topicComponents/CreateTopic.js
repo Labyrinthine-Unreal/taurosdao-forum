@@ -19,7 +19,7 @@ const Editor = dynamic(
 
 const q = faunadb.query;
 
-// At the moment this is called from create-new-topic in each category
+// This is called from create-new-topic in each category
 const CreateTopic = ({ onPostCreated, category }) => {
   const [topic, setTopic] = useState('');
   const [editorState, setEditorState] = useState(() =>

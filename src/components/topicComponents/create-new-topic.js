@@ -1,4 +1,4 @@
-// src/pages/categories/Blockchain/create-new-topic.js
+// src/pages/categories/Marketplace/create-new-topic.js
 import CreateTopic from '@root/components/topicComponents/CreateTopic';
 import faunadb from 'faunadb';
 import React, { useState } from 'react';
@@ -6,6 +6,7 @@ import { useAuth, useUser } from '@clerk/nextjs';
 import withCategoryStyles from '@root/components/cards/withCategoryStyles';
 import parse from 'html-react-parser';
 import Header from '@root/components/layout/Header';
+import { useRouter } from 'next/router';
 
 const CreateNewTopic = () => {
   const secret = Clerk.session.getToken({ template: 'fauna' });
@@ -15,6 +16,11 @@ const CreateNewTopic = () => {
   const { isLoaded, userId, sessionId, getToken } = useAuth();
   const { user } = useUser();
   const [newPost, setNewPost] = useState(null);
+
+  // Use the useRouter hook from Next.js
+  const router = useRouter();
+  // Extract the category from the path. This assumes the path is of the form /[category]/create-new-topic
+  const category = router.pathname.split('/')[1];
 
   const handlePostCreated = (post) => {
     setNewPost(post);
@@ -30,7 +36,7 @@ const CreateNewTopic = () => {
           <div>{parse(newPost.content)}</div>
         </div>
       ) : (
-        <CreateTopic category="blockchain" onPostCreated={handlePostCreated} />
+        <CreateTopic category={category} onPostCreated={handlePostCreated} />
       )}
     </div>
     </>

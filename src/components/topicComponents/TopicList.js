@@ -49,7 +49,7 @@ export default function TopicList({ category }) {
   )
 
  const handleNewTopic = () => {
-  router.push(`/categories/${category}/create-new-topic`);
+  router.push(`/${category}/create-new-topic`);
 };
 
   return (
