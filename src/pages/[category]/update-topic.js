@@ -1,4 +1,4 @@
-// src/pages/categories/Forum/update-topic.js
+// src/pages/categories/AI/update-topic.js
 import UpdateTopic from '@root/components/topicComponents/UpdateTopic';
 import faunadb from 'faunadb';
 import React, { useState } from 'react';
@@ -30,7 +30,7 @@ const UpdatePrevTopic = () => {
           <div>{parse(newPost.content)}</div>
         </div>
       ) : (
-        <UpdateTopic category="general" onPostCreated={handlePostCreated} />
+        <UpdateTopic category={category} onPostCreated={handlePostCreated} />
       )}
     </div>
     </>

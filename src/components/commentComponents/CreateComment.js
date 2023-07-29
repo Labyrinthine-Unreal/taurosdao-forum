@@ -87,7 +87,7 @@ const CreateComment = ({ category, onPostCreated }) => {
         
 
         createP.then(function (response) {
-            router.push(`/topics/${category}_slug/${response.data.slug}`); // Redirect the user to the new topic's page
+            router.push(`/${category}/${response.data.slug}`); // Redirect the user to the new topic's page
         })
 
     };
