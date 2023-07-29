@@ -1,4 +1,4 @@
-// src/components/buttons/artReplyButton.js
+// src/components/buttons/aiReplyButton.js 
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faReply } from '@fortawesome/free-solid-svg-icons';
@@ -6,7 +6,7 @@ import styles from './ReplyButton.module.css';
 import CreateComment from '@root/components/commentComponents/CreateComment';
 import { CSSTransition } from 'react-transition-group';
 
-const ReplyButton = () => {
+const ReplyButton = ( {category} ) => {
     const [showReply, setShowReply] = useState(false);
 
     const handleReplyToggle = () => {
@@ -22,7 +22,7 @@ const ReplyButton = () => {
                 classNames="slide"
                 unmountOnExit
             >
-            <CreateComment category="art" setShowReply={setShowReply} />
+            <CreateComment category={category} setShowReply={setShowReply} />
             </CSSTransition>
         </>
     )
