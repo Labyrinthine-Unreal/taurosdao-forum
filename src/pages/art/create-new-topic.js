@@ -1,4 +1,4 @@
-// src/pages/categories/Marketplace/create-new-topic.js
+// src/components/topicComponents/create-new-topic.js
 import CreateTopic from '@root/components/topicComponents/CreateTopic';
 import faunadb from 'faunadb';
 import React, { useState } from 'react';
