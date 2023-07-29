@@ -48,8 +48,8 @@ const CreateTopic = ({ onPostCreated, category }) => {
       ))
     createP.then(function(response) {
       console.log(response.ref); // Logs the ref to the console.
-      onPostCreated(response.data); // Call the callback with the new post data
-      router.push(`/topics/${category}_slug/${response.data.slug}`); // Redirect the user to the new topic's page
+      onPostCreated(response.data.data); // Call the callback with the new post data
+      router.push(`/${category}/${response.data.slug}`); // Redirect the user to the new topic's page
     })
   };
 

@@ -1,19 +1,19 @@
-// src/pages/categories/Game/game.js
+// src/pages/marketplace/marketplace.js
 import TopicList from '@root/components/topicComponents/TopicList';
 import React from 'react';
 import Header from '@root/components/layout/Header';
 import withCategoryStyles from '@root/components/cards/withCategoryStyles';
 
-const Game = () => {
+const Marketplace = () => {
   
   return (
     
     <div>
       <Header/>
-      <h1>Game Topics</h1>
-      <TopicList category="game" />
+      <h1>Marketplace Topics</h1>
+      <TopicList category="marketplace" />
     </div>
   );
 };
 
-export default withCategoryStyles(Game);
+export default withCategoryStyles(Marketplace);

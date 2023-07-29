@@ -71,7 +71,7 @@ export default function TopicList({ category }) {
                       <FontAwesomeIcon icon={faFile} />
                     </td>
                     <td>
-                      <Link href={`/topics/${category}_slug/${item.slug}`}>
+                      <Link href={`/${category}/${item.slug}`}>
                         <span className={styles.topicLink}>
                           <div className={styles.topicTitle}>
                             {item.topic}

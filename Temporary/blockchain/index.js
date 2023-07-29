@@ -1,19 +1,19 @@
-// src/pages/categories//Marketplace/marketplace.js
+// src/pages/blockchain/blockchain.js
 import TopicList from '@root/components/topicComponents/TopicList';
 import React from 'react';
 import Header from '@root/components/layout/Header';
 import withCategoryStyles from '@root/components/cards/withCategoryStyles';
 
-const Marketplace = () => {
+const Blockchain = () => {
   
   return (
     
     <div>
       <Header/>
-      <h1>Marketplace Topics</h1>
-      <TopicList category="marketplace" />
+      <h1>Blockchain Topics</h1>
+      <TopicList category="blockchain" />
     </div>
   );
 };
 
-export default withCategoryStyles(Marketplace);
+export default withCategoryStyles(Blockchain);

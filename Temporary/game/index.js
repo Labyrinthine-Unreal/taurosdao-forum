@@ -1,19 +1,19 @@
-// src/pages/categories/Blockchain/blockchain.js
+// src/pages/game/game.js
 import TopicList from '@root/components/topicComponents/TopicList';
 import React from 'react';
 import Header from '@root/components/layout/Header';
 import withCategoryStyles from '@root/components/cards/withCategoryStyles';
 
-const Blockchain = () => {
+const Game = () => {
   
   return (
     
     <div>
       <Header/>
-      <h1>Blockchain Topics</h1>
-      <TopicList category="blockchain" />
+      <h1>Game Topics</h1>
+      <TopicList category="game" />
     </div>
   );
 };
 
-export default withCategoryStyles(Blockchain);
+export default withCategoryStyles(Game);
