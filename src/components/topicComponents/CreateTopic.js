@@ -29,7 +29,7 @@ const CreateTopic = ({ onPostCreated, category }) => {
   const client = new faunadb.Client({ domain:"db.us.fauna.com", secret: process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY, keepAlive: true });
   console.log(client)
   
-  const { user } = useUser()
+  // const { user } = useUser()
   const { address, isConnected } = useAccount()
   
   const router = useRouter();
@@ -44,7 +44,7 @@ const CreateTopic = ({ onPostCreated, category }) => {
     var createP = client.query(
       q.Create(
         q.Collection(category),
-        { data: { topic: topic, content:content,user:user.username, slug: generatedSlug,eth_address:address } }
+        { data: { topic: topic, content:content, slug: generatedSlug,eth_address:address } } //user:user.username
       ))
     createP.then(function(response) {
       console.log(response.ref); // Logs the ref to the console.

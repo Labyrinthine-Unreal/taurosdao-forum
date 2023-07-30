@@ -9,7 +9,7 @@ import { createClient, configureChains, } from 'wagmi'
 import { publicProvider } from 'wagmi/providers/public'
 import { alchemyProvider } from 'wagmi/providers/alchemy'
 import { infuraProvider } from 'wagmi/providers/infura'
-import { mainnet, goerli,sepolia } from 'wagmi/chains'
+import { mainnet, goerli, sepolia } from 'wagmi/chains'
 import { WagmiConfig } from 'wagmi'
 import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet'
 import { InjectedConnector } from 'wagmi/connectors/injected'
@@ -49,70 +49,84 @@ function MyApp({ Component, pageProps }) {
     // { targetQuorum: 2 },
   )
 
-// Necessary for Wagmi Client Provider /* Do Not Delete or client will not work*/
-const wClient = createClient({
-  autoConnect: true,
-  connectors: [
-    new MetaMaskConnector({ chains }),
-    // new CoinbaseWalletConnector({
-    //   chains,
-    //   options: {
-    //     appName: 'TaurosDAO',
-    //   },
-    // }),
-    new WalletConnectConnector({
-      chains,
-      options: {
-        qrcode: true,
-      },
-    }),
-    new InjectedConnector({
-      chains,
-      options: {
-        name: 'Injected',
-        shimDisconnect: true,
-      },
-    }),
-  ],
-  provider,
-  webSocketProvider,
-})
+  // Necessary for Wagmi Client Provider /* Do Not Delete or client will not work*/
+  const wClient = createClient({
+    autoConnect: true,
+    connectors: [
+      new MetaMaskConnector({ chains }),
+      // new CoinbaseWalletConnector({
+      //   chains,
+      //   options: {
+      //     appName: 'TaurosDAO',
+      //   },
+      // }),
+      new WalletConnectConnector({
+        chains,
+        options: {
+          qrcode: true,
+        },
+      }),
+      new InjectedConnector({
+        chains,
+        options: {
+          name: 'Injected',
+          shimDisconnect: true,
+        },
+      }),
+    ],
+    provider,
+    webSocketProvider,
+  })
 
- const pubKey= process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+  const pubKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
   // If the current route is listed as public, render it directly
   // Otherwise, use Clerk to require authentication
+
+
+
   return (
     <WagmiConfig client={wClient}>
-     <ApolloProvider client={client} />
-    <ClerkProvider publishableKey={pubKey} {...pageProps}>
-    <MoralisProvider appId="ny6Iude7WFwg2QaZtvDK7zQC81e9uKRIeaCkFNxM" serverUrl="https://htogiwbd7il5.usemoralis.com:2053/server">
-
-      <ApolloProvider client={client} />
-
-      {isPublicPage ? (
-        <ApolloProvider client={client}>
-
-          <Component {...pageProps} />
-        </ApolloProvider>
-
-      ) : (
-        <>
-          <ApolloProvider client={client}>
-            <SignedIn>
-              <Component {...pageProps} />
-            </SignedIn>
-          </ApolloProvider>
-
-          <ApolloProvider client={client}>
-            <SignedOut>
-              <RedirectToSignIn />
-            </SignedOut>
-          </ApolloProvider>
-        </>
-      )}
+      <ApolloProvider client={client}>
+      <MoralisProvider appId="ny6Iude7WFwg2QaZtvDK7zQC81e9uKRIeaCkFNxM" serverUrl="https://htogiwbd7il5.usemoralis.com:2053/server">
+        <Component {...pageProps} />
       </MoralisProvider>
-    </ClerkProvider>
+      </ApolloProvider>
     </WagmiConfig>
+
+
+
+    // return (
+    //   <WagmiConfig client={wClient}>
+    //    <ApolloProvider client={client} />
+    //   {/* <ClerkProvider publishableKey={pubKey} {...pageProps}> */}
+    //   <MoralisProvider appId="ny6Iude7WFwg2QaZtvDK7zQC81e9uKRIeaCkFNxM" serverUrl="https://htogiwbd7il5.usemoralis.com:2053/server">
+
+    //     <ApolloProvider client={client} />
+
+    //     {isPublicPage ? (
+    //       <ApolloProvider client={client}>
+
+    //         <Component {...pageProps} />
+    //       </ApolloProvider>
+
+    //     ) : (
+    //       <>
+    //         <ApolloProvider client={client}>
+    //           <SignedIn>
+    //             <Component {...pageProps} />
+    //           </SignedIn>
+    //         </ApolloProvider>
+
+    //         <ApolloProvider client={client}>
+    //           <SignedOut>
+    //             <RedirectToSignIn />
+    //           </SignedOut>
+    //         </ApolloProvider>
+    //       </>
+    //     )}
+    //     </MoralisProvider>
+    //   {/* </ClerkProvider> */}
+    //   </WagmiConfig>
 
 
   );

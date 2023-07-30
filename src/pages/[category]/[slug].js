@@ -42,7 +42,7 @@ const TopicPage = () => {
     // Skip the query if the slug is not available
   }); 
 
-  const { user } = useUser();
+  // const { user } = useUser();
   const { address, isConnected } = useAccount()
 
   const [showEdit, setShowEdit] = useState(false);
@@ -61,7 +61,7 @@ const TopicPage = () => {
     setShowEdit(prevState => !prevState);
   };
 
-  const isAuthor = user.username === topicData.user // check if current user is the author
+  const isAuthor = address === topicData.eth_address // check if current user is the author
 
     return (
     <div>
@@ -74,7 +74,7 @@ const TopicPage = () => {
             <tbody>
               <tr>
                 <td className={styles.leftColumn}>
-                  <div>{topicData.user}</div>
+                  <div>{topicData.eth_address}</div>
                   <div><span>Posts:</span> 0</div>
                   <div><span>Joined:</span> N/A</div>
                 </td>

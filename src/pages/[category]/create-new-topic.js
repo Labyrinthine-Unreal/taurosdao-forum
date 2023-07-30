@@ -9,12 +9,12 @@ import Header from '@root/components/layout/Header';
 import { useRouter } from 'next/router';
 
 const CreateNewTopic = () => {
-  const secret = Clerk.session.getToken({ template: 'fauna' });
-  console.log(secret);
+  // const secret = Clerk.session.getToken({ template: 'fauna' });
+  // console.log(secret);
   const client = new faunadb.Client({ domain:"db.us.fauna.com", secret: process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY, keepAlive: true });
   console.log(client);
-  const { isLoaded, userId, sessionId, getToken } = useAuth();
-  const { user } = useUser();
+  // const { isLoaded, userId, sessionId, getToken } = useAuth();
+  // const { user } = useUser();
   const [newPost, setNewPost] = useState(null);
 
   // Use the useRouter hook from Next.js

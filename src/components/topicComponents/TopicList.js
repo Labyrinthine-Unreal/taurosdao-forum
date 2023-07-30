@@ -36,7 +36,7 @@ export default function TopicList({ category }) {
   const router = useRouter();
   const { data, loading, error } = useQuery(ITEMS_QUERY);
   console.log(data)
-  const { user } = useUser()
+  // const { user } = useUser()
   
   if (loading) return 'Loading...';
   if (error) return `Error! ${error.message}`;
@@ -77,7 +77,7 @@ export default function TopicList({ category }) {
                             {item.topic}
                             </div>
                           <div className={styles.topicAuthor}>
-                            Posted by {item.user} at time
+                            Posted by {item.eth_address} at time
                             </div>
                         </span>
                       </Link>

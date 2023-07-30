@@ -13,32 +13,32 @@ const q = faunadb.query;
 
 export default function Header(req, res) {
   
-  const { user } = useUser()
+  // const { user } = useUser()
 
-  const { isLoaded, userId, sessionId, getToken } = useAuth();
-  // console.log(getToken)
+  // const { isLoaded, userId, sessionId, getToken } = useAuth();
+  // // console.log(getToken)
 
-  // In case the user signs out while on the page.
-  if (!isLoaded || !userId) {
-    return null;
-  }
+  // // In case the user signs out while on the page.
+  // if (!isLoaded || !userId) {
+  //   return null;
+  // }
 
-  const secret = Clerk.session.getToken({ template: 'fauna' })
-  // console.log(secret)
-  const client = new faunadb.Client({ domain:"db.us.fauna.com", secret: process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY, keepAlive: true });
-  // const client = new faunadb.Client({ domain:"db.us.fauna.com", secret: process.env.REACT_APP_FAUNA_SECRET_manager, keepAlive: true });
+  // const secret = Clerk.session.getToken({ template: 'fauna' })
+  // // console.log(secret)
+  // const client = new faunadb.Client({ domain:"db.us.fauna.com", secret: process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY, keepAlive: true });
+  // // const client = new faunadb.Client({ domain:"db.us.fauna.com", secret: process.env.REACT_APP_FAUNA_SECRET_manager, keepAlive: true });
 
-  // console.log(client)
+  // // console.log(client)
 
-  var createP = client.query(
-    q.Create(
-      q.Collection('user'),
-      { data: { user: userId, name: user.firstName } }
-    )
-  )
-  createP.then(function (response) {
-    // console.log(response.ref);
-  })
+  // var createP = client.query(
+  //   q.Create(
+  //     q.Collection('user'),
+  //     { data: { user: userId, name: user.firstName } }
+  //   )
+  // )
+  // createP.then(function (response) {
+  //   // console.log(response.ref);
+  // })
 
   return (
     <div className={styles.container}>
@@ -47,18 +47,18 @@ export default function Header(req, res) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header className={styles.header}>
-        <div className={styles.title}>TaurosDAO</div>
+        {/* <div className={styles.title}>TaurosDAO</div>
         <div className={styles.avatar}>
           <UserButton />
-        </div>
+        </div> */}
         <Connect />
       </header>
 
-      <SignedIn>
+      {/* <SignedIn>
       </SignedIn>
       <SignedOut>
         <SignInButton />
-      </SignedOut>
+      </SignedOut> */}
       <Flex
       as="header"
       position="sticky"
@@ -81,10 +81,7 @@ export default function Header(req, res) {
         <IconButton as="a" href="https://discord.com/invite/taurosdao" target="blank" aria-label="Discord" icon={<FaDiscord />} mx="1" variant="ghost" isRound={true} fontSize="26px" _hover={{ color: "teal" }} />
       </Box>
       <Spacer />
-      {/* <Button background="linear-gradient(45deg, #FFD700, #DAA520)" color="black" _hover={{background: "linear-gradient(45deg, #DAA520, #FFD700)"}} ml="4">Connect</Button> */}
-    {/* <Connect /> */}
     </Flex>
-    {/* <Connect /> */}
     </div>
   );
 }

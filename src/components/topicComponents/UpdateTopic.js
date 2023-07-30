@@ -43,7 +43,7 @@ const UpdateTopic = ({ category }) => {
 
     const router = useRouter();
     const { slug } = router.query;
-    const { user } = useUser()
+    // const { user } = useUser()
     const { address, isConnected } = useAccount()
     
     const client = new faunadb.Client({ domain:"db.us.fauna.com", secret: process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY, keepAlive: true });
@@ -67,7 +67,7 @@ const UpdateTopic = ({ category }) => {
       }
     
     //   const isAuthor = user.username === data[`${category}_by_slug`].user // check if current user is the author
-      console.log(user.username)
+    //   console.log(user.username)
       console.log(data[`${category}_by_slug`]._id)
 
     const handleSubmit = (e) => {
@@ -80,7 +80,7 @@ const UpdateTopic = ({ category }) => {
         var createP = client.query(
             q.Update(
                 q.Ref(q.Collection(category), data[`${category}_by_slug`]._id),
-                { data: { topic: topic, content: content, user: user.username, slug: generatedSlug,eth_address:address } }
+                { data: { topic: topic, content: content, slug: generatedSlug,eth_address:address } } //user: user.username,
             )
         )
 

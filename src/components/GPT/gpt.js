@@ -2,14 +2,16 @@ import { useState } from 'react'
 import { Box, Button, Flex, Spacer, Center, Grid, HStack, SimpleGrid, Text, Link, Heading, Collapse, useDisclosure, IconButton } from '@chakra-ui/react'
 // import { Textarea } from '@nextui-org/react';
 import faunadb from 'faunadb';
-import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, UserButton } from '@clerk/nextjs'
+// import { ClerkProvider, useUser, SignIn, SignedOut, SignedIn, SignInButton, UserButton } from '@clerk/nextjs'
+import { useAccount } from 'wagmi'
 
 export default function GPT() {
   const q = faunadb.query;
   const [prompt, setPrompt] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [response, setResponse] = useState("");
-  const { user } = useUser()
+  // const { user } = useUser()
+  const { address, isConnected } = useAccount()
 
   const client = new faunadb.Client({ domain: "db.us.fauna.com", secret: process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY, keepAlive: true });
 
@@ -38,7 +40,7 @@ export default function GPT() {
     var createP = client.query(
       q.Create(
         q.Collection('Prompts'),
-        { data: { user: user.username, query: prompt, prompt: "{}:".format(user.username) + prompt + "{}".format(data.text), GPTresponse: data.text, date: new Date().toString() } }
+        { data: { user: address, query: prompt, prompt: "{}:".format(address) + prompt + "{}".format(data.text), GPTresponse: data.text, date: new Date().toString() } }
       ))
     createP.then(function (response) {
       console.log(response.ref); // Logs the ref to the console.

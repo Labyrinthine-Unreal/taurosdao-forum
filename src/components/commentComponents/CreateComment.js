@@ -42,7 +42,7 @@ const CreateComment = ({ category, onPostCreated }) => {
 
     const router = useRouter();
     const { slug } = router.query;
-    const { user } = useUser()
+    // const { user } = useUser()
 
     const client = new faunadb.Client({ domain:"db.us.fauna.com", secret: process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY, keepAlive: true });
 
@@ -79,7 +79,7 @@ const CreateComment = ({ category, onPostCreated }) => {
                 forumID:data?.[`${category}_by_slug`]._id, 
                 date: new Date().toString(), 
                 comment: comment,
-                name: user.username,
+                // name: user.username,
                 slug: slug,
                 eth_address:address
             } }

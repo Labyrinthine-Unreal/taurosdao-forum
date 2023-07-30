@@ -10,6 +10,7 @@ import { CSSTransition } from 'react-transition-group';
 import styles from './CommentList.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFile, faPencil } from '@fortawesome/free-solid-svg-icons'
+import { useAccount } from 'wagmi'
 
 const q = faunadb.query;
 const client = new faunadb.Client({ domain:"db.us.fauna.com", secret: process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY, keepAlive: true });
@@ -34,7 +35,8 @@ const CommentList = ({ category }) => {
     variables: { slug },
     skip: !slug,
   })
-  const { user } = useUser()
+  // const { user } = useUser()
+  const { address, isConnected } = useAccount()
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
@@ -71,14 +73,14 @@ const CommentList = ({ category }) => {
               </tr>
             </thead>
             <tbody>
-            {comments.map(([item, slug, name,comment, date, ref,eth_address], index) => {
+            {comments.map(([item, slug,eth_address, name,comment, date, ref], index) => {
                 return (
                   <tr key={index} className={styles.commentRow}>
                     <td className={styles.commentColumn}>
                       <FontAwesomeIcon icon={faFile} />
                     </td>
                     <td>
-                      <div className={styles.commentAuthor}>Posted by {name}/{eth_address} at {date}</div>
+                      <div className={styles.commentAuthor}>Posted by {eth_address} at {date}</div>
                       {comment}
                     </td>
                     <td className={styles.dateAndTime}>
