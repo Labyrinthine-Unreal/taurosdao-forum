@@ -8,11 +8,12 @@ import { useRouter } from 'next/router';
 const Category = () => {
   const router = useRouter();
   const { category } = router.query; // Get the category from the URL
+  console.log(router)
 
   return (
     <div>
       <Header/>
-      <h1>{category.charAt(0).toUpperCase() + category.slice(1)} Topics</h1>
+      <h1>{category} Topics</h1>
       <TopicList category={category} />
     </div>
   );

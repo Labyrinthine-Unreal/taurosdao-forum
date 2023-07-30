@@ -35,6 +35,7 @@ export default function TopicList({ category }) {
 
   const router = useRouter();
   const { data, loading, error } = useQuery(ITEMS_QUERY);
+  console.log(router)
   console.log(data)
   // const { user } = useUser()
   

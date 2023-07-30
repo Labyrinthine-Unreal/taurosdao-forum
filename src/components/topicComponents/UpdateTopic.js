@@ -21,8 +21,13 @@ const Editor = dynamic(
 const q = faunadb.query;
 
 // At the moment this is called from [slug] in each category
-const UpdateTopic = ({ category }) => {
+const UpdateTopic = () => {
+    const router = useRouter();
+    const { slug, category } = router.query;
+    // const { category } = router.query;
+    console.log(category)
 
+    
     const GET_TOPIC_BY_SLUG = gql`
     query MyTopicQuery($slug: String!){
       ${category}_by_slug(slug: $slug) {
@@ -36,15 +41,20 @@ const UpdateTopic = ({ category }) => {
       }
     `;
 
+    // console.log(GET_TOPIC_BY_SLUG)
     const [topic, setTopic] = useState('');
     const [editorState, setEditorState] = useState(() =>
         EditorState.createEmpty()
     );
 
-    const router = useRouter();
-    const { slug } = router.query;
+    // const router = useRouter();
+    // const { slug,category} = router.query;
+
+    // const category = category.asPath.split('/')[1];
+    // console.log(category.asPath.split('/')[1])
     // const { user } = useUser()
     const { address, isConnected } = useAccount()
+    // console.log(router)
     
     const client = new faunadb.Client({ domain:"db.us.fauna.com", secret: process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY, keepAlive: true });
     console.log(client)
@@ -59,16 +69,16 @@ const UpdateTopic = ({ category }) => {
       if (error) return <div>Error: {error.message}</div>;
 
       const topicData = data[`${category}_by_slug`].slug;
-      console.log(data)
-      console.log(data[`${category}_by_slug`].slug)
+    //   console.log(data)
+    //   console.log(data[`${category}_by_slug`].slug)
 
       if (!topicData) {
         return <h1>404: Not Found</h1>
       }
     
-    //   const isAuthor = user.username === data[`${category}_by_slug`].user // check if current user is the author
+      const isAuthor = address === data[`${category}_by_slug`].eth_address // check if current user is the author
     //   console.log(user.username)
-      console.log(data[`${category}_by_slug`]._id)
+    //   console.log(data[`${category}_by_slug`]._id)
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -85,7 +95,7 @@ const UpdateTopic = ({ category }) => {
         )
 
         createP.then(function (response) {
-            console.log(response.ref); // Logs the ref to the console.
+            // console.log(response.ref); // Logs the ref to the console.
             // onPostCreated(response.data); // Call the callback with the new post data
             router.push(`/${category}/${response.data.slug}`); // Redirect the user to the new topic's page
         })

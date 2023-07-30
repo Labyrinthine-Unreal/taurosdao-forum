@@ -6,8 +6,9 @@ import { useAuth, useUser } from '@clerk/nextjs';
 import withCategoryStyles from '@root/components/cards/withCategoryStyles';
 import parse from 'html-react-parser';
 import Header from '@root/components/layout/Header';
+import { useRouter } from 'next/router';
 
-const UpdatePrevTopic = () => {
+const UpdatePrevTopic = ({category}) => {
   // const secret = Clerk.session.getToken({ template: 'fauna' });
   // console.log(secret);
   const client = new faunadb.Client({ domain:"db.us.fauna.com", secret: process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY, keepAlive: true });
@@ -15,7 +16,12 @@ const UpdatePrevTopic = () => {
   // const { isLoaded, userId, sessionId, getToken } = useAuth();
   // const { user } = useUser();
   const [newPost, setNewPost] = useState(null);
-
+  // Use the useRouter hook from Next.js
+  // const router = useRouter();
+  // Extract the category from the path. This assumes the path is of the form /[category]/create-new-topic
+  // const category = router.pathname;
+  // console.log(router)
+  // console.log(category)
   const handlePostCreated = (post) => {
     setNewPost(post);
   };
