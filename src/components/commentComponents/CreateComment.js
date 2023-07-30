@@ -93,7 +93,7 @@ const CreateComment = ({ category, onPostCreated }) => {
     };
 
 
-    return (
+    return ( 
         <>
             <div className={styles.container}>
                 <h2>Add Comment</h2>
