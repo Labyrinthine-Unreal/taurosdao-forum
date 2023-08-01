@@ -73,7 +73,7 @@ const CommentList = ({ category }) => {
               </tr>
             </thead>
             <tbody>
-            {comments.map(([item, slug,eth_address, name,comment, date, ref], index) => {
+            {comments.map(([ref, slug, item,comment, date,eth_address], index) => {
                 return (
                   <tr key={index} className={styles.commentRow}>
                     <td className={styles.commentColumn}>

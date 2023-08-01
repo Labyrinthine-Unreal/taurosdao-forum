@@ -6,7 +6,7 @@ import { useUser } from '@clerk/nextjs';
 import parse from 'html-react-parser';
 import Header from '@root/components/layout/Header';
 import styles from '../TopicPage.module.css';
-import UpdateTopic from '@root/components/topicComponents/UpdateTopic';
+// import UpdateTopic from '@root/components/topicComponents/UpdateTopic';
 import faunadb from 'faunadb';
 import CommentList from '@root/components/commentComponents/CommentList';
 import { CSSTransition } from 'react-transition-group';
@@ -92,10 +92,10 @@ const TopicPage = () => {
                       classNames="slide"
                       unmountOnExit
                     >
-                      <div>
+                      {/* <div>
                         {isAuthor && showEdit &&
                           <UpdateTopic category={category} setShowEdit={setShowEdit} />}
-                      </div>
+                      </div> */}
                     </CSSTransition>
                 </td>
               </tr>
