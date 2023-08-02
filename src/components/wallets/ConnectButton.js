@@ -9,6 +9,7 @@ import { publicProvider } from 'wagmi/providers/public'
 import { infuraProvider } from 'wagmi/providers/infura'
 import { AiOutlineWallet } from 'react-icons/ai'
 import { useState, useEffect } from 'react';
+import CreateUser from '../userSettings/username';
 import faunadb from 'faunadb';
 
 export default function Connect() {
@@ -67,7 +68,7 @@ export default function Connect() {
 
   var createP = client.query(
     q.Create(
-      q.Collection('users'),
+      q.Collection('eth_address'),
       { data: { name: address } }
     )
   )
@@ -100,7 +101,8 @@ export default function Connect() {
           >
             <Icon display={{ base: "none", md: "flex" }} fontSize={17} fontWeight="semibold" mr={2} as={AiOutlineWallet} />
             {/* Display text 'Disconnect' next to Address (Green Bubble) */}
-           {shortWallet}
+           <Button onClick={onOpen}>{shortWallet}
+           <CreateUser /></Button>
           </Center>}
           <Button onClick={disconnect}> Disconnect</Button>
 
@@ -159,6 +161,9 @@ export default function Connect() {
             >
               WalletConnect
             </Button>
+
+            
+            
 
           </ModalBody>
         </ModalContent>
