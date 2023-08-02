@@ -5,6 +5,8 @@ type general{
  slug: String
  user: String
  eth_address:String
+ upvote: Int
+ downvote: Int
 }
 type Query {
  general_by_slug(slug:String!):general

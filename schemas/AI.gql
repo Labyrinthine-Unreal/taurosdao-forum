@@ -5,6 +5,8 @@ type ai{
  slug: String
  user: String
  eth_address:String
+ upvote: Int
+ downvote: Int
 }
 type Query {
  ai_by_slug(slug:String!):ai

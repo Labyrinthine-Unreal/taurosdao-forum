@@ -32,6 +32,8 @@ const TopicPage = ({upvote}) => {
         content
         user
         eth_address
+        upvote
+        downvote
       }
     }
   `;
@@ -102,8 +104,8 @@ const TopicPage = ({upvote}) => {
                 </td>
               </tr>
             </tbody>
-            <UpvotePost />
-            <DownvotePost />
+            <UpvotePost /> {topicData.upvote}
+            <DownvotePost /> {topicData.downvote}
           </table>
           <ReplyButton category={category} /> 
           <GPT />

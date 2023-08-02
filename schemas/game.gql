@@ -5,6 +5,8 @@ type game{
  slug: String
  user: String
  eth_address:String
+ upvote: Int
+ downvote: Int
 }
 type Query {
  game_by_slug(slug:String!):game

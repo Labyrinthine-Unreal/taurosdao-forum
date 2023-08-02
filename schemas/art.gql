@@ -5,10 +5,12 @@ type art{
  slug: String
  user: String
  eth_address:String
+ upvote: Int
+ downvote: Int
 }
-# type Query {
-#  art_by_slug(slug:String!):art
-# }
+type Query {
+ art_by_slug(slug:String!):art
+}
 
 # type CreatedArtComment {
 #     commentId: String

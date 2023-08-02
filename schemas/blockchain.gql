@@ -5,6 +5,8 @@ type blockchain{
  slug: String
  user: String
  eth_address:String
+ upvote: Int
+ downvote: Int
 }
 type Query {
  blockchain_by_slug(slug:String!):blockchain
