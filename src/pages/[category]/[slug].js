@@ -56,6 +56,9 @@ const TopicPage = ({upvote}) => {
   // Render the topic data
   const topicData = data?.[`${category}_by_slug`];
 
+  // const avg = topicData.upvote - topicData.downvote
+  // console.log(avg)
+
   if (!topicData) {
     return <h1>404: Not Found</h1>
   }
@@ -106,6 +109,8 @@ const TopicPage = ({upvote}) => {
             </tbody>
             <UpvotePost /> {topicData.upvote}
             <DownvotePost /> {topicData.downvote}
+            <br />
+            Total Votes = {topicData.upvote - topicData.downvote}
           </table>
           <ReplyButton category={category} /> 
           <GPT />

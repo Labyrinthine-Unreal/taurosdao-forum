@@ -69,6 +69,8 @@ const UpvotePost = () => {
           content
           user
           eth_address
+          upvote 
+          downvote 
         }
       }
     `;
@@ -90,7 +92,7 @@ const UpvotePost = () => {
         client.query(
             q.Update(
                 q.Ref(q.Collection(category), id),
-                { data: {upvote:count} } //LOOK HERE <==
+                { data: {upvote:count+topicData.upvote} } //LOOK HERE <==
             )
         )
     createP.then(function (response) {
