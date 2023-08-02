@@ -25,13 +25,13 @@ const CreateTopic = ({ onPostCreated, category }) => {
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
   );
-  
-  const client = new faunadb.Client({ domain:"db.us.fauna.com", secret: process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY, keepAlive: true });
+
+  const client = new faunadb.Client({ domain: "db.us.fauna.com", secret: process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY, keepAlive: true });
   console.log(client)
-  
+
   // const { user } = useUser()
   const { address, isConnected } = useAccount()
-  
+
   const router = useRouter();
 
   const handleSubmit = (e) => {
@@ -44,47 +44,52 @@ const CreateTopic = ({ onPostCreated, category }) => {
     var createP = client.query(
       q.Create(
         q.Collection(category),
-        { data: { topic: topic, content:content, slug: generatedSlug,eth_address:address } } //user:user.username
+        {
+          data: {
+            topic: topic, content: content, slug: generatedSlug, 
+            eth_address: address, upvote: 0,downvote: 0
+          }
+        } //user:user.username
       ))
-    createP.then(function(response) {
+    createP.then(function (response) {
       console.log(response.ref); // Logs the ref to the console.
       onPostCreated(response.data.data); // Call the callback with the new post data
       router.push(`/${category}/${response.data.slug}`); // Redirect the user to the new topic's page
     })
   };
 
-  
+
   return (
     <>
-    <div className={styles.container}>
-      <h2>Create New Topic</h2>
-      <form onSubmit={handleSubmit} className={styles.topicInput}>
-        <input
-          type="text"
-          id="topic"
-          name="topic"
-          value={topic}
-          onChange={(e) => setTopic(e.target.value)}
-        />
-        <br />
-        <label htmlFor="content">Content:</label>
-        <Editor
-          toolbarOnFocus
-          editorState={editorState}
-          toolbarClassName="toolbarClassName"
-          wrapperClassName="wrapperClassName"
-          editorClassName={"editorClassName"}
-          onEditorStateChange={setEditorState}
-        />
-        <br />
-        <FlippingButton
-          text="Submit"
-          front="Done?"
-          back="Submit"
-          onClick={handleSubmit}
-        />
-      </form>
-    </div>
+      <div className={styles.container}>
+        <h2>Create New Topic</h2>
+        <form onSubmit={handleSubmit} className={styles.topicInput}>
+          <input
+            type="text"
+            id="topic"
+            name="topic"
+            value={topic}
+            onChange={(e) => setTopic(e.target.value)}
+          />
+          <br />
+          <label htmlFor="content">Content:</label>
+          <Editor
+            toolbarOnFocus
+            editorState={editorState}
+            toolbarClassName="toolbarClassName"
+            wrapperClassName="wrapperClassName"
+            editorClassName={"editorClassName"}
+            onEditorStateChange={setEditorState}
+          />
+          <br />
+          <FlippingButton
+            text="Submit"
+            front="Done?"
+            back="Submit"
+            onClick={handleSubmit}
+          />
+        </form>
+      </div>
     </>
   );
 };

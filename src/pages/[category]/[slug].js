@@ -13,11 +13,12 @@ import { CSSTransition } from 'react-transition-group';
 import ReplyButton from '@root/components/buttons/ReplyButton';
 import GPT from '@root/components/GPT/gpt';
 import { useAccount } from 'wagmi'
-
+import UpvotePost from '@root/components/votingComponents/upvote';
+import DownvotePost from '@root/components/votingComponents/downvote';
 const q = faunadb.query;
 const client = new faunadb.Client({ domain:"db.us.fauna.com", secret:process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY, keepAlive: true });
 
-const TopicPage = () => {
+const TopicPage = ({upvote}) => {
   const router = useRouter();
   const { slug, category } = router.query; // Get the category from the URL
 
@@ -97,9 +98,12 @@ const TopicPage = () => {
                           <UpdateTopic category={category} setShowEdit={setShowEdit} />}
                       </div> */}
                     </CSSTransition>
+                    {/* <upvotePost /> */}
                 </td>
               </tr>
             </tbody>
+            <UpvotePost />
+            <DownvotePost />
           </table>
           <ReplyButton category={category} /> 
           <GPT />
