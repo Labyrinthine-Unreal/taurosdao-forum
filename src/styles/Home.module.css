@@ -1,3 +1,5 @@
+/* Add your existing styles here */
+
 .container {
   min-height: 100vh;
   padding: 50px;
@@ -15,13 +17,7 @@
   margin-bottom: 30px;
 }
 
-.logo {
-  /* Add logo styles */
-}
-
-.avatar {
-  /* Add avatar styles */
-}
+/* Remove .logo and .avatar styles */
 
 .gridContainer {
   display: grid;
@@ -31,21 +27,20 @@
 
 .categoryCard {
   box-sizing: border-box;
-  padding: 70px;
-  background-color: #75A2A2;
+  padding: 20px;
+  /* Generate a random linear gradient background */
+  background: linear-gradient(45deg, #ff6f61, #3498db);
   text-decoration: none !important;
-  border-radius: 5px;
+  border-radius: 10px;
   transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.23);
-  transform: perspective(600px) rotateX(0deg) rotateY(0deg); 
-  /* Add perspective and transform-style to create a 3D effect */
-  perspective: 1000px;
-  transform-style: preserve-3d;
+  transform: scale(1); /* Remove initial transform */
 }
 
 .categoryCard::before {
@@ -62,68 +57,21 @@
 
 .categoryCard:hover {
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  background-color: #FFC600;
+  background: linear-gradient(45deg, #3498db, #ff6f61); /* Reverse gradient on hover */
   transition: transform 0.8s, box-shadow 0.3s, background-color 0.3s;
   cursor: pointer;
 }
-
-/* .cardRotateA:hover {
-  transform: perspective(600px) rotateX(-10deg) rotateY(10deg) scale(1.1);
-}
-
-.cardRotateB:hover {
-  transform: perspective(600px) rotateX(-10deg) rotateY(-10deg) scale(1.1);
-}
-
-.cardRotateC:hover {
-  transform: perspective(600px) rotateX(10deg) rotateY(10deg) scale(1.1);
-}
-
-.cardRotateD:hover {
-  transform: perspective(600px) rotateX(10deg) rotateY(-10deg) scale(1.1);
-} */
-
 
 .categoryCard:hover::before {
   transform: scaleY(1);
   background-color: transparent;
 }
 
-.cardHovered ~ .categoryCard {
-  transform: scale(0.8);
-  transition: transform 0.3s;
-}
-
-/* .nonHoveredA {
-  transform: translateX(-40px) translateY(-40px) scale(0.8) perspective(600px) rotateX(-10deg) rotateY(10deg);
-  transition: transform 0.3s;
-}
-
-.nonHoveredB {
-  transform: translateX(40px) translateY(-40px) scale(0.8) perspective(600px) rotateX(-10deg) rotateY(-10deg);
-  transition: transform 0.3s;
-}
-
-.nonHoveredC {
-  transform: translateX(-40px) translateY(40px) scale(0.8) perspective(600px) rotateX(10deg) rotateY(10deg);
-  transition: transform 0.3s;
-}
-
-.nonHoveredD {
-  transform: translateX(40px) translateY(40px) scale(0.8) perspective(600px) rotateX(10deg) rotateY(-10deg);
-  transition: transform 0.3s;
-} */
-
-
 .categoryTitle {
-  color: #4B0082;
-  text-decoration: none;
+  color: #fff; /* Change text color to white */
+  font-size: 18px; /* Increase font size */
+  margin-top: 10px; /* Add some space */
+  text-align: center; /* Center-align text */
 }
 
-.categoryCard:nth-child(2n) {
-  margin-right: 0;
-}
-
-.categoryCard:nth-child(2n + 1) {
-  margin-right: 20px;
-}
+/* Add more styles or animations to make it engaging */
