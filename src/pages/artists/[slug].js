@@ -67,7 +67,7 @@ export default function ArtistProfile() {
       <Header />
       <h1>Artist Bio</h1>
       <p>{artistData}</p>
-      <h2>Artist's Posts</h2>
+      <h2>Artist`&apos;`s Posts</h2>
       <ul>
         {artistPostsData && artistPostsData.blockchain_by_id.data.map((post) => (
           <li key={post.id}>
