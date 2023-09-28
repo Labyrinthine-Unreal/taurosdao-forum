@@ -8,7 +8,9 @@ import { useUser } from '@clerk/nextjs'
 import slugify from 'slugify';
 import shortid from 'shortid';
 import { useRouter } from 'next/router';
-import styles from '../topicComponents/CreateTopic.module.css'
+// import styles from '../topicComponents/CreateTopic.module.css'
+import styles from './CreateUser.module.css'; // Replace with your CSS module path
+
 import { useAccount } from 'wagmi'
 import GPT from '../GPT/gpt';
 import { Center, Spacer } from '@chakra-ui/react';
@@ -78,11 +80,10 @@ const CreateUser = () => {
 
     if (isConnected)
     return (
-        
         <div className={styles.container}>
             use TaurosGPT to help you build a valuable biography and to help us understand what inspires you <br />
             <Center><GPT /></Center>
-            <br /> 
+            <br />
             <Spacer />
             <h2>Create Artist Biography</h2>
             <form onSubmit={handleSubmit}>
