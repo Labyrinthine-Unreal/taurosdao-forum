@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import Header from '@root/components/layout/Header';
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
+import DMSlide from '../messaging/slide';
 
 const q = faunadb.query;
 
@@ -65,6 +66,7 @@ export default function ArtistProfile() {
   return (
     <div>
       <Header />
+      <DMSlide />
       <h1>Artist Bio</h1>
       <p>{artistData}</p>
       <h2>Artist`&apos;`s Posts</h2>
