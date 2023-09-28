@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './Connect.css';
+import styles from './Connect.module.css'; // Import the CSS module
 
 import { useAccount, useConnect, useDisconnect } from 'wagmi';
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask';
@@ -10,7 +10,7 @@ export default function Connect() {
   const [shortWallet, setWalletAddress] = useState();
   const { address, isConnected } = useAccount();
   const { disconnect } = useDisconnect();
-  const { isOpen, onOpen, onClose } = useState(false); // Replace useDisclosure with useState
+  const [isOpen, setIsOpen] = useState(false); // Replace useState with useDisclosure
   const { connectAsync } = useConnect();
   const q = faunadb.query;
   const client = new faunadb.Client({ secret: process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY, keepAlive: true });
@@ -63,31 +63,31 @@ export default function Connect() {
       {isConnected ? (
         <div>
           {/* Display user Address on Connect */}
-          <div className="connected-container">
-            <div className="connected-wallet">
-              <button onClick={onOpen}>{shortWallet}</button>
+          <div className={styles['connected-container']}>
+            <div className={styles['connected-wallet']}>
+              <button onClick={() => setIsOpen(true)}>{shortWallet}</button>
             </div>
             <button onClick={disconnect}> Disconnect</button>
           </div>
         </div>
       ) : (
         <div>
-          <button className="connect-button" onClick={() => setIsOpen(true)}>
+          <button className={styles['connect-button']} onClick={() => setIsOpen(true)}>
             Connect Wallet
           </button>
-          <div className={`modal ${isOpen ? 'show' : ''}`}>
-            <div className="modal-content">
-              <div className="modal-header">
-                <span className="modal-title">Connect Wallet</span>
-                <button onClick={onClose} className="modal-close-button">
+          <div className={`modal ${isOpen ? styles['show'] : ''}`}>
+            <div className={styles['modal-content']}>
+              <div className={styles['modal-header']}>
+                <span className={styles['modal-title']}>Connect Wallet</span>
+                <button onClick={() => setIsOpen(false)} className={styles['modal-close-button']}>
                   &times;
                 </button>
               </div>
-              <div className="modal-body">
-                <button onClick={handleMM} className="connect-button">
+              <div className={styles['modal-body']}>
+                <button onClick={handleMM} className={styles['connect-button']}>
                   Metamask
                 </button>
-                <button onClick={handleWC} className="connect-button">
+                <button onClick={handleWC} className={styles['connect-button']}>
                   WalletConnect
                 </button>
               </div>
