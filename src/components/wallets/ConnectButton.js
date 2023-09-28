@@ -12,6 +12,7 @@ import { useState, useEffect } from 'react';
 // import CreateUser from '../userSettings/create';
 import faunadb from 'faunadb';
 import DMSlide from '../messaging/slide';
+
 export default function Connect() {
   
   const [shortWallet, setWalletAddress] = useState();
@@ -103,7 +104,7 @@ export default function Connect() {
             {/* Display text 'Disconnect' next to Address (Green Bubble) */}
            <Button onClick={onOpen}>{shortWallet}
 
-           <DMSlide />
+           {/* <DMSlide /> */}
 
 
            </Button>
