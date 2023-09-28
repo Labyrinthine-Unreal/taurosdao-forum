@@ -1,7 +1,6 @@
-
 .container {
   min-height: 100vh;
-  padding: 50px;
+  padding: 20px; /* Adjust padding for mobile */
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -13,19 +12,18 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 30px;
+  margin-bottom: 20px; /* Adjust margin for mobile */
 }
 
 .gridContainer {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive grid columns */
   grid-gap: 20px;
 }
 
 .categoryCard {
   box-sizing: border-box;
-  padding: 20px;
-  /* Generate a random linear gradient background */
+  padding: 15px; /* Adjust padding for mobile */
   background: linear-gradient(45deg, #ff6f61, #3498db);
   text-decoration: none !important;
   border-radius: 10px;
@@ -36,7 +34,7 @@
   justify-content: center;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.2);
   transform: scale(1);
 }
 
@@ -53,7 +51,7 @@
 }
 
 .categoryCard:hover {
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Adjust box-shadow for mobile */
   background: linear-gradient(45deg, #3498db, #ff6f61);
   transition: transform 0.8s, box-shadow 0.3s, background-color 0.3s;
   cursor: pointer;
@@ -66,7 +64,7 @@
 
 .categoryTitle {
   color: #fff;
-  font-size: 18px;
+  font-size: 16px; /* Adjust font-size for mobile */
   margin-top: 10px;
   text-align: center;
 }
