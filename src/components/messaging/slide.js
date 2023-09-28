@@ -52,7 +52,7 @@ export default function DMSlide() {
         }
     };
     
-
+if (isConnected)
     return (
         <div>
             <h1>Send a Direct Message</h1>

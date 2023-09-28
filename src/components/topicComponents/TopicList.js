@@ -54,6 +54,7 @@ export default function TopicList({ category }) {
   router.push(`/${category}/create-new-topic`);
 };
 
+
   return (
       <>
       <CreateUser />

@@ -76,6 +76,7 @@ const CreateUser = () => {
         });
     };
 
+    if (isConnected)
     return (
         
         <div className={styles.container}>
