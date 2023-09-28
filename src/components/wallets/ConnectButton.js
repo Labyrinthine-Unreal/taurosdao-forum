@@ -89,7 +89,7 @@ export default function Connect() {
 Metamask
                 </button>
                 <button onClick={handleWC} className={styles['connect-button']}>
-                <img src='/images/logos-icons/WalletConnect.png' w="2em" h="2em" mr="2" />
+                <img src='/images/logos-icons/WalletConnect.png' width="2em" height="2em" />
 
                   WalletConnect
                 </button>
