@@ -22,7 +22,7 @@ export default function Connect() {
   const handleWC = async () => {
     const { account, chain } = await connectAsync({
       connector: new WalletConnectConnector({
-        chains,
+        chain,
         options: {
           qrcode: true,
         },
