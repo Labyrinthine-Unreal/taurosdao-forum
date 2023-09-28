@@ -84,7 +84,7 @@ export default function Header(req, res) {
       <Spacer />
     </Flex>
     <br />
-    <CreateUser />
+    {/* <CreateUser /> */}
     </div>
   );
 }

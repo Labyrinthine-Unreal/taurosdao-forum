@@ -8,8 +8,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFile, faPencil } from '@fortawesome/free-solid-svg-icons'
 import styles from './TopicList.module.css';
 import { useUser } from '@clerk/nextjs'
-
 import faunadb from 'faunadb';
+import CreateUser from '../userSettings/create';
 const q = faunadb.query;
 
 // At the moment this is called from index.js in each category
@@ -55,6 +55,8 @@ export default function TopicList({ category }) {
 
   return (
       <>
+      <CreateUser />
+
         <div className={styles.container}>
           <button onClick={handleNewTopic} className={styles.newTopicButton}><FontAwesomeIcon icon={faPencil} style={{ marginRight: "20px" }} />New Topic</button>
           
