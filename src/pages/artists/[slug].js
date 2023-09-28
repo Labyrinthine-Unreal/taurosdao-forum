@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import Header from '@root/components/layout/Header';
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
-import DMSlide from '../messaging/slide';
+import DMSlide from '@root/components/messaging/slide';
 
 const q = faunadb.query;
 
