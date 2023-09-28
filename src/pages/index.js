@@ -1,7 +1,7 @@
-// src/pages/index.js
 import React from 'react';
 import Header from '@root/components/layout/Header';
 import CategoryCard from '@root/components/cards/CategoryCard';
+import SEO from '@root/components/layout/SEO'; // Import the SEO component
 import styles from '@root/styles/Home.module.css'
 
 export default function Home(req, res) {
@@ -22,6 +22,14 @@ export default function Home(req, res) {
       <div className={styles.container}>
         <div className={styles.gridContainer}>
           {categories.map((category) => (
+            <React.Fragment key={category.index}>
+              {/* Use the SEO component to set metadata for each category */}
+              <SEO
+                title={`${category.title} Category`}
+                description={`Explore ${category.title} topics and discussions.`}
+                keywords={`${category.title}, topics, discussions`}
+                author="Your Name" // Set your name or the site's author here
+              />
               <CategoryCard
                 key={category.index}
                 ref={categoryCardsRef[category.index]}
@@ -29,8 +37,9 @@ export default function Home(req, res) {
                 link={category.link}
                 index={category.index}
               />
-            ))}
-          </div>
+            </React.Fragment>
+          ))}
+        </div>
       </div>
     </div>
   );
