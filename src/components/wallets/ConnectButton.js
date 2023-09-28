@@ -1,7 +1,6 @@
+import React, { useState, useEffect } from 'react';
 import {
   Box,
-  Center,
-  Icon,
   Button,
   Image,
   Divider,
@@ -12,18 +11,12 @@ import {
   ModalHeader,
   ModalBody,
   ModalCloseButton,
-  Spacer,
+  Center,
 } from '@chakra-ui/react';
 import { useAccount, useConnect, useDisconnect } from 'wagmi';
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask';
 import { WalletConnectConnector } from 'wagmi/connectors/walletConnect';
-import { configureChains } from 'wagmi';
-import { mainnet } from 'wagmi/chains';
-import { infuraProvider } from 'wagmi/providers/infura';
-import { AiOutlineWallet } from 'react-icons/ai';
-import { useState, useEffect } from 'react';
 import faunadb from 'faunadb';
-import DMSlide from '../messaging/slide';
 
 export default function Connect() {
   const [shortWallet, setWalletAddress] = useState();
@@ -98,7 +91,6 @@ export default function Connect() {
             pr={8}
             rounded="3xl"
           >
-            <Icon display={{ base: "none", md: "flex" }} fontSize={17} fontWeight="semibold" mr={2} as={AiOutlineWallet} />
             <Button onClick={onOpen}>{shortWallet}</Button>
           </Center>
           <Button onClick={disconnect}> Disconnect</Button>
@@ -111,9 +103,9 @@ export default function Connect() {
     <Box>
       <Button
         onClick={onOpen}
-        background="linear-gradient(45deg, #FFD700, #DAA520)"
+        bg="#FFD700"
         color="black"
-        _hover={{ background: "linear-gradient(45deg, #DAA520, #FFD700)" }}
+        _hover={{ bg: "#DAA520" }}
         ml="4"
       >
         Connect Wallet
@@ -136,7 +128,6 @@ export default function Connect() {
               fontWeight="normal"
               my={2}
               onClick={handleMM}
-              leftIcon={<Image src='/images/logos-icons/metamask.png' w="2em" h="2em" mr="2" />}
             >
               Metamask
             </Button>
@@ -151,7 +142,6 @@ export default function Connect() {
               fontWeight="normal"
               my={2}
               onClick={handleWC}
-              leftIcon={<Image src='/images/logos-icons/WalletConnect.png' w="2em" h="2em" mr="2" />}
             >
               WalletConnect
             </Button>
