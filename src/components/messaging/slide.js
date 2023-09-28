@@ -62,8 +62,7 @@ export default function DMSlide() {
             <h1>Send a Direct Message</h1>
             <div>
                 <label htmlFor="receiverEthAddress">Recipient Ethereum Address:</label>
-                <input
-                    type="text"
+                <textarea
                     id="receiverEthAddress"
                     value={receiverEthAddress}
                     onChange={(e) => setReceiverEthAddress(e.target.value)}
