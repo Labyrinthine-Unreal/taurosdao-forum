@@ -1,18 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Box,
-  Button,
-  Image,
-  Divider,
-  useDisclosure,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalCloseButton,
-  Center,
-} from '@chakra-ui/react';
+import './Connect.css';
+
 import { useAccount, useConnect, useDisconnect } from 'wagmi';
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask';
 import { WalletConnectConnector } from 'wagmi/connectors/walletConnect';
@@ -22,7 +10,7 @@ export default function Connect() {
   const [shortWallet, setWalletAddress] = useState();
   const { address, isConnected } = useAccount();
   const { disconnect } = useDisconnect();
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useState(false); // Replace useDisclosure with useState
   const { connectAsync } = useConnect();
   const q = faunadb.query;
   const client = new faunadb.Client({ secret: process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY, keepAlive: true });
@@ -70,86 +58,43 @@ export default function Connect() {
     console.log(response.ref);
   });
 
-  if (isConnected) {
-    return (
-      <Box>
-        {/* Display user Address on Connect */}
-        <Center>
-          <Center
-            fontSize={14}
-            fontWeight="semibold"
-            bg="#009688bb"
-            color="#fff"
-            border="1px"
-            _hover={{ bg: "teal.400" }}
-            position="absolute"
-            w="fit-content"
-            h="40px"
-            right={110}
-            py={3}
-            pl={3}
-            pr={8}
-            rounded="3xl"
-          >
-            <Button onClick={onOpen}>{shortWallet}</Button>
-          </Center>
-          <Button onClick={disconnect}> Disconnect</Button>
-        </Center>
-      </Box>
-    );
-  }
-
   return (
-    <Box>
-      <Button
-        onClick={onOpen}
-        bg="#FFD700"
-        color="black"
-        _hover={{ bg: "#DAA520" }}
-        ml="4"
-      >
-        Connect Wallet
-      </Button>
-      <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose} isCentered size="sm">
-        <ModalOverlay />
-        <ModalContent rounded="2xl">
-          <ModalHeader fontWeight="normal">Connect Wallet</ModalHeader>
-          <Divider />
-          <ModalCloseButton />
-          <ModalBody py={10}>
-            <Button
-              w="full"
-              h="60px"
-              justifyContent="left"
-              variant="outline"
-              borderColor="#008080"
-              _hover={{ borderColor: '#000000' }}
-              rounded="xl"
-              fontWeight="normal"
-              my={2}
-              // leftIcon={<Image src='/images/logos-icons/metamask.png' w="2em" h="2em" mr="2" />}
-              onClick={handleMM}
-            >
-              Metamask
-            </Button>
-            <Button
-              w="full"
-              h="60px"
-              justifyContent="left"
-              variant="outline"
-              borderColor="#008080"
-              _hover={{ borderColor: '#000000' }}
-              rounded="xl"
-              fontWeight="normal"
-              my={2}
-              // leftIcon={<Image src='/images/logos-icons/WalletConnect.png' w="2em" h="2em" mr="2" />}
-              onClick={handleWC}
-            >
-              WalletConnect
-            </Button>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
-    </Box>
+    <div>
+      {isConnected ? (
+        <div>
+          {/* Display user Address on Connect */}
+          <div className="connected-container">
+            <div className="connected-wallet">
+              <button onClick={onOpen}>{shortWallet}</button>
+            </div>
+            <button onClick={disconnect}> Disconnect</button>
+          </div>
+        </div>
+      ) : (
+        <div>
+          <button className="connect-button" onClick={() => setIsOpen(true)}>
+            Connect Wallet
+          </button>
+          <div className={`modal ${isOpen ? 'show' : ''}`}>
+            <div className="modal-content">
+              <div className="modal-header">
+                <span className="modal-title">Connect Wallet</span>
+                <button onClick={onClose} className="modal-close-button">
+                  &times;
+                </button>
+              </div>
+              <div className="modal-body">
+                <button onClick={handleMM} className="connect-button">
+                  Metamask
+                </button>
+                <button onClick={handleWC} className="connect-button">
+                  WalletConnect
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
