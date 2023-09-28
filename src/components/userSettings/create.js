@@ -81,36 +81,33 @@ const CreateUser = () => {
     if (isConnected)
     return (
         <div className={styles.container}>
-            use TaurosGPT to help you build a valuable biography and to help us understand what inspires you <br />
-            <Center><GPT /></Center>
-            <br />
-            <Spacer />
-            <h2>Create Artist Biography</h2>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    name="name"
-                    placeholder="Username"
-                    value={username}
-                    onChange={(e) => setUser(e.target.value)}
-                />
-                <input
-                    type="text"
-                    name="tagline"
-                    placeholder="Tagline"
-                    value={tagline}
-                    onChange={(e) => setTagline(e.target.value)}
-                />
-                <textarea
-                    name="biography"
-                    placeholder="Biography"
-                    value={biography}
-                    onChange={(e) => setBiography(e.target.value)}
-                ></textarea>
-                <button type="submit">Create Artist</button>
-            </form>
+          <h2 className={styles.artistBiographyHeading}>Create Artist Biography</h2>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              className={styles.inputField} // Apply the input field style
+              name="name"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUser(e.target.value)}
+            />
+            {/* Add input fields for tagline and biography similarly */}
+            <textarea
+              className={styles.textareaField} // Apply the textarea field style
+              name="biography"
+              placeholder="Biography"
+              value={biography}
+              onChange={(e) => setBiography(e.target.value)}
+            ></textarea>
+            <button
+              type="submit"
+              className={styles.submitButton} // Apply the submit button style
+            >
+              Create Artist
+            </button>
+          </form>
         </div>
-    );
-};
+      );
+    };
 
 export default CreateUser;
