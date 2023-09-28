@@ -35,7 +35,7 @@ export default function DMSlide() {
     
             // Create the message with sender and receiver references
             const message = {
-                senderRef: q.Ref(q.Collection('users'), String(address)), // Use the actual sender's Ethereum address
+                senderRef: q.Ref(q.Collection('users'), address), // Use the actual sender's Ethereum address
                 receiverRef: String(address),
                 content: messageContent,
                 timestamp: new Date().toISOString(),
