@@ -85,20 +85,20 @@ const CreateUser = () => {
             <Spacer />
             <h2>Create Artist Biography</h2>
             <form onSubmit={handleSubmit}>
-                {/* <input
+                <input
                     type="text"
                     name="name"
                     placeholder="Username"
                     value={username}
                     onChange={(e) => setUser(e.target.value)}
-                /> */}
-                {/* <input
+                />
+                <input
                     type="text"
                     name="tagline"
                     placeholder="Tagline"
                     value={tagline}
                     onChange={(e) => setTagline(e.target.value)}
-                /> */}
+                />
                 <textarea
                     name="biography"
                     placeholder="Biography"
