@@ -8,6 +8,7 @@ import faunadb from 'faunadb';
 import { Box, Flex, Link, Button, Image, Spacer, IconButton } from "@chakra-ui/react";
 import { FaTwitter, FaInstagram, FaDiscord } from "react-icons/fa";
 import Connect from "../wallets/ConnectButton";
+import CreateUser from '../userSettings/create';
 
 const q = faunadb.query;
 
@@ -53,7 +54,7 @@ export default function Header(req, res) {
         </div> */}
         <Connect />
       </header>
-
+      {/* <CreateUser /> */}
       {/* <SignedIn>
       </SignedIn>
       <SignedOut>
@@ -82,6 +83,8 @@ export default function Header(req, res) {
       </Box>
       <Spacer />
     </Flex>
+    <br />
+    <CreateUser />
     </div>
   );
 }

@@ -40,7 +40,7 @@ export default function GPT() {
     var createP = client.query(
       q.Create(
         q.Collection('Prompts'),
-        { data: { user: address, query: prompt, prompt: "{}:".format(address) + prompt + "{}".format(data.text), GPTresponse: data.text, date: new Date().toString() } }
+        { data: { user: address, query: prompt, prompt: "{}:".format(address) + prompt + "{}".format(data.text), GPTresponse: data.text } }
       ))
     createP.then(function (response) {
       console.log(response.ref); // Logs the ref to the console.
@@ -55,7 +55,7 @@ export default function GPT() {
       <Spacer />
       {/* <div className={styles.center}> */}
 
-      <input status="secondary"
+      <textarea name='TaurosGPT'
         placeholder="Enter a prompt"
         onChange={(e) => setPrompt(e.target.value)}
         row="5"

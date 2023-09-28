@@ -9,9 +9,9 @@ import { publicProvider } from 'wagmi/providers/public'
 import { infuraProvider } from 'wagmi/providers/infura'
 import { AiOutlineWallet } from 'react-icons/ai'
 import { useState, useEffect } from 'react';
-import CreateUser from '../userSettings/username';
+// import CreateUser from '../userSettings/create';
 import faunadb from 'faunadb';
-
+import DMSlide from '../messaging/slide';
 export default function Connect() {
   
   const [shortWallet, setWalletAddress] = useState();
@@ -102,7 +102,11 @@ export default function Connect() {
             <Icon display={{ base: "none", md: "flex" }} fontSize={17} fontWeight="semibold" mr={2} as={AiOutlineWallet} />
             {/* Display text 'Disconnect' next to Address (Green Bubble) */}
            <Button onClick={onOpen}>{shortWallet}
-           <CreateUser /></Button>
+
+           <DMSlide />
+
+
+           </Button>
           </Center>}
           <Button onClick={disconnect}> Disconnect</Button>
 
