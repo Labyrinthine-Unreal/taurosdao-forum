@@ -127,7 +127,7 @@ export default function Connect() {
               rounded="xl"
               fontWeight="normal"
               my={2}
-              leftIcon={<Image src='/images/logos-icons/metamask.png' w="2em" h="2em" mr="2" />}
+              // leftIcon={<Image src='/images/logos-icons/metamask.png' w="2em" h="2em" mr="2" />}
               onClick={handleMM}
             >
               Metamask
@@ -142,7 +142,7 @@ export default function Connect() {
               rounded="xl"
               fontWeight="normal"
               my={2}
-              leftIcon={<Image src='/images/logos-icons/WalletConnect.png' w="2em" h="2em" mr="2" />}
+              // leftIcon={<Image src='/images/logos-icons/WalletConnect.png' w="2em" h="2em" mr="2" />}
               onClick={handleWC}
             >
               WalletConnect
