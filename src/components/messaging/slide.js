@@ -21,14 +21,11 @@ export default function DMSlide() {
             console.log('Recipient Ethereum Address:', receiverEthAddress);
     
             // Find the recipient's FaunaDB document by Ethereum address
-            const recipientRef = await client.query(
-                q.Select(
-                    'ref',
-                    q.Get(q.Match(q.Index('users_by_slug'), receiverEthAddress))
-                )
+            const recipientDoc = await client.query(
+                q.Get(q.Match(q.Index('users_by_slug'), receiverEthAddress))
             );
     
-            if (!recipientRef) {
+            if (!recipientDoc || !recipientDoc.ref) {
                 console.error('Recipient not found');
                 return;
             }
@@ -36,7 +33,7 @@ export default function DMSlide() {
             // Create the message with sender and receiver references
             const message = {
                 senderRef: q.Ref(q.Collection('users'), address), // Use the actual sender's Ethereum address
-                receiverRef: receiverEthAddress,
+                receiverRef: recipientDoc.ref, // Use the FaunaDB reference
                 content: messageContent,
                 timestamp: new Date().toISOString(),
             };
@@ -55,7 +52,6 @@ export default function DMSlide() {
         }
     };
     
-
 
     return (
         <div>
