@@ -85,11 +85,11 @@ export default function Connect() {
               </div>
               <div className={styles['modal-body']}>
                 <button onClick={handleMM} className={styles['connect-button']}>
-                <img src='/images/logos-icons/metamask.png' width="2px" height="2px"/>
+                <img src='/images/logos-icons/metamask.png' width="65px" height="65px"/>
 Metamask
                 </button>
                 <button onClick={handleWC} className={styles['connect-button']}>
-                <img src='/images/logos-icons/WalletConnect.png' width="2px" height="2px" />
+                <img src='/images/logos-icons/WalletConnect.png' width="65px" height="65px" />
 
                   WalletConnect
                 </button>
