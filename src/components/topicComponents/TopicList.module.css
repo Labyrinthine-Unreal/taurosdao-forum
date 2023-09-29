@@ -16,10 +16,9 @@
 .topicBox {
   background: linear-gradient(90deg, #007BFF 0%, #0056b3 100%); /* Gradient background */
   color: white; /* Text color on the gradient background */
-  border: 2px solid #ccc; /* Thick borders */
+  border: none; /* Remove borders */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  border-radius: 10px;
+  border-radius: 50%; /* Circular shape */
   overflow: hidden;
   transition: transform 0.2s, box-shadow 0.2s;
 }
