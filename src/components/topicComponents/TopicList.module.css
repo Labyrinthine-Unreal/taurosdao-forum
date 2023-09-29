@@ -1,78 +1,91 @@
-/* CSS for Fun and Engaging Forum */
+/* CSS for Chic Portfolio-Style Topic List with Thick Borders and More Shadow on Hover */
 
 .container {
-  width: 80%;
-  margin: auto;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.topicTable {
-  width: 100%;
-  border-collapse: collapse;
-  border: 0.1px solid lightgrey; /* Simplify border */
-  background-color: #ffffffbb;
+.topicList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  list-style: none;
+  padding: 0;
 }
 
-.topicTable td {
-  padding: 20px 10px;
-  text-align: center; /* Center align content */
-  border: 0.1px solid lightgrey; /* Add border to all cells */
+.topicBox {
+  background-color: #fff;
+  border: 2px solid #ccc; /* Thick borders */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.topicBox:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3); /* More shadow on hover */
+}
+
+.topicContent {
+  max-width: 100%;
 }
 
 .tableHeader {
-  height: 50px;
-  background-color: #46494f;
+  background-color: #333;
   color: white;
-  text-align: left;
-  padding-left: 10px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
+  text-align: center;
+  padding: 15px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .topicLink {
   text-decoration: none;
-  color: #1f5999; /* Fun link color */
+  color: #007BFF;
+  transition: color 0.3s;
+}
+
+.topicLink:hover {
+  color: #0056b3;
 }
 
 .topicTitle {
   font-weight: bold;
-  font-size: 18px; /* Increase title font size */
+  font-size: 24px;
+  margin-bottom: 10px;
 }
 
 .topicAuthor {
-  font-size: small;
-  color: #2569b5; /* Engaging author color */
-}
-
-.topicColumn {
-  background-color: #f5f5f5; /* Lighter background for columns */
-  vertical-align: middle;
+  font-size: 16px;
+  color: #666;
 }
 
 .viewsAndReplies {
-  font-size: small;
-  color: #2569b5; /* Engaging color for views and replies */
+  font-size: 14px;
+  color: #999;
 }
 
 .dateAndTime {
-  font-size: small;
-  color: #2569b5; /* Engaging color for date and time */
+  font-size: 14px;
+  color: #999;
   text-align: right;
 }
 
 .newTopicButton {
-  background: linear-gradient(90deg, #1f5999 0%, #2569b5 100%);
+  background-color: #007BFF;
   color: white;
-  font-size: 16px; /* Slightly increase button font size */
+  font-size: 18px;
   border: none;
-  border-radius: 3px;
-  padding: 10px 12px;
+  border-radius: 5px;
+  padding: 10px 20px;
   margin: 20px 0;
   cursor: pointer;
-  text-align: center;
-  display: inline-block; /* Change to inline-block to fit content */
-  text-transform: uppercase; /* Uppercase button text */
+  text-transform: uppercase;
+  transition: background-color 0.3s;
 }
 
 .newTopicButton:hover {
-  background: linear-gradient(90deg, #0e2744 0%, #19487d 100%);
+  background-color: #0056b3;
 }
