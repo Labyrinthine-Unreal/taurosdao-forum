@@ -20,12 +20,13 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 50%; /* Circular shape */
   overflow: hidden;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, border-radius 0.2s; /* Added transition for border-radius */
 }
 
 .topicBox:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3); /* More shadow on hover */
+  border-radius: 0; /* Square shape on hover */
 }
 
 .topicContent {
