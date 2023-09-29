@@ -3,6 +3,8 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 20px; /* Add some horizontal padding for smaller screens */
+  box-sizing: border-box;
 }
 
 .topicList {
@@ -88,4 +90,34 @@
 
 .newTopicButton:hover {
   background-color: #0056b3;
+}
+
+/* Media Query for Mobile Screens */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 10px; /* Reduce horizontal padding for smaller screens */
+  }
+
+  .topicList {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)); /* Full width columns for mobile */
+  }
+
+  .topicBox {
+    padding: 15px; /* Reduce padding for smaller screens */
+  }
+
+  .topicTitle {
+    font-size: 20px; /* Decrease font size for smaller screens */
+  }
+
+  .topicAuthor,
+  .viewsAndReplies,
+  .dateAndTime {
+    font-size: 12px; /* Decrease font size for smaller screens */
+  }
+
+  .newTopicButton {
+    font-size: 16px; /* Decrease font size for smaller screens */
+    padding: 8px 16px; /* Adjust padding for smaller screens */
+  }
 }
