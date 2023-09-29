@@ -1,3 +1,5 @@
+/* CSS for Chic Portfolio-Style Topic List with Circular-to-Square Transition on Hover */
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -14,6 +16,7 @@
 }
 
 .topicBox {
+  position: relative; /* Add relative positioning */
   background: linear-gradient(90deg, #007BFF 0%, #0056b3 100%); /* Gradient background */
   color: white; /* Text color on the gradient background */
   border: none; /* Remove borders */
@@ -31,6 +34,14 @@
 
 .topicContent {
   max-width: 100%;
+}
+
+.topicContentWrapper {
+  position: absolute; /* Add absolute positioning */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Center content */
+  text-align: center; /* Center text */
 }
 
 .tableHeader {
