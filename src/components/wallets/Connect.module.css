@@ -1,8 +1,10 @@
-/* Connect.module.css */
+/* Connect.module.css - Mobile-Friendly Styles */
+
+/* Base styles */
 
 .connected-container {
   display: flex;
-  flex-direction: column; /* Stack items vertically on small screens */
+  flex-direction: column;
   align-items: center;
   padding: 1rem;
   background-color: #f0f0f0;
@@ -16,10 +18,10 @@
   align-items: center;
   text-align: center;
   margin-bottom: 1rem;
-  background: linear-gradient(to bottom, #007bff, #0056b3); /* Gradient background */
-  padding: 2rem; /* Increased padding for better visual impact */
+  background: linear-gradient(to bottom, #007bff, #0056b3);
+  padding: 2rem;
   border-radius: 8px;
-  color: #fff; /* White text color */
+  color: #fff;
 }
 
 .connected-wallet button {
@@ -29,8 +31,24 @@
   border: 1px solid #007bff;
   border-radius: 4px;
   cursor: pointer;
-  margin-top: 1rem; /* Add margin to separate from the text */
+  margin-top: 1rem;
   font-weight: bold;
+}
+
+/* Media Query for Mobile Devices */
+
+@media (max-width: 768px) {
+  .connected-container {
+    padding: 0.5rem; /* Reduce padding for smaller screens */
+  }
+
+  .connected-wallet {
+    padding: 1rem; /* Increase padding for better spacing on mobile */
+  }
+
+  .connected-wallet button {
+    font-size: 0.8rem; /* Decrease button font size on mobile */
+  }
 }
 
 .connected-wallet button:hover {
@@ -38,32 +56,31 @@
   color: #fff;
 }
 
-
 /* Add an icon for the connected wallet */
 .connected-wallet .wallet-icon {
-  font-size: 3rem; /* Adjust the size of the icon */
+  font-size: 3rem;
 }
 
 .connect-button {
-  background-color: #fff; /* White background */
-  color: #333; /* Dark gray text color */
+  background-color: #fff;
+  color: #333;
   padding: 0.5rem 1rem;
-  border: 1px solid #ccc; /* Light gray border */
+  border: 1px solid #ccc;
   border-radius: 4px;
   cursor: pointer;
-  margin: 0.5rem 0; /* Adjust margin for spacing */
+  margin: 0.5rem 0;
   font-weight: bold;
   border-radius: 50%;
 }
 
 .connect-button:hover {
-  transform: scale(1.05); /* Add a slight scale effect on hover */
+  transform: scale(1.05);
   background: linear-gradient(to bottom, #007bff, #0056b3);
 }
 
 .disconnect-button {
-  background-color: #ffffff; /* Red background color, you can change it */
-  color: linear-gradient(to bottom, #007bff, #0056b3); /* White text color */
+  background-color: #ffffff;
+  color: linear-gradient(to bottom, #007bff, #0056b3);
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 4px;
@@ -73,20 +90,21 @@
   text-align: center;
   font-size: 1rem;
   border-radius: 50%;
-  transition: background-color 0.3s ease; /* Add hover transition effect */
+  transition: background-color 0.3s ease;
 }
 
 .disconnect-button:hover {
-  transform: scale(1.05); /* Add a slight scale effect on hover */
+  transform: scale(1.05);
   background: linear-gradient(to bottom, #007bff, #0056b3);
   color: #fff;
-
 }
+
+/* Modal styles */
 
 .modal {
   display: none;
   position: fixed;
-  top: 100%; /* Start with the modal off the page */
+  top: 100%;
   left: 0;
   width: 100%;
   height: 100%;
@@ -94,50 +112,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  transition: top 0.3s ease; /* Add transition for top property */
-}
-
-.modal.show {
-  top: 0; /* Move the modal onto the page when it's shown */
-  display: flex;
-}
-
-.modal-content {
-  background-color: #fff;
-  border-radius: 50%;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  padding: 1rem;
-  width: 90%;
-  max-width: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  transition: background-color 0.3s ease; /* Add hover transition effect */
-}
-
-.modal-content:hover {
-  background-color: #f0f0f0; /* Change background color on hover */
+  transition: top 0.3s ease;
 }
 
 /* Rest of your CSS... */
-
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.modal-title {
-  font-weight: bold;
-  font-size: 1.2rem; /* Slightly larger title font */
-}
-
-.modal-close-button {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #333;
-}
