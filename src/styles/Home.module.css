@@ -1,6 +1,8 @@
+/* Updated CSS for Engaging Category Cards */
+
 .container {
   min-height: 100vh;
-  padding: 20px; /* Adjust padding for mobile */
+  padding: 20px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -12,19 +14,20 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 20px; /* Adjust margin for mobile */
+  margin-bottom: 20px;
 }
 
 .gridContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive grid columns */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjust card width */
   grid-gap: 20px;
 }
 
 .categoryCard {
   box-sizing: border-box;
-  padding: 15px; /* Adjust padding for mobile */
-  background: linear-gradient(45deg, #ff6f61, #3498db);
+  padding: 20px;
+  background: linear-gradient(90deg, #ff6f61, #3498db); /* Engaging gradient */
+  color: white;
   text-decoration: none !important;
   border-radius: 10px;
   transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
@@ -34,7 +37,7 @@
   justify-content: center;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.3); /* More engaging shadow */
   transform: scale(1);
 }
 
@@ -51,9 +54,10 @@
 }
 
 .categoryCard:hover {
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Adjust box-shadow for mobile */
-  background: linear-gradient(45deg, #3498db, #ff6f61);
-  transition: transform 0.8s, box-shadow 0.3s, background-color 0.3s;
+  transform: translateY(-5px); /* Slight upward lift on hover */
+  box-shadow: 0 12px 18px rgba(0, 0, 0, 0.3), 0 8px 8px rgba(0, 0, 0, 0.4); /* Enhance shadow on hover */
+  background: linear-gradient(90deg, #3498db, #ff6f61); /* Gradient change on hover */
+  transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
   cursor: pointer;
 }
 
@@ -63,8 +67,7 @@
 }
 
 .categoryTitle {
-  color: #fff;
-  font-size: 16px; /* Adjust font-size for mobile */
+  font-size: 20px; /* Slightly larger font size */
   margin-top: 10px;
   text-align: center;
 }
