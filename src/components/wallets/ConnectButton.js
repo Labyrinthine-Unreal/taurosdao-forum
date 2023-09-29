@@ -16,11 +16,12 @@ export default function Connect() {
   const client = new faunadb.Client({ secret: process.env.NEXT_PUBLIC_FAUNA_SECRET_KEY, keepAlive: true });
 
   const handleMM = async () => {
-    const { account, chain } = await connectAsync({ connector: new MetaMaskConnector() });
+    const { account } = await connectAsync({ connector: new MetaMaskConnector() });
   };
 
   const handleWC = async () => {
-    const { account, chain } = await connectAsync({
+    const chain = 'Ethereum'; // Initialize the chain variable
+    const { account } = await connectAsync({
       connector: new WalletConnectConnector({
         chain,
         options: {
@@ -67,30 +68,29 @@ export default function Connect() {
             <div className={styles['connected-wallet']}>
               <button onClick={() => setIsOpen(true)}>{shortWallet}</button>
             </div>
-            <button onClick={disconnect}> Disconnect</button>
+            <button onClick={disconnect} className={styles['disconnect-button']}> Disconnect</button>
           </div>
         </div>
       ) : (
         <div>
-          <button className={styles['connect-button']} onClick={() => setIsOpen(true)}>
+          {/* <button className={styles['connect-button']} onClick={() => setIsOpen(true)}>
             Connect Wallet
-          </button>
+          </button> */}
           <div className={`modal ${isOpen ? styles['show'] : ''}`}>
             <div className={styles['modal-content']}>
               <div className={styles['modal-header']}>
                 <span className={styles['modal-title']}>Connect Wallet</span>
-                <button onClick={() => setIsOpen(false)} className={styles['modal-close-button']}>
+                {/* <button onClick={() => setIsOpen(false)} className={styles['modal-close-button']}>
                   &times;
-                </button>
+                </button> */}
               </div>
               <div className={styles['modal-body']}>
                 <button onClick={handleMM} className={styles['connect-button']}>
-                <img src='/images/logos-icons/metamask.png' width="65px" height="65px"/>
-Metamask
+                  <img src='/images/logos-icons/metamask.png' width="65px" height="65px" alt="MetaMask" />
+                  Metamask
                 </button>
                 <button onClick={handleWC} className={styles['connect-button']}>
-                <img src='/images/logos-icons/WalletConnect.png' width="65px" height="65px" />
-
+                  <img src='/images/logos-icons/WalletConnect.png' width="65px" height="65px" alt="WalletConnect" />
                   WalletConnect
                 </button>
               </div>

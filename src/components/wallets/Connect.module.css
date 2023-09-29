@@ -12,21 +12,36 @@
 
 .connected-wallet {
   display: flex;
-  flex-direction: column; /* Stack items vertically on small screens */
+  flex-direction: column;
   align-items: center;
-  text-align: center; /* Center text content */
-  margin-bottom: 1rem; /* Add spacing between sections */
+  text-align: center;
+  margin-bottom: 1rem;
+  background: linear-gradient(to bottom, #007bff, #0056b3); /* Gradient background */
+  padding: 2rem; /* Increased padding for better visual impact */
+  border-radius: 8px;
+  color: #fff; /* White text color */
 }
 
 .connected-wallet button {
-  background-color: #007bff; /* Neutral blue color */
-  color: #fff;
+  background-color: #fff;
+  color: #007bff;
   padding: 0.5rem 1rem;
-  border: none;
+  border: 1px solid #007bff;
   border-radius: 4px;
   cursor: pointer;
-  margin: 0.5rem 0; /* Adjust margin for spacing */
+  margin-top: 1rem; /* Add margin to separate from the text */
   font-weight: bold;
+}
+
+.connected-wallet button:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+
+/* Add an icon for the connected wallet */
+.connected-wallet .wallet-icon {
+  font-size: 3rem; /* Adjust the size of the icon */
 }
 
 .connect-button {
@@ -40,6 +55,25 @@
   font-weight: bold;
 }
 
+.disconnect-button {
+  background-color: #ff0000; /* Red background color, you can change it */
+  color: #fff; /* White text color */
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0.5rem 0;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1rem;
+  transition: background-color 0.3s ease; /* Add hover transition effect */
+}
+
+.disconnect-button:hover {
+  background-color: #ff3333; /* Slightly lighter red on hover, you can change it */
+  transform: scale(1.05); /* Add a slight scale effect on hover */
+}
+
 .modal {
   display: none;
   position: fixed;
@@ -50,6 +84,7 @@
   background-color: rgba(0, 0, 0, 0.5);
   justify-content: center;
   align-items: center;
+  border-radius: 50%; /* Add this line to make it a circle */
 }
 
 .modal.show {
@@ -58,13 +93,21 @@
 
 .modal-content {
   background-color: #fff;
-  border-radius: 8px;
+  border-radius: 50%;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   padding: 1rem;
-  width: 90%; /* Adjust width for smaller screens */
-  max-width: 300px; /* Limit maximum width */
+  width: 90%;
+  max-width: 300px;
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  text-align: center;
+  transition: background-color 0.3s ease; /* Add hover transition effect */
 }
 
+.modal-content:hover {
+  background-color: #f0f0f0; /* Change background color on hover */
+}
 .modal-header {
   display: flex;
   justify-content: space-between;

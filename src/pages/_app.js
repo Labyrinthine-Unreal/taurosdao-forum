@@ -54,12 +54,12 @@ function MyApp({ Component, pageProps }) {
     autoConnect: true,
     connectors: [
       new MetaMaskConnector({ chains }),
-      // new CoinbaseWalletConnector({
-      //   chains,
-      //   options: {
-      //     appName: 'TaurosDAO',
-      //   },
-      // }),
+      new CoinbaseWalletConnector({
+        chains,
+        options: {
+          appName: 'TaurosForums',
+        },
+      }),
       new WalletConnectConnector({
         chains,
         options: {
