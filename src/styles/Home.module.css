@@ -1,3 +1,5 @@
+/* Combined CSS for Chic Portfolio-Style Topic List with Circular-to-Square Transition on Hover */
+
 .container {
   min-height: 100vh;
   padding: 20px; /* Adjust padding for mobile */
@@ -68,3 +70,5 @@
   margin-top: 10px;
   text-align: center;
 }
+
+/* Your previous CSS styles go here */
